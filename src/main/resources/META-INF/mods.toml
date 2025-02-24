@@ -1,0 +1,43 @@
+modLoader="javafml"
+loaderVersion="47,)"
+license="All Rights Reserved, DragN0007"
+#issueTrackerURL="https://discord.gg/2WznNTtVac"
+[[mods]]
+modId="permafrost"
+version="${1.0}"
+displayName="DragN's Permafrost"
+logoFile="permafrost_logo.png"
+authors="DragN0007"
+description='''
+Adds Pleistocene animals to roam the landscapes of Minecraft (Originally meant to be used with TerraFirmaCraft, yet not required).
+'''
+[[dependencies.permafrost]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.permafrost]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1]"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.permafrost]]
+modId="geckolib"
+mandatory=true
+versionRange = "[4.4.4,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.permafrost]]
+modId="dragnlivestock"
+mandatory=true
+versionRange = "[2.1,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.permafrost]]
+modId="patchouli"
+mandatory=false
+versionRange = "[1.20.1-84,)"
+ordering="NONE"
+side="BOTH"

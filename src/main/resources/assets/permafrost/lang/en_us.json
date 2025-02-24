@@ -1,0 +1,18 @@
+{
+  "itemGroup.permafrost": "Permafrost",
+
+  "item.permafrost.mammoth_spawn_egg": "Mammoth Spawn Egg",
+  "entity.permafrost.mammoth": "Mammoth",
+
+  "item.permafrost.mammoth_milk_bucket": "Mammoth Milk Bucket",
+
+  "item.permafrost.mammoth_milk_jug": "Mammoth Milk Jug",
+
+  "item.permafrost.mammoth_cheese": "Mammoth Cheese",
+
+  "item.permafrost.mammoth": "Mammoth",
+  "item.permafrost.cooked_mammoth": "Cooked Mammoth",
+
+
+  "sounds.permafrost.mammoth_ambient": "Mammoth Trumpets"
+}

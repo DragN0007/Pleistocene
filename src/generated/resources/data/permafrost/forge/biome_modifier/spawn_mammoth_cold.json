@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#forge:is_cold",
+  "spawners": {
+    "type": "permafrost:mammoth",
+    "maxCount": 6,
+    "minCount": 1,
+    "weight": 10
+  }
+}
