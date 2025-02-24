@@ -12,8 +12,8 @@ import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
 
-public class VHRecipeMaker extends RecipeProvider implements IConditionBuilder {
-    public VHRecipeMaker(PackOutput pOutput) {
+public class PFRecipeMaker extends RecipeProvider implements IConditionBuilder {
+    public PFRecipeMaker(PackOutput pOutput) {
         super(pOutput);
     }
 

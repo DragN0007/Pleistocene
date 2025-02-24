@@ -11,11 +11,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class VHWorldGenerator extends DatapackBuiltinEntriesProvider {
+public class PFWorldGenerator extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(ForgeRegistries.Keys.BIOME_MODIFIERS, BiomeHitter::bootstrap);
 
-    public VHWorldGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+    public PFWorldGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(Permafrost.MODID));
     }
 }

@@ -20,9 +20,9 @@ public class JsonDataGenerator {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(event.includeServer(), new VHRecipeMaker(packOutput));
-        generator.addProvider(event.includeClient(), new VHItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeServer(), new PFRecipeMaker(packOutput));
+        generator.addProvider(event.includeClient(), new PFItemModelProvider(packOutput, existingFileHelper));
 
-        generator.addProvider(event.includeServer(), new VHWorldGenerator(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new PFWorldGenerator(packOutput, lookupProvider));
     }
 }

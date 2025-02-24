@@ -11,8 +11,8 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
-public class VHItemModelProvider extends ItemModelProvider {
-    public VHItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+public class PFItemModelProvider extends ItemModelProvider {
+    public PFItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, Permafrost.MODID, existingFileHelper);
     }
 
