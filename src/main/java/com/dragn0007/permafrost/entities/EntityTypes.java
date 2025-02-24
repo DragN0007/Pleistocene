@@ -11,7 +11,6 @@ import net.minecraftforge.registries.RegistryObject;
 import static com.dragn0007.permafrost.Permafrost.MODID;
 
 public class EntityTypes {
-
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
 
     public static final RegistryObject<EntityType<Mammoth>> MAMMOTH_ENTITY = ENTITY_TYPES.register("mammoth",
@@ -19,6 +18,5 @@ public class EntityTypes {
                     MobCategory.CREATURE)
                     .sized(2f,4f)
                     .build(new ResourceLocation(MODID,"mammoth").toString()));
-
 }
 
