@@ -37,9 +37,9 @@ public class Permafrost
         MinecraftForge.EVENT_BUS.register(this);
 
         if (ModList.get().isLoaded("tfc")) {
-            LOGGER.info("Couldn't find TerraFirmaCraft.");
+            LOGGER.info("[Permafrost] Couldn't find TerraFirmaCraft.");
         } else {
-            LOGGER.info("Found TerraFirmaCraft!");
+            LOGGER.info("[Permafrost] Found TerraFirmaCraft!");
         }
     }
 

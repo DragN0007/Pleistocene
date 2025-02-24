@@ -1,0 +1,8 @@
+{
+  "mammoth_ambient": {
+    "subtitles": "sounds.permafrost.mammoth_ambient",
+    "sounds": [
+      "permafrost:mammoth_ambient"
+    ]
+  }
+}
