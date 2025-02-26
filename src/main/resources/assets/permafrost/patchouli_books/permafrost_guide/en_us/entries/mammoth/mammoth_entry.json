@@ -1,0 +1,24 @@
+{
+  "name": "Mammoth",
+  "icon": "permafrost:mammoth",
+  "category": "permafrost:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mammoths wander the cold landscapes of the Overworld. If TFC is installed, you can find Mammoths alongside Musk Oxen and Alpacas. $(br2)Mammoths can be tamed much like horses and can have saddles, chests, and even carpets."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Carpets will also dye their tusks their respective color. $(br2)When tamed, they can carry up to 3 players. $(br2)Mammoths enjoy: $(br2)Leaves, Wheat, and (TFC)Barley."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "permafrost:mammoth{Variant:2}",
+      "name": "The Mammoth",
+      "default_rotation": 45,
+      "scale": 0.8,
+      "rotate": "false",
+      "text": "A brown mammoth."
+    }
+  ]
+}

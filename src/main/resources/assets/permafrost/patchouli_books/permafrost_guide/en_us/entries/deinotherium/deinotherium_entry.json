@@ -1,0 +1,24 @@
+{
+  "name": "Deinotherium",
+  "icon": "permafrost:deinotherium",
+  "category": "permafrost:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Deinotherium wander the warm landscapes of the Overworld. If TFC is installed, you can find Deinotherium alongside Horses and Cows. $(br2)Deinotherium can be tamed much like horses and can have saddles, chests, and even carpets."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When tamed, they can carry up to 2 players. $(br2)Deinotherium enjoy: $(br2)Apples and Beetroots. (Includes TFC variants)"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "permafrost:deinotherium{Variant:3}",
+      "name": "The Deinotherium",
+      "default_rotation": 45,
+      "scale": 0.8,
+      "rotate": "false",
+      "text": "A grey deinotherium."
+    }
+  ]
+}

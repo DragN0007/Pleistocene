@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.datagen;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.items.PFItems;
 import net.minecraft.data.PackOutput;
@@ -23,6 +22,10 @@ public class PFItemModelProvider extends ItemModelProvider {
         simpleItem(PFItems.MAMMOTH_MILK_BUCKET);
         simpleItem(PFItems.MAMMOTH_MILK_JUG);
         simpleItem(PFItems.MAMMOTH_CHEESE);
+        advancedItem(PFItems.DEINOTHERIUM, "mammoth");
+        advancedItem(PFItems.COOKED_DEINOTHERIUM, "cooked_mammoth");
+        simpleItem(PFItems.DIREWOLF);
+        simpleItem(PFItems.COOKED_DIREWOLF);
 
         simpleItem(PFItems.PERMAFROST);
     }
@@ -33,15 +36,9 @@ public class PFItemModelProvider extends ItemModelProvider {
                 new ResourceLocation(Permafrost.MODID,"item/" + item.getId().getPath()));
     }
 
-    public ItemModelBuilder advancedLocalItem(RegistryObject<Item> item, String getTextureName) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(Permafrost.MODID,"item/" + getTextureName));
-    }
-
     public ItemModelBuilder advancedItem(RegistryObject<Item> item, String getTextureName) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(LivestockOverhaul.MODID,"item/" + getTextureName));
+                new ResourceLocation(Permafrost.MODID,"item/" + getTextureName));
     }
 }

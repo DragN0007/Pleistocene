@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "permafrost:cooked_mammoth"
+    "permafrost:cooked_mammoth",
+    "permafrost:cooked_deinotherium"
   ]
 }

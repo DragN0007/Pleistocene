@@ -19,9 +19,15 @@ public class PFItemGroup {
                     .displayItems((displayParameters, output) -> {
 
                         output.accept(PFItems.MAMMOTH_SPAWN_EGG.get());
+                        output.accept(PFItems.DEINOTHERIUM_SPAWN_EGG.get());
+                        output.accept(PFItems.DIREWOLF_SPAWN_EGG.get());
 
                         output.accept(PFItems.MAMMOTH.get());
                         output.accept(PFItems.COOKED_MAMMOTH.get());
+                        output.accept(PFItems.DEINOTHERIUM.get());
+                        output.accept(PFItems.COOKED_DEINOTHERIUM.get());
+                        output.accept(PFItems.DIREWOLF.get());
+                        output.accept(PFItems.COOKED_DIREWOLF.get());
                         output.accept(PFItems.MAMMOTH_MILK_BUCKET.get());
                         output.accept(PFItems.MAMMOTH_MILK_JUG.get());
                         output.accept(PFItems.MAMMOTH_CHEESE.get());

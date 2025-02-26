@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "permafrost:mammoth"
+    "permafrost:mammoth",
+    "permafrost:deinotherium",
+    "permafrost:direwolf"
   ]
 }

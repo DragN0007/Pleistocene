@@ -9,7 +9,7 @@ displayName="DragN's Permafrost"
 logoFile="permafrost_logo.png"
 authors="DragN0007"
 description='''
-Adds Pleistocene animals to roam the landscapes of Minecraft (Originally meant to be used with TerraFirmaCraft, yet not required).
+Adds Pleistocene animals to roam the landscapes of Minecraft (Originally meant to be played with TerraFirmaCraft, yet not required).
 '''
 [[dependencies.permafrost]]
 modId = "forge"

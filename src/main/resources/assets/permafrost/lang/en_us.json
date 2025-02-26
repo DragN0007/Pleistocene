@@ -1,8 +1,15 @@
 {
   "itemGroup.permafrost": "Permafrost",
 
+  "tooltip.permafrost.wandering.tooltip": "Your Companion is Wandering",
+  "tooltip.permafrost.following.tooltip": "Your Companion is Following",
+
   "item.permafrost.mammoth_spawn_egg": "Mammoth Spawn Egg",
   "entity.permafrost.mammoth": "Mammoth",
+  "item.permafrost.deinotherium_spawn_egg": "Deinotherium Spawn Egg",
+  "entity.permafrost.deinotherium": "Deinotherium",
+  "item.permafrost.direwolf_spawn_egg": "Direwolf Spawn Egg",
+  "entity.permafrost.direwolf": "Direwolf",
 
   "item.permafrost.mammoth_milk_bucket": "Mammoth Milk Bucket",
 
@@ -12,7 +19,11 @@
 
   "item.permafrost.mammoth": "Mammoth",
   "item.permafrost.cooked_mammoth": "Cooked Mammoth",
+  "item.permafrost.deinotherium": "Deinotherium",
+  "item.permafrost.cooked_deinotherium": "Cooked Deinotherium",
+  "item.permafrost.direwolf": "Direwolf",
+  "item.permafrost.cooked_direwolf": "Cooked Direwolf",
 
 
-  "sounds.permafrost.mammoth_ambient": "Mammoth Trumpets"
+  "sounds.permafrost.mammoth_ambient": "Prehistoric Elephant Trumpets"
 }

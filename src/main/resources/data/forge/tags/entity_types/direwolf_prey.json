@@ -1,0 +1,33 @@
+{
+  "replace": false,
+  "values": [
+    "permafrost:mammoth",
+    "permafrost:deinotherium",
+    "dragnlivestock:o_horse",
+    "dragnlivestock:o_donkey",
+    "dragnlivestock:o_mule",
+    "dragnlivestock:o_camel",
+    "dragnlivestock:o_cow",
+    "dragnlivestock:o_sheep",
+    "dragnlivestock:o_goat",
+    "dragnlivestock:o_pig",
+    "dragnlivestock:o_chicken",
+    "dragnlivestock:o_rabbit",
+    "dragnlivestock:caribou",
+
+    {
+      "id": "#forge:dogs",
+      "required": false
+    },
+
+    {
+      "id": "#forge:o_foxes",
+      "required": false
+    },
+
+    {
+      "id": "#forge:o_wolves",
+      "required": false
+    }
+  ]
+}

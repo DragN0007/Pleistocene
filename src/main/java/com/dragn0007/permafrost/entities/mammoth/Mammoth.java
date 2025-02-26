@@ -8,9 +8,12 @@ import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.entities.ai.MammothFollowHerdLeaderGoal;
+import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.gui.MammothMenu;
 import com.dragn0007.permafrost.items.PFItems;
 import com.dragn0007.permafrost.util.PFSoundEvents;
+import com.dragn0007.permafrost.util.PFTags;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -36,8 +39,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -116,6 +121,10 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, entity ->
 				entity.getType().is(LOTags.Entity_Types.O_WOLVES) && (entity instanceof TamableAnimal && !((TamableAnimal) entity).isTame())
 		));
+
+		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, entity ->
+				entity instanceof Direwolf && !((Direwolf) entity).isTame()
+		));
 	}
 
 	@Override
@@ -184,6 +193,62 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 	@Override
 	public AnimatableInstanceCache getAnimatableInstanceCache() {
 		return this.geoCache;
+	}
+
+	public static final Ingredient FOOD_ITEMS = Ingredient.of(PFTags.Items.MAMMOTH_FOOD);
+
+	public boolean isFood(ItemStack stack) {
+		return FOOD_ITEMS.test(stack);
+	}
+
+	@Override
+	public boolean handleEating(Player player, ItemStack itemStack) {
+		int i = 0;
+		int j = 0;
+		float f = 0.0F;
+		boolean flag = false;
+		if (itemStack.is(PFTags.Items.MAMMOTH_FOOD)) {
+			i = 90;
+			j = 6;
+			f = 10.0F;
+			if (this.isTamed() && this.getAge() == 0 && this.canFallInLove()) {
+				flag = true;
+				this.setInLove(player);
+			}
+		}
+
+		if (this.getHealth() < this.getMaxHealth() && f > 0.0F) {
+			this.heal(f);
+			flag = true;
+		}
+
+		if (this.isBaby() && i > 0) {
+			this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D, this.getRandomZ(1.0D), 0.0D, 0.0D, 0.0D);
+			if (!this.level().isClientSide) {
+				this.ageUp(i);
+			}
+
+			flag = true;
+		}
+
+		if (j > 0 && (flag || !this.isTamed()) && this.getTemper() < this.getMaxTemper()) {
+			flag = true;
+			if (!this.level().isClientSide) {
+				this.modifyTemper(j);
+			}
+		}
+
+		if (flag) {
+			this.gameEvent(GameEvent.ENTITY_INTERACT);
+			if (!this.isSilent()) {
+				SoundEvent soundevent = this.getEatingSound();
+				if (soundevent != null) {
+					this.level().playSound(null, this.getX(), this.getY(), this.getZ(), this.getEatingSound(), this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+				}
+			}
+		}
+
+		return flag;
 	}
 
 	public Mammoth leader;
@@ -333,7 +398,7 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 
 	@Override
 	public LivingEntity getControllingPassenger() {
-		if (this.isTamed()) {
+		if (this.isTamed() && this.isSaddled()) {
 			return (LivingEntity) this.getFirstPassenger();
 		}
 		return null;

@@ -1,0 +1,18 @@
+{
+  "name": "Gender Information",
+  "icon": "dragnlivestock:gender_test_strip",
+  "category": "permafrost:genders_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "-Male mammoths have larger tusks, while females have smaller tusks. $(br2)-Deinotherium have no gender dimorphism. $(br2)-Direwolves have no gender dimorphism."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "dragnlivestock:gender_test_strip"
+      },
+      "text": "The $(l)Gender Test Strip$() is used to tell the genders of animals who may have no dimorphism, or are babies."
+    }
+  ]
+}

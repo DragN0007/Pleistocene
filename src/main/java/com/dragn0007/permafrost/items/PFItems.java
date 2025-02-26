@@ -21,6 +21,11 @@ public class PFItems {
 
     public static final RegistryObject<Item> MAMMOTH_SPAWN_EGG = ITEMS.register("mammoth_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.MAMMOTH_ENTITY, 0x624b40, 0x553e34, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> DEINOTHERIUM_SPAWN_EGG = ITEMS.register("deinotherium_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.DEINOTHERIUM_ENTITY, 0x726662, 0xa79d96, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> DIREWOLF_SPAWN_EGG = ITEMS.register("direwolf_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.DIREWOLF_ENTITY, 0x939da1, 0x6c7679, new Item.Properties().stacksTo(64)));
+
     public static final RegistryObject<Item> MAMMOTH_MILK_BUCKET = ITEMS.register("mammoth_milk_bucket",
          () -> new MilkBucketItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(1).build()).craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> MAMMOTH_MILK_JUG = ITEMS.register("mammoth_milk_jug",
@@ -31,6 +36,14 @@ public class PFItems {
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
     public static final RegistryObject<Item> COOKED_MAMMOTH = ITEMS.register("cooked_mammoth",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).build())));
+    public static final RegistryObject<Item> DEINOTHERIUM = ITEMS.register("deinotherium",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(10).saturationMod(1).build())));
+    public static final RegistryObject<Item> COOKED_DEINOTHERIUM = ITEMS.register("cooked_deinotherium",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(14).saturationMod(1).build())));
+    public static final RegistryObject<Item> DIREWOLF = ITEMS.register("direwolf",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
+    public static final RegistryObject<Item> COOKED_DIREWOLF = ITEMS.register("cooked_direwolf",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
 
 
     public static final RegistryObject<Item> PERMAFROST = ITEMS.register("permafrost",

@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:apple",
+    "minecraft:beetroot",
+
+    {
+      "id": "tfc:food/beet",
+      "required": false
+    },
+
+    {
+      "id": "tfc:food/pumpkin_chunks",
+      "required": false
+    },
+
+    {
+      "id": "tfc:food/red_apple",
+      "required": false
+    },
+
+    {
+      "id": "tfc:food/green_apple",
+      "required": false
+    }
+  ]
+}

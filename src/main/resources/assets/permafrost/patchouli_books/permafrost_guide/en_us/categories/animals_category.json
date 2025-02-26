@@ -1,0 +1,5 @@
+{
+  "name": "Permafrost Animals Info",
+  "description": "About Permafrost animals and their mechanics. $(br2)Sometimes, animal showcases may jitter due to Geckolib animations attempting to play.",
+  "icon": "permafrost:permafrost"
+}

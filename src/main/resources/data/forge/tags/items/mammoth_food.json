@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:leaves",
+    "minecraft:wheat",
+
+    {
+      "id": "tfc:food/wheat",
+      "required": false
+    },
+
+    {
+      "id": "tfc:food/barley",
+      "required": false
+    }
+  ]
+}
