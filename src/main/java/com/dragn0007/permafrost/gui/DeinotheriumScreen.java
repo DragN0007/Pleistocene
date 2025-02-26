@@ -15,11 +15,11 @@ public class DeinotheriumScreen extends AbstractContainerScreen<DeinotheriumMenu
 
     public static final ResourceLocation INVENTORY_LOCATION = new ResourceLocation(Permafrost.MODID, "textures/gui/mammoth.png");
     public final Deinotherium deinotherium;
-    protected int baseColorLabelX;
-    protected int baseColorLabelY;
-    protected int genderFLabelX;
-    protected int genderMLabelX;
-    protected int genderLabelY;
+    public int baseColorLabelX;
+    public int baseColorLabelY;
+    public int genderFLabelX;
+    public int genderMLabelX;
+    public int genderLabelY;
 
     public DeinotheriumScreen(DeinotheriumMenu deinotheriumMenu, Inventory inventory, Component component) {
         super(deinotheriumMenu, inventory, component);
@@ -27,7 +27,7 @@ public class DeinotheriumScreen extends AbstractContainerScreen<DeinotheriumMenu
     }
 
     @Override
-    protected void init() {
+    public void init() {
         this.leftPos = (this.width - this.imageWidth) / 2;
         this.topPos = (this.height - this.imageHeight) / 2;
 
@@ -84,7 +84,7 @@ public class DeinotheriumScreen extends AbstractContainerScreen<DeinotheriumMenu
         this.renderTooltip(graphics, i, i1);
     }
 
-    private void renderBaseCoatLabel(GuiGraphics graphics) {
+    public void renderBaseCoatLabel(GuiGraphics graphics) {
         String text = this.deinotherium.getTextureLocation().toString();
         String noFillerText = text.replaceAll(".+deinotherium_", "");
         String noUnderscoresText = noFillerText.replaceAll("_", " ");
@@ -100,7 +100,7 @@ public class DeinotheriumScreen extends AbstractContainerScreen<DeinotheriumMenu
         }
     }
 
-    private void renderGenderLabel(GuiGraphics graphics) {
+    public void renderGenderLabel(GuiGraphics graphics) {
         String female = "FEMALE";
         String male = "MALE";
         String error = "NBT Error";

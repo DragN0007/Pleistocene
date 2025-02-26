@@ -15,11 +15,11 @@ public class MammothScreen extends AbstractContainerScreen<MammothMenu> {
 
     public static final ResourceLocation INVENTORY_LOCATION = new ResourceLocation(Permafrost.MODID, "textures/gui/mammoth.png");
     public final Mammoth mammoth;
-    protected int baseColorLabelX;
-    protected int baseColorLabelY;
-    protected int genderFLabelX;
-    protected int genderMLabelX;
-    protected int genderLabelY;
+    public int baseColorLabelX;
+    public int baseColorLabelY;
+    public int genderFLabelX;
+    public int genderMLabelX;
+    public int genderLabelY;
 
     public MammothScreen(MammothMenu mammothMenu, Inventory inventory, Component component) {
         super(mammothMenu, inventory, component);
@@ -27,7 +27,7 @@ public class MammothScreen extends AbstractContainerScreen<MammothMenu> {
     }
 
     @Override
-    protected void init() {
+    public void init() {
         this.leftPos = (this.width - this.imageWidth) / 2;
         this.topPos = (this.height - this.imageHeight) / 2;
 
@@ -84,7 +84,7 @@ public class MammothScreen extends AbstractContainerScreen<MammothMenu> {
         this.renderTooltip(graphics, i, i1);
     }
 
-    private void renderBaseCoatLabel(GuiGraphics graphics) {
+    public void renderBaseCoatLabel(GuiGraphics graphics) {
         String text = this.mammoth.getTextureLocation().toString();
         String noFillerText = text.replaceAll(".+mammoth_", "");
         String noUnderscoresText = noFillerText.replaceAll("_", " ");
@@ -100,7 +100,7 @@ public class MammothScreen extends AbstractContainerScreen<MammothMenu> {
         }
     }
 
-    private void renderGenderLabel(GuiGraphics graphics) {
+    public void renderGenderLabel(GuiGraphics graphics) {
         String female = "FEMALE";
         String male = "MALE";
         String error = "NBT Error";

@@ -9,7 +9,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "When tamed, they can carry up to 2 players. $(br2)Deinotherium enjoy: $(br2)Raw Meat and Bones."
+      "text": "When tamed, they can carry their owner. They can be sat down/ up by shift-left-clicking them, and put to Follow/ Wander mode by shift-right-clicking. $(br2)Direwolves enjoy: $(br2)Raw Meat and Bones."
     },
     {
       "type": "patchouli:entity",

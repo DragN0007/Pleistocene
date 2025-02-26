@@ -15,7 +15,7 @@ public class PFSoundEvents {
     public static final RegistryObject<SoundEvent> MAMMOTH_AMBIENT = registerSoundEvents("mammoth_ambient");
 
 
-    private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
+    public static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(Permafrost.MODID, name)));
     }
 

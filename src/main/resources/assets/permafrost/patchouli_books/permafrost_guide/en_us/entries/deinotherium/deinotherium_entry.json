@@ -16,7 +16,7 @@
       "entity": "permafrost:deinotherium{Variant:3}",
       "name": "The Deinotherium",
       "default_rotation": 45,
-      "scale": 0.8,
+      "scale": 1.0,
       "rotate": "false",
       "text": "A grey deinotherium."
     }

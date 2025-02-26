@@ -70,7 +70,7 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 	}
 
 	@Override
-	protected int getInventorySize() {
+	public int getInventorySize() {
 		return 26;
 	}
 
@@ -128,7 +128,7 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 	}
 
 	@Override
-	protected boolean canPerformRearing() {
+	public boolean canPerformRearing() {
 		return false;
 	}
 
@@ -137,9 +137,9 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 		return false;
 	}
 
-	private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+	public final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
-	private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+	public <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
 		double x = this.getX() - this.xo;
 		double z = this.getZ() - this.zo;
 
@@ -170,7 +170,7 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 		return PlayState.CONTINUE;
 	}
 
-	private <T extends GeoAnimatable> PlayState emotePredicate(AnimationState<T> tAnimationState) {
+	public <T extends GeoAnimatable> PlayState emotePredicate(AnimationState<T> tAnimationState) {
 		AnimationController<T> controller = tAnimationState.getController();
 
 		if(tAnimationState.isMoving() || !this.shouldEmote) {
@@ -326,7 +326,7 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 
 	public int replenishMilkCounter = 0;
 
-	private boolean milked = false;
+	public boolean milked = false;
 
 	public boolean wasMilked() {
 		return this.milked;
@@ -365,7 +365,7 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 		}
 	}
 
-	private Vec3 calcOffset ( double x, double y, double z){
+	public Vec3 calcOffset ( double x, double y, double z){
 		double rad = this.getYRot() * Math.PI / 180;
 
 		double xOffset = this.position().x + (x * Math.cos(rad) - z * Math.sin(rad));
@@ -376,7 +376,7 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 	}
 
 	@Override
-	protected boolean canAddPassenger(Entity entity) {
+	public boolean canAddPassenger(Entity entity) {
 		return this.getPassengers().size() < 3;
 	}
 

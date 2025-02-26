@@ -19,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.DifficultyInstance;
@@ -46,6 +47,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -65,12 +67,11 @@ import java.util.stream.Stream;
 
 public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
 
-   private static final EntityDataAccessor<Integer> DATA_COLLAR_COLOR = SynchedEntityData.defineId(Direwolf.class, EntityDataSerializers.INT);
-   private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Direwolf.class, EntityDataSerializers.INT);
+   public static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Direwolf.class, EntityDataSerializers.INT);
 
-   private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
+   public static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
    @Nullable
-   private UUID persistentAngerTarget;
+   public UUID persistentAngerTarget;
 
    public Direwolf(EntityType<? extends Direwolf> entityType, Level level) {
       super(entityType, level);
@@ -79,7 +80,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       this.setPathfindingMalus(BlockPathTypes.DANGER_POWDER_SNOW, -1.0F);
    }
 
-   protected void registerGoals() {
+   public void registerGoals() {
       this.goalSelector.addGoal(1, new FloatGoal(this));
       this.goalSelector.addGoal(1, new Direwolf.WolfPanicGoal(1.4D));
       this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
@@ -119,9 +120,9 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
               .add(Attributes.ATTACK_DAMAGE, 3.0D);
    }
 
-   private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
+   public final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
 
-   private <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> tAnimationState) {
+   public <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> tAnimationState) {
       double currentSpeed = this.getDeltaMovement().lengthSqr();
       double speedThreshold = 0.015;
       double x = this.getX() - this.xo;
@@ -283,14 +284,14 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
 
    @Override
    public float getStepHeight() {
-      return 1F;
+      return 1.6F;
    }
 
-   protected void playStepSound(BlockPos p_30415_, BlockState p_30416_) {
+   public void playStepSound(BlockPos p_30415_, BlockState p_30416_) {
       this.playSound(SoundEvents.WOLF_STEP, 0.15F, 1.0F);
    }
 
-   protected SoundEvent getAmbientSound() {
+   public SoundEvent getAmbientSound() {
       if (this.isAngry()) {
          return SoundEvents.WOLF_GROWL;
       } else if (this.random.nextInt(3) == 0) {
@@ -300,25 +301,16 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       }
    }
 
-   protected SoundEvent getHurtSound(DamageSource p_30424_) {
+   public SoundEvent getHurtSound(DamageSource p_30424_) {
       return SoundEvents.WOLF_GROWL;
    }
 
-   protected SoundEvent getDeathSound() {
+   public SoundEvent getDeathSound() {
       return SoundEvents.WOLF_DEATH;
    }
 
-   protected float getSoundVolume() {
+   public float getSoundVolume() {
       return 0.4F;
-   }
-
-   public void aiStep() {
-      super.aiStep();
-
-      if (!this.level().isClientSide) {
-         this.updatePersistentAnger((ServerLevel)this.level(), true);
-      }
-
    }
 
    public boolean doHurtTarget(Entity p_30372_) {
@@ -403,22 +395,6 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
             this.gameEvent(GameEvent.EAT, this);
             return InteractionResult.SUCCESS;
          } else {
-            if (item instanceof DyeItem) {
-               DyeItem dyeitem = (DyeItem)item;
-               if (this.isOwnedBy(player)) {
-                  DyeColor dyecolor = dyeitem.getDyeColor();
-                  if (dyecolor != this.getCollarColor()) {
-                     this.setCollarColor(dyecolor);
-                     if (!player.getAbilities().instabuild) {
-                        itemstack.shrink(1);
-                     }
-
-                     return InteractionResult.SUCCESS;
-                  }
-
-                  return super.mobInteract(player, hand);
-               }
-            }
 
             if (!this.isOrderedToSit() && this.isOwnedBy(player)) {
                this.doPlayerRide(player);
@@ -449,7 +425,16 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       }
    }
 
-   protected void doPlayerRide(Player player) {
+   @Override
+   public void updateControlFlags() {
+      super.updateControlFlags();
+   }
+
+   protected int calculateFallDamage(float v, float v1) {
+      return Mth.ceil((v * 0.5F - 3.0F) * v1);
+   }
+
+   public void doPlayerRide(Player player) {
       if (!this.level().isClientSide) {
          player.setYRot(this.getYRot());
          player.setXRot(this.getXRot());
@@ -457,12 +442,9 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       }
    }
 
-   @Override
+   @Nullable
    public LivingEntity getControllingPassenger() {
-      if (this.isTame()) {
-         return (LivingEntity) this.getFirstPassenger();
-      }
-      return null;
+      return (LivingEntity) this.getFirstPassenger();
    }
 
    @Override
@@ -470,7 +452,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       if (this.hasPassenger(entity)) {
          double offsetX = 0;
          double offsetY = 0.55;
-         double offsetZ = -0.1;
+         double offsetZ = -0.2;
 
          double radYaw = Math.toRadians(this.getYRot());
 
@@ -486,7 +468,38 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       }
    }
 
-   private boolean toldToWander = false;
+   protected Vec2 getRiddenRotation(LivingEntity livingEntity) {
+      return new Vec2(livingEntity.getXRot() * 0.5F, livingEntity.getYRot());
+   }
+
+   protected void tickRidden(Player p_278233_, Vec3 p_275693_) {
+      super.tickRidden(p_278233_, p_275693_);
+      Vec2 vec2 = this.getRiddenRotation(p_278233_);
+      this.setRot(vec2.y, vec2.x);
+      this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
+   }
+
+   @Override
+   public boolean isImmobile() {
+      return super.isImmobile() && this.isVehicle();
+   }
+
+   protected Vec3 getRiddenInput(Player p_278278_, Vec3 p_275506_) {
+      float f = p_278278_.xxa * 0.5F;
+      float f1 = p_278278_.zza;
+      if (f1 <= 0.0F) {
+         f1 *= 0.25F;
+      }
+
+      return new Vec3((double)f, 0.0D, (double)f1);
+   }
+
+   @Override
+   public float getRiddenSpeed(Player player) {
+      return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED);
+   }
+
+   public boolean toldToWander = false;
 
    public boolean wasToldToWander() {
       return this.toldToWander;
@@ -500,7 +513,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       this.toldToWander = toldToWander;
    }
 
-   private static final Ingredient FOOD_ITEMS = Ingredient.of(LOTags.Items.RAW_MEATS);
+   public static final Ingredient FOOD_ITEMS = Ingredient.of(LOTags.Items.RAW_MEATS);
 
    @Override
    public boolean isFood(ItemStack itemStack) {
@@ -528,15 +541,6 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       this.persistentAngerTarget = p_30400_;
    }
 
-   public DyeColor getCollarColor() {
-      return DyeColor.byId(this.entityData.get(DATA_COLLAR_COLOR));
-   }
-
-   public void setCollarColor(DyeColor p_30398_) {
-      this.entityData.set(DATA_COLLAR_COLOR, p_30398_.getId());
-   }
-
-
    public ResourceLocation getTextureLocation() {
       return DirewolfModel.Variant.variantFromOrdinal(getVariant()).resourceLocation;
    }
@@ -553,7 +557,6 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
 
    public void defineSynchedData() {
       super.defineSynchedData();
-      this.entityData.define(DATA_COLLAR_COLOR, DyeColor.RED.getId());
       this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
       this.entityData.define(GENDER, 0);
       this.entityData.define(VARIANT, 0);
@@ -561,7 +564,6 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
 
    public void addAdditionalSaveData(CompoundTag tag) {
       super.addAdditionalSaveData(tag);
-      tag.putByte("CollarColor", (byte)this.getCollarColor().getId());
       tag.putInt("Gender", this.getGender());
       tag.putBoolean("Wandering", this.getToldToWander());
       tag.putBoolean("Panicking", this.getPanicking());
@@ -572,7 +574,6 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
    public void readAdditionalSaveData(CompoundTag tag) {
       super.readAdditionalSaveData(tag);
       if (tag.contains("CollarColor", 99)) {
-         this.setCollarColor(DyeColor.byId(tag.getInt("CollarColor")));
       }
 
       if (tag.contains("Gender")) {
@@ -711,7 +712,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       return new Vec3(0.0D, (double)(0.6F * this.getEyeHeight()), (double)(this.getBbWidth() * 0.4F));
    }
 
-   private boolean isPanicking = false;
+   public boolean isPanicking = false;
 
    public boolean isPanicking() {
       return this.getHealth() < this.getMaxHealth() / 3 && this.isAlive();
@@ -730,7 +731,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
          super(Direwolf.this, v);
       }
 
-      protected boolean shouldPanic() {
+      public boolean shouldPanic() {
          return this.mob.isFreezing() || this.mob.isOnFire() || this.mob.getHealth() < this.mob.getMaxHealth() / 3 && this.mob.isAlive();
       }
    }
