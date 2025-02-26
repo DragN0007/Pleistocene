@@ -9,6 +9,9 @@ import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.entities.direwolf.DirewolfModel;
 import com.dragn0007.permafrost.entities.mammoth.Mammoth;
 import com.dragn0007.permafrost.entities.mammoth.MammothModel;
+import com.dragn0007.permafrost.entities.quagga.Quagga;
+import com.dragn0007.permafrost.entities.quagga.QuaggaModel;
+import com.dragn0007.permafrost.util.PermafrostCommonConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
@@ -31,7 +34,7 @@ public class ModdedSpawnInjector {
 
         if (ModList.get().isLoaded("tfc")) {
 
-            if (ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "musk_ox"))) {
+            if (PermafrostCommonConfig.SPAWN_MAMMOTHS.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "musk_ox"))) {
                 Entity entity = event.getEntity();
                 Mammoth permafrostAnimal = EntityTypes.MAMMOTH_ENTITY.get().create(event.getLevel());
                 if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.30) { //spawn a Mammoth alongside oxen 30% of the time
@@ -48,7 +51,7 @@ public class ModdedSpawnInjector {
                 }
             }
 
-            if (ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "alpaca"))) {
+            if (PermafrostCommonConfig.SPAWN_MAMMOTHS.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "alpaca"))) {
                 Entity entity = event.getEntity();
                 Mammoth permafrostAnimal = EntityTypes.MAMMOTH_ENTITY.get().create(event.getLevel());
                 if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.30) {
@@ -66,7 +69,7 @@ public class ModdedSpawnInjector {
                 }
             }
 
-            if (ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "horse"))) {
+            if (PermafrostCommonConfig.SPAWN_DEINOTHERIUM.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "horse"))) {
                 Entity entity = event.getEntity();
                 Deinotherium permafrostAnimal = EntityTypes.DEINOTHERIUM_ENTITY.get().create(event.getLevel());
                 if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.30) {
@@ -83,7 +86,7 @@ public class ModdedSpawnInjector {
                 }
             }
 
-            if (ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "cow"))) {
+            if (PermafrostCommonConfig.SPAWN_DEINOTHERIUM.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "cow"))) {
                 Entity entity = event.getEntity();
                 Deinotherium permafrostAnimal = EntityTypes.DEINOTHERIUM_ENTITY.get().create(event.getLevel());
                 if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.30) {
@@ -100,7 +103,7 @@ public class ModdedSpawnInjector {
                 }
             }
 
-            if (ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "direwolf"))) {
+            if (PermafrostCommonConfig.SPAWN_DIREWOLVES.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "direwolf"))) {
                 Entity entity = event.getEntity();
                 Direwolf permafrostAnimal = EntityTypes.DIREWOLF_ENTITY.get().create(event.getLevel());
                 if (permafrostAnimal != null) {
@@ -111,6 +114,23 @@ public class ModdedSpawnInjector {
                     permafrostAnimal.setVariant(randomVariant);
 
                     int randomGender = event.getLevel().getRandom().nextInt(Direwolf.Gender.values().length);
+                    permafrostAnimal.setGender(randomGender);
+
+                    event.setCanceled(true);
+                }
+            }
+
+            if (PermafrostCommonConfig.SPAWN_QUAGGA.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "horse"))) {
+                Entity entity = event.getEntity();
+                Quagga permafrostAnimal = EntityTypes.QUAGGA_ENTITY.get().create(event.getLevel());
+                if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.50) {
+                    permafrostAnimal.copyPosition(entity);
+                    event.getLevel().addFreshEntity(permafrostAnimal);
+
+                    int randomVariant = event.getLevel().getRandom().nextInt(QuaggaModel.Variant.values().length);
+                    permafrostAnimal.setVariant(randomVariant);
+
+                    int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);
                     permafrostAnimal.setGender(randomGender);
 
                     event.setCanceled(true);

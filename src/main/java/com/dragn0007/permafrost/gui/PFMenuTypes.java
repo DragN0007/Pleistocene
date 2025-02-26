@@ -15,6 +15,7 @@ public class PFMenuTypes {
 
     public static final RegistryObject<MenuType<MammothMenu>> MAMMOTH_MENU = registerMenuType("mammoth_menu", MammothMenu::new);
     public static final RegistryObject<MenuType<DeinotheriumMenu>> DEINOTHERIUM_MENU = registerMenuType("deinotherium_menu", DeinotheriumMenu::new);
+    public static final RegistryObject<MenuType<QuaggaMenu>> QUAGGA_MENU = registerMenuType("quagga_menu", QuaggaMenu::new);
 
     public static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENU_TYPES.register(name, () -> IForgeMenuType.create(factory));

@@ -1,0 +1,36 @@
+package com.dragn0007.permafrost.util;
+
+import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
+import net.minecraftforge.common.ForgeConfigSpec;
+
+public class PermafrostCommonConfig {
+    public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public static final ForgeConfigSpec SPEC;
+
+    public static final ForgeConfigSpec.BooleanValue SPAWN_MAMMOTHS;
+    public static final ForgeConfigSpec.BooleanValue SPAWN_DEINOTHERIUM;
+    public static final ForgeConfigSpec.BooleanValue SPAWN_DIREWOLVES;
+    public static final ForgeConfigSpec.BooleanValue SPAWN_QUAGGA;
+
+
+    static {
+        BUILDER.push("Spawning (ONLY APPLIES IF TFC IS INSTALLED)");
+
+        SPAWN_MAMMOTHS = BUILDER.comment("Should Mammoths spawn alongside Musk Ox and Alpacas?")
+                .define("Spawn Mammoths", true);
+
+        SPAWN_DEINOTHERIUM = BUILDER.comment("Should Deinotherium spawn alongside Horses and Cows?")
+                .define("Spawn Deinotherium", true);
+
+        SPAWN_DIREWOLVES = BUILDER.comment("Should Permafrost Direwolves replace TFC Direwolves?")
+                .define("Direwolf Replacer", true);
+
+        SPAWN_QUAGGA = BUILDER.comment("Should Quagga spawn alongside Horses?")
+                .define("Spawn Quagga", true);
+
+
+        BUILDER.pop();
+
+        SPEC = BUILDER.build();
+    }
+}

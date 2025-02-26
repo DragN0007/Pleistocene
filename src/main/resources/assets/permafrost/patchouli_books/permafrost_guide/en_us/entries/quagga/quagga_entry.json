@@ -1,0 +1,24 @@
+{
+  "name": "Quagga",
+  "icon": "minecraft:saddle",
+  "category": "permafrost:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Quaggas wander the plains of the Overworld. If TFC is installed, you can find Quaggas alongside Horses. $(br2)Quaggas can be tamed much like horses and can have saddles and chests, but will run away from players when approached in the wild."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Quaggas cannot wear armor. They can have the same markings as horses, but cannot spawn with them naturally (must be bred in). $(br2)Quaggas enjoy the same foods as horses."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "permafrost:quagga{Variant:2}",
+      "name": "The Quagga",
+      "default_rotation": 45,
+      "scale": 0.8,
+      "rotate": "false",
+      "text": "A cream quagga."
+    }
+  ]
+}

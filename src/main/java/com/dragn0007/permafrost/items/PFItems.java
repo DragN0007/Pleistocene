@@ -25,6 +25,8 @@ public class PFItems {
             () -> new ForgeSpawnEggItem(EntityTypes.DEINOTHERIUM_ENTITY, 0x726662, 0xa79d96, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> DIREWOLF_SPAWN_EGG = ITEMS.register("direwolf_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.DIREWOLF_ENTITY, 0x939da1, 0x6c7679, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> QUAGGA_SPAWN_EGG = ITEMS.register("quagga_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.QUAGGA_ENTITY, 0xbca995, 0xf3ebe2, new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> MAMMOTH_MILK_BUCKET = ITEMS.register("mammoth_milk_bucket",
          () -> new MilkBucketItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(1).build()).craftRemainder(Items.BUCKET).stacksTo(1)));

@@ -1,4 +1,5 @@
-// 1.20.1	2025-02-25T21:15:42.6169211	Registries
-c4939cad529d78aaf4cb3148716c651c34f10b22 data/permafrost/forge/biome_modifier/spawn_deinotherium_hot.json
-baa432c6319ed66fd23a8e2767935f8dcbbd35c8 data/permafrost/forge/biome_modifier/spawn_direwolf_cold.json
-8b8e37826de4d3a02e8152da41a8cf390e3a52e1 data/permafrost/forge/biome_modifier/spawn_mammoth_cold.json
+// 1.20.1	2025-02-26T02:30:49.7122624	Registries
+144f6d6be54fba37bb863794cc1f92166c250d6a data/permafrost/forge/biome_modifier/spawn_deinotherium_hot.json
+ad4ae6d17ca831629edd048d48d29870cf92f220 data/permafrost/forge/biome_modifier/spawn_direwolf_cold.json
+292de9b61307fb905a1fc7f07304e932d2e37004 data/permafrost/forge/biome_modifier/spawn_mammoth_cold.json
+395e6cba8394938236875c7f58b6d69690232648 data/permafrost/forge/biome_modifier/spawn_quagga_plains.json

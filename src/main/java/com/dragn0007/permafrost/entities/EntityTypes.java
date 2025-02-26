@@ -1,8 +1,10 @@
 package com.dragn0007.permafrost.entities;
 
+import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
 import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.entities.mammoth.Mammoth;
+import com.dragn0007.permafrost.entities.quagga.Quagga;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -32,5 +34,11 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(1.5f,1.5f)
                     .build(new ResourceLocation(MODID,"direwolf").toString()));
+
+    public static final RegistryObject<EntityType<Quagga>> QUAGGA_ENTITY = ENTITY_TYPES.register("quagga",
+            () -> EntityType.Builder.of(Quagga::new,
+                            MobCategory.CREATURE)
+                    .sized(1.5f,2f)
+                    .build(new ResourceLocation(LivestockOverhaul.MODID,"quagga").toString()));
 }
 
