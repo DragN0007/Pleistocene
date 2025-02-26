@@ -1,4 +1,6 @@
-// 1.20.1	2025-02-25T21:49:40.4817883	Item Models: permafrost
+// 1.20.1	2025-02-26T05:18:38.3194708	Item Models: permafrost
+1b94ab9035f247ecd6a810a4d8b727a034fc5985 assets/permafrost/models/item/cervid.json
+b79bcd16745542467ec2ceffd67356404912517a assets/permafrost/models/item/cooked_cervid.json
 c548423e98e5e36008b59301f2324b317f7494ea assets/permafrost/models/item/cooked_deinotherium.json
 57967f27754367d5c0684bd8f69b0a9dfb956e20 assets/permafrost/models/item/cooked_direwolf.json
 c548423e98e5e36008b59301f2324b317f7494ea assets/permafrost/models/item/cooked_mammoth.json

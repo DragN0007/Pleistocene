@@ -1,4 +1,6 @@
-// 1.20.1	2025-02-26T02:30:49.7122624	Registries
+// 1.20.1	2025-02-26T05:18:38.321465	Registries
+a1b3ea01ef8143d6dbb796663b0259208567fe11 data/permafrost/forge/biome_modifier/spawn_cervalces_swamp.json
+903984a51a3ae2ccdc80a2f1ae47c9aba374bb3f data/permafrost/forge/biome_modifier/spawn_cervalces_taiga.json
 144f6d6be54fba37bb863794cc1f92166c250d6a data/permafrost/forge/biome_modifier/spawn_deinotherium_hot.json
 ad4ae6d17ca831629edd048d48d29870cf92f220 data/permafrost/forge/biome_modifier/spawn_direwolf_cold.json
 292de9b61307fb905a1fc7f07304e932d2e37004 data/permafrost/forge/biome_modifier/spawn_mammoth_cold.json

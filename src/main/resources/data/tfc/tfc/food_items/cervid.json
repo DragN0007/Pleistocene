@@ -1,0 +1,9 @@
+{
+  "ingredient": {
+    "item": "permafrost:cervid"
+  },
+  "hunger": 8,
+  "saturation": 0,
+  "decay_modifier": 2,
+  "protein": 5
+}

@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.world.BiomeModifier;
@@ -19,6 +20,8 @@ public class BiomeHitter {
     public static final ResourceKey<BiomeModifier> SPAWN_DEINOTHERIUM_HOT = registerKey("spawn_deinotherium_hot");
     public static final ResourceKey<BiomeModifier> SPAWN_DIREWOLF_COLD = registerKey("spawn_direwolf_cold");
     public static final ResourceKey<BiomeModifier> SPAWN_QUAGGA_PLAINS = registerKey("spawn_quagga_plains");
+    public static final ResourceKey<BiomeModifier> SPAWN_CERVALCES_TAIGA = registerKey("spawn_cervalces_taiga");
+    public static final ResourceKey<BiomeModifier> SPAWN_CERVALCES_SWAMP = registerKey("spawn_cervalces_swamp");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -56,6 +59,22 @@ public class BiomeHitter {
                         3,
                         1,
                         3
+                ))));
+
+        context.register(SPAWN_CERVALCES_TAIGA, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_TAIGA),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(),
+                        2,
+                        1,
+                        1
+                ))));
+
+        context.register(SPAWN_CERVALCES_SWAMP, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_SWAMP),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(),
+                        2,
+                        1,
+                        1
                 ))));
 
     }

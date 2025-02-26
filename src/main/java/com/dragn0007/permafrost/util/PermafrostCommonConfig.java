@@ -11,6 +11,7 @@ public class PermafrostCommonConfig {
     public static final ForgeConfigSpec.BooleanValue SPAWN_DEINOTHERIUM;
     public static final ForgeConfigSpec.BooleanValue SPAWN_DIREWOLVES;
     public static final ForgeConfigSpec.BooleanValue SPAWN_QUAGGA;
+    public static final ForgeConfigSpec.BooleanValue SPAWN_CERVALCES;
 
 
     static {
@@ -28,6 +29,8 @@ public class PermafrostCommonConfig {
         SPAWN_QUAGGA = BUILDER.comment("Should Quagga spawn alongside Horses?")
                 .define("Spawn Quagga", true);
 
+        SPAWN_CERVALCES = BUILDER.comment("Should Cervalces Latifrons spawn alongside Deer?")
+                .define("Spawn Cervalces Latifrons", true);
 
         BUILDER.pop();
 

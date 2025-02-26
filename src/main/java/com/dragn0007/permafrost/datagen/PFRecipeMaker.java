@@ -34,6 +34,19 @@ public class PFRecipeMaker extends RecipeProvider implements IConditionBuilder {
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(PFItems.DEINOTHERIUM.get()), RecipeCategory.MISC, PFItems.COOKED_DEINOTHERIUM.get(), 0.35F, 600)
                 .unlockedBy("has_deinotherium", has(PFItems.DEINOTHERIUM.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_deinotherium_campfire_cooking"));
 
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(PFItems.DIREWOLF.get()), RecipeCategory.MISC, PFItems.COOKED_DIREWOLF.get(), 0.35F, 100)
+                .unlockedBy("has_direwolf", has(PFItems.DIREWOLF.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_direwolf_smoking"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(PFItems.DIREWOLF.get()), RecipeCategory.MISC, PFItems.COOKED_DIREWOLF.get(), 0.35F, 200)
+                .unlockedBy("has_direwolf", has(PFItems.DIREWOLF.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_direwolf_smelting"));
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(PFItems.DIREWOLF.get()), RecipeCategory.MISC, PFItems.COOKED_DIREWOLF.get(), 0.35F, 600)
+                .unlockedBy("has_direwolf", has(PFItems.DIREWOLF.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_direwolf_campfire_cooking"));
+
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(PFItems.CERVID.get()), RecipeCategory.MISC, PFItems.COOKED_CERVID.get(), 0.35F, 100)
+                .unlockedBy("has_cervid", has(PFItems.CERVID.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_cervid_smoking"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(PFItems.CERVID.get()), RecipeCategory.MISC, PFItems.COOKED_CERVID.get(), 0.35F, 200)
+                .unlockedBy("has_cervid", has(PFItems.CERVID.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_cervid_smelting"));
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(PFItems.CERVID.get()), RecipeCategory.MISC, PFItems.COOKED_CERVID.get(), 0.35F, 600)
+                .unlockedBy("has_cervid", has(PFItems.CERVID.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_cervid_campfire_cooking"));
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PFItems.MAMMOTH_MILK_JUG.get()), RecipeCategory.MISC, PFItems.MAMMOTH_CHEESE.get(), 0.35F, 200)
                 .unlockedBy("has_mammoth_milk", has(PFItems.MAMMOTH_MILK_JUG.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "mammoth_cheese_smelting"));

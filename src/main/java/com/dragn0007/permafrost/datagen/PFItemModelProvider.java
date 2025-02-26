@@ -26,6 +26,8 @@ public class PFItemModelProvider extends ItemModelProvider {
         advancedItem(PFItems.COOKED_DEINOTHERIUM, "cooked_mammoth");
         simpleItem(PFItems.DIREWOLF);
         simpleItem(PFItems.COOKED_DIREWOLF);
+        simpleItem(PFItems.CERVID);
+        simpleItem(PFItems.COOKED_CERVID);
 
         simpleItem(PFItems.PERMAFROST);
     }

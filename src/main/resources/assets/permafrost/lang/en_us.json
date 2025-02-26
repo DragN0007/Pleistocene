@@ -12,6 +12,8 @@
   "entity.permafrost.direwolf": "Direwolf",
   "item.permafrost.quagga_spawn_egg": "Quagga Spawn Egg",
   "entity.permafrost.quagga": "Quagga",
+  "item.permafrost.cervalces_spawn_egg": "Cervalces Latifrons Spawn Egg",
+  "entity.permafrost.cervalces_latifrons": "Cervalces Latifrons",
 
   "item.permafrost.mammoth_milk_bucket": "Mammoth Milk Bucket",
 
@@ -19,12 +21,14 @@
 
   "item.permafrost.mammoth_cheese": "Mammoth Cheese",
 
-  "item.permafrost.mammoth": "Mammoth",
+  "item.permafrost.mammoth": "Raw Mammoth",
   "item.permafrost.cooked_mammoth": "Cooked Mammoth",
-  "item.permafrost.deinotherium": "Deinotherium",
+  "item.permafrost.deinotherium": "Raw Deinotherium",
   "item.permafrost.cooked_deinotherium": "Cooked Deinotherium",
-  "item.permafrost.direwolf": "Direwolf",
+  "item.permafrost.direwolf": "Raw Direwolf",
   "item.permafrost.cooked_direwolf": "Cooked Direwolf",
+  "item.permafrost.cervid": "Raw Cervid",
+  "item.permafrost.cooked_cervid": "Cooked Cervid",
 
 
   "sounds.permafrost.mammoth_ambient": "Prehistoric Elephant Trumpets"

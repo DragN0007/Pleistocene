@@ -3,6 +3,8 @@ package com.dragn0007.permafrost.world;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
+import com.dragn0007.permafrost.entities.cervalces_latifrons.Cervalces;
+import com.dragn0007.permafrost.entities.cervalces_latifrons.CervalcesModel;
 import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
 import com.dragn0007.permafrost.entities.deinotherium.DeinotheriumModel;
 import com.dragn0007.permafrost.entities.direwolf.Direwolf;
@@ -128,6 +130,24 @@ public class ModdedSpawnInjector {
                     event.getLevel().addFreshEntity(permafrostAnimal);
 
                     int randomVariant = event.getLevel().getRandom().nextInt(QuaggaModel.Variant.values().length);
+                    permafrostAnimal.setVariant(randomVariant);
+
+                    int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);
+                    permafrostAnimal.setGender(randomGender);
+
+                    event.setCanceled(true);
+                }
+            }
+
+            if (PermafrostCommonConfig.SPAWN_CERVALCES.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "deer"))) {
+                Entity entity = event.getEntity();
+                Cervalces permafrostAnimal = EntityTypes.CERVALCES_LATIFRONS_ENTITY.get().create(event.getLevel());
+                if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.25) {
+                    permafrostAnimal.copyPosition(entity);
+                    permafrostAnimal.copyPosition(entity);
+                    event.getLevel().addFreshEntity(permafrostAnimal);
+
+                    int randomVariant = event.getLevel().getRandom().nextInt(CervalcesModel.Variant.values().length);
                     permafrostAnimal.setVariant(randomVariant);
 
                     int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);

@@ -27,6 +27,8 @@ public class PFItems {
             () -> new ForgeSpawnEggItem(EntityTypes.DIREWOLF_ENTITY, 0x939da1, 0x6c7679, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> QUAGGA_SPAWN_EGG = ITEMS.register("quagga_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.QUAGGA_ENTITY, 0xbca995, 0xf3ebe2, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> CERVALCES_SPAWN_EGG = ITEMS.register("cervalces_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.CERVALCES_LATIFRONS_ENTITY, 0x4f3b2f, 0x362923, new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> MAMMOTH_MILK_BUCKET = ITEMS.register("mammoth_milk_bucket",
          () -> new MilkBucketItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(1).build()).craftRemainder(Items.BUCKET).stacksTo(1)));
@@ -46,6 +48,10 @@ public class PFItems {
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
     public static final RegistryObject<Item> COOKED_DIREWOLF = ITEMS.register("cooked_direwolf",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
+    public static final RegistryObject<Item> CERVID = ITEMS.register("cervid",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
+    public static final RegistryObject<Item> COOKED_CERVID = ITEMS.register("cooked_cervid",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).build())));
 
 
     public static final RegistryObject<Item> PERMAFROST = ITEMS.register("permafrost",
