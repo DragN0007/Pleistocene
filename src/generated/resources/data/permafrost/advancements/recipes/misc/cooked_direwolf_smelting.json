@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_direwolf": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "permafrost:direwolf"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "permafrost:cooked_direwolf_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_direwolf",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "permafrost:cooked_direwolf_smelting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

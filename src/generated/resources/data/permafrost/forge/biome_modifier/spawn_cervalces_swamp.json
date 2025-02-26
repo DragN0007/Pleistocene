@@ -1,0 +1,10 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": "#forge:is_swamp",
+  "spawners": {
+    "type": "permafrost:cervalces_latifrons",
+    "maxCount": 1,
+    "minCount": 1,
+    "weight": 2
+  }
+}
