@@ -5,6 +5,7 @@ import com.dragn0007.permafrost.entities.cervalces_latifrons.Cervalces;
 import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
 import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.entities.mammoth.Mammoth;
+import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -47,5 +48,11 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(1.5f,3f)
                     .build(new ResourceLocation(LivestockOverhaul.MODID,"cervalces_latifrons").toString()));
+
+    public static final RegistryObject<EntityType<Paraceratherium>> PARACERATHERIUM_ENTITY = ENTITY_TYPES.register("paraceratherium",
+            () -> EntityType.Builder.of(Paraceratherium::new,
+                            MobCategory.CREATURE)
+                    .sized(2f,4f)
+                    .build(new ResourceLocation(LivestockOverhaul.MODID,"paraceratherium").toString()));
 }
 

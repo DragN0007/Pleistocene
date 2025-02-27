@@ -1,0 +1,24 @@
+{
+  "name": "Cervalces Latifrons",
+  "icon": "permafrost:cervid",
+  "category": "permafrost:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Cervalces Latifrons wander the taigas and swamps of the Overworld. If TFC is installed, you can find Cervalces Latifrons alongside Deer. $(br2)Cervalces Latifrons can be tamed much like horses and can have saddles and chests."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When tamed, they can carry one player. $(br2)Be careful, as they'll attack players on-sight. Tame them as fast as possible! $(br2)Cervalces Latifrons enjoy: $(br2)Seagrass, Carrots, and (TFC)Blueberries."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "permafrost:cervalces_latifrons{Variant:0}",
+      "name": "The Cervalces Latifrons",
+      "default_rotation": 45,
+      "scale": 1,
+      "rotate": "false",
+      "text": "A brown cervalces latifrons."
+    }
+  ]
+}

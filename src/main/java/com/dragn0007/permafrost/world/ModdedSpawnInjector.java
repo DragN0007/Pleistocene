@@ -11,6 +11,8 @@ import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.entities.direwolf.DirewolfModel;
 import com.dragn0007.permafrost.entities.mammoth.Mammoth;
 import com.dragn0007.permafrost.entities.mammoth.MammothModel;
+import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
+import com.dragn0007.permafrost.entities.paraceratherium.ParaceratheriumModel;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
 import com.dragn0007.permafrost.entities.quagga.QuaggaModel;
 import com.dragn0007.permafrost.util.PermafrostCommonConfig;
@@ -148,6 +150,24 @@ public class ModdedSpawnInjector {
                     event.getLevel().addFreshEntity(permafrostAnimal);
 
                     int randomVariant = event.getLevel().getRandom().nextInt(CervalcesModel.Variant.values().length);
+                    permafrostAnimal.setVariant(randomVariant);
+
+                    int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);
+                    permafrostAnimal.setGender(randomGender);
+
+                    event.setCanceled(true);
+                }
+            }
+
+            if (PermafrostCommonConfig.SPAWN_CERVALCES.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "yak"))) {
+                Entity entity = event.getEntity();
+                Paraceratherium permafrostAnimal = EntityTypes.PARACERATHERIUM_ENTITY.get().create(event.getLevel());
+                if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.40) {
+                    permafrostAnimal.copyPosition(entity);
+                    permafrostAnimal.copyPosition(entity);
+                    event.getLevel().addFreshEntity(permafrostAnimal);
+
+                    int randomVariant = event.getLevel().getRandom().nextInt(ParaceratheriumModel.Variant.values().length);
                     permafrostAnimal.setVariant(randomVariant);
 
                     int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);

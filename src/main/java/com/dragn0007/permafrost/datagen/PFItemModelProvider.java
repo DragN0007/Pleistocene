@@ -28,6 +28,8 @@ public class PFItemModelProvider extends ItemModelProvider {
         simpleItem(PFItems.COOKED_DIREWOLF);
         simpleItem(PFItems.CERVID);
         simpleItem(PFItems.COOKED_CERVID);
+        advancedItem(PFItems.PARACERATHERIUM, "cervid");
+        advancedItem(PFItems.COOKED_PARACERATHERIUM, "cooked_cervid");
 
         simpleItem(PFItems.PERMAFROST);
     }

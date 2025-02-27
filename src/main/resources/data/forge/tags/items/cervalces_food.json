@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:seagrass",
+    "minecraft:carrot",
+
+    {
+      "id": "tfc:food/blueberry",
+      "required": false
+    },
+
+    {
+      "id": "tfc:food/carrot",
+      "required": false
+    }
+  ]
+}

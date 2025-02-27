@@ -22,6 +22,7 @@ public class BiomeHitter {
     public static final ResourceKey<BiomeModifier> SPAWN_QUAGGA_PLAINS = registerKey("spawn_quagga_plains");
     public static final ResourceKey<BiomeModifier> SPAWN_CERVALCES_TAIGA = registerKey("spawn_cervalces_taiga");
     public static final ResourceKey<BiomeModifier> SPAWN_CERVALCES_SWAMP = registerKey("spawn_cervalces_swamp");
+    public static final ResourceKey<BiomeModifier> SPAWN_PARACERATHERIUM_PLAINS = registerKey("spawn_paraceratherium_plains");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -72,6 +73,14 @@ public class BiomeHitter {
         context.register(SPAWN_CERVALCES_SWAMP, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_SWAMP),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(),
+                        2,
+                        1,
+                        1
+                ))));
+
+        context.register(SPAWN_PARACERATHERIUM_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.PARACERATHERIUM_ENTITY.get(),
                         2,
                         1,
                         1

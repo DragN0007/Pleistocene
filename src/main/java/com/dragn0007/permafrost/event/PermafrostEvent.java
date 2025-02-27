@@ -10,12 +10,11 @@ import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.entities.direwolf.DirewolfRender;
 import com.dragn0007.permafrost.entities.mammoth.Mammoth;
 import com.dragn0007.permafrost.entities.mammoth.MammothRender;
+import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
+import com.dragn0007.permafrost.entities.paraceratherium.ParaceratheriumRender;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
 import com.dragn0007.permafrost.entities.quagga.QuaggaRender;
-import com.dragn0007.permafrost.gui.DeinotheriumScreen;
-import com.dragn0007.permafrost.gui.MammothScreen;
-import com.dragn0007.permafrost.gui.PFMenuTypes;
-import com.dragn0007.permafrost.gui.QuaggaScreen;
+import com.dragn0007.permafrost.gui.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -38,6 +37,7 @@ public class PermafrostEvent {
         event.put(EntityTypes.DIREWOLF_ENTITY.get(), Direwolf.createAttributes().build());
         event.put(EntityTypes.QUAGGA_ENTITY.get(), Quagga.createBaseHorseAttributes().build());
         event.put(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(), Cervalces.createBaseHorseAttributes().build());
+        event.put(EntityTypes.PARACERATHERIUM_ENTITY.get(), Paraceratherium.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -47,10 +47,12 @@ public class PermafrostEvent {
         EntityRenderers.register(EntityTypes.DIREWOLF_ENTITY.get(), DirewolfRender::new);
         EntityRenderers.register(EntityTypes.QUAGGA_ENTITY.get(), QuaggaRender::new);
         EntityRenderers.register(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(), CervalcesRender::new);
+        EntityRenderers.register(EntityTypes.PARACERATHERIUM_ENTITY.get(), ParaceratheriumRender::new);
 
         MenuScreens.register(PFMenuTypes.MAMMOTH_MENU.get(), MammothScreen::new);
         MenuScreens.register(PFMenuTypes.DEINOTHERIUM_MENU.get(), DeinotheriumScreen::new);
         MenuScreens.register(PFMenuTypes.QUAGGA_MENU.get(), QuaggaScreen::new);
+        MenuScreens.register(PFMenuTypes.PARACERATHERIUM_MENU.get(), ParaceratheriumScreen::new);
     }
 
     @SubscribeEvent
@@ -60,6 +62,7 @@ public class PermafrostEvent {
         event.register(EntityTypes.DIREWOLF_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.QUAGGA_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.PARACERATHERIUM_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 
 }

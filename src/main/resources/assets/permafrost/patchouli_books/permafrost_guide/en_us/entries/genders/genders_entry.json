@@ -5,7 +5,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "-Male mammoths have larger tusks, while females have smaller tusks. $(br2)-Deinotherium have no gender dimorphism. $(br2)-Direwolves have no gender dimorphism."
+      "text": "-Male mammoths have larger tusks, while females have smaller tusks. $(br2)-Deinotherium have no gender dimorphism. $(br2)-Direwolves have no gender dimorphism. $(br2)-Cervalces Latifrons males will have antlers, while females have no antlers at all."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "-Cervalces Latifrons males will have antlers, while females have no antlers at all. $(br2)-Paracertherium have no gender dimorphism."
     },
     {
       "type": "patchouli:spotlight",

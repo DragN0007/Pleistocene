@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "permafrost:mammoth",
-    "permafrost:deinotherium"
+    "permafrost:deinotherium",
+    "permafrost:cervid",
+    "permafrost:paraceratherium"
   ]
 }

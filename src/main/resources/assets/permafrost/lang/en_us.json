@@ -14,6 +14,8 @@
   "entity.permafrost.quagga": "Quagga",
   "item.permafrost.cervalces_spawn_egg": "Cervalces Latifrons Spawn Egg",
   "entity.permafrost.cervalces_latifrons": "Cervalces Latifrons",
+  "item.permafrost.paraceratherium_spawn_egg": "Paraceratherium Spawn Egg",
+  "entity.permafrost.paraceratherium": "Paraceratherium",
 
   "item.permafrost.mammoth_milk_bucket": "Mammoth Milk Bucket",
 
@@ -29,6 +31,8 @@
   "item.permafrost.cooked_direwolf": "Cooked Direwolf",
   "item.permafrost.cervid": "Raw Cervid",
   "item.permafrost.cooked_cervid": "Cooked Cervid",
+  "item.permafrost.paraceratherium": "Raw Paraceratherium",
+  "item.permafrost.cooked_paraceratherium": "Cooked Paraceratherium",
 
 
   "sounds.permafrost.mammoth_ambient": "Prehistoric Elephant Trumpets"

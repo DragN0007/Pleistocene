@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost;
 
-import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.gui.PFMenuTypes;
 import com.dragn0007.permafrost.items.PFItemGroup;

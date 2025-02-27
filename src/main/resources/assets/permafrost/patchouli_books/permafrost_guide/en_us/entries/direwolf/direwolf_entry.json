@@ -5,11 +5,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Direwolves wander the cold landscapes of the Overworld. If TFC is installed, you can find Deinotherium alongside Horses and Cows. $(br2)Deinotherium can be tamed much like horses and can have saddles, chests, and even carpets."
+      "text": "Direwolves wander the cold landscapes of the Overworld. If TFC is installed, you can find Direwolves in the same areas as TFC Direwolves. $(br2)Dirwolves can be tamed much like wolves and be ridden without a saddle."
     },
     {
       "type": "patchouli:text",
-      "text": "When tamed, they can carry their owner. They can be sat down/ up by shift-left-clicking them, and put to Follow/ Wander mode by shift-right-clicking. $(br2)Direwolves enjoy: $(br2)Raw Meat and Bones."
+      "text": "When tamed, they can carry their owner. They can be sat down/ up by shift-left-clicking them, and put to Follow/ Wander mode by shift-right-clicking.  $(br2)Be careful, as they'll attack players on-sight. Tame them as fast as possible! $(br2)Direwolves enjoy Raw Meat and Bones."
     },
     {
       "type": "patchouli:entity",

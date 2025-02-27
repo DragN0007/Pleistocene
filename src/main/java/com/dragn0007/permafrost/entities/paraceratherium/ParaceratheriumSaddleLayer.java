@@ -1,4 +1,4 @@
-package com.dragn0007.permafrost.entities.cervalces_latifrons;
+package com.dragn0007.permafrost.entities.paraceratherium;
 
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulClientConfig;
 import com.dragn0007.permafrost.Permafrost;
@@ -15,13 +15,13 @@ import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 @OnlyIn(Dist.CLIENT)
-public class CervalcesSaddleLayer extends GeoRenderLayer<Cervalces> {
-    public CervalcesSaddleLayer(GeoRenderer<Cervalces> entityRendererIn) {
+public class ParaceratheriumSaddleLayer extends GeoRenderLayer<Paraceratherium> {
+    public ParaceratheriumSaddleLayer(GeoRenderer<Paraceratherium> entityRendererIn) {
         super(entityRendererIn);
     }
 
     @Override
-    public void render(PoseStack poseStack, Cervalces animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
+    public void render(PoseStack poseStack, Paraceratherium animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
 
         ResourceLocation resourceLocation = null;
 

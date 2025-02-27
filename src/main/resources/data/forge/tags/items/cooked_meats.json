@@ -3,6 +3,8 @@
   "values": [
     "permafrost:cooked_mammoth",
     "permafrost:cooked_deinotherium",
-    "permafrost:cooked_direwolf"
+    "permafrost:cooked_direwolf",
+    "permafrost:cooked_cervid",
+    "permafrost:cooked_paraceratherium"
   ]
 }

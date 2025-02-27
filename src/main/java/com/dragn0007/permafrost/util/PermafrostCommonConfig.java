@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.util;
 
-import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class PermafrostCommonConfig {
@@ -12,6 +11,7 @@ public class PermafrostCommonConfig {
     public static final ForgeConfigSpec.BooleanValue SPAWN_DIREWOLVES;
     public static final ForgeConfigSpec.BooleanValue SPAWN_QUAGGA;
     public static final ForgeConfigSpec.BooleanValue SPAWN_CERVALCES;
+    public static final ForgeConfigSpec.BooleanValue SPAWN_PARACERATHERIUM;
 
 
     static {
@@ -31,6 +31,9 @@ public class PermafrostCommonConfig {
 
         SPAWN_CERVALCES = BUILDER.comment("Should Cervalces Latifrons spawn alongside Deer?")
                 .define("Spawn Cervalces Latifrons", true);
+
+        SPAWN_PARACERATHERIUM = BUILDER.comment("Should Paraceratherium spawn alongside Yaks?")
+                .define("Spawn Paraceratherium", true);
 
         BUILDER.pop();
 

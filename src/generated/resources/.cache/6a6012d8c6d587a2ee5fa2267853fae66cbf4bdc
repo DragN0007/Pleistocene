@@ -1,13 +1,15 @@
-// 1.20.1	2025-02-26T05:18:38.3194708	Item Models: permafrost
+// 1.20.1	2025-02-26T23:55:53.8493889	Item Models: permafrost
 1b94ab9035f247ecd6a810a4d8b727a034fc5985 assets/permafrost/models/item/cervid.json
 b79bcd16745542467ec2ceffd67356404912517a assets/permafrost/models/item/cooked_cervid.json
 c548423e98e5e36008b59301f2324b317f7494ea assets/permafrost/models/item/cooked_deinotherium.json
 57967f27754367d5c0684bd8f69b0a9dfb956e20 assets/permafrost/models/item/cooked_direwolf.json
 c548423e98e5e36008b59301f2324b317f7494ea assets/permafrost/models/item/cooked_mammoth.json
+b79bcd16745542467ec2ceffd67356404912517a assets/permafrost/models/item/cooked_paraceratherium.json
 c2f4919db1115e325264afdfececb90d1072d4ae assets/permafrost/models/item/deinotherium.json
 89ebf3f46ed060339ad63db2c23379ee3f0aeb2c assets/permafrost/models/item/direwolf.json
 c2f4919db1115e325264afdfececb90d1072d4ae assets/permafrost/models/item/mammoth.json
 a35183873f4cb8f6909a5a74d603fb2e062853e0 assets/permafrost/models/item/mammoth_cheese.json
 bb2a14f48da65a54553e1c25194cdce164babc09 assets/permafrost/models/item/mammoth_milk_bucket.json
 843400884f80152603f93e06be4396b0cbb47246 assets/permafrost/models/item/mammoth_milk_jug.json
+1b94ab9035f247ecd6a810a4d8b727a034fc5985 assets/permafrost/models/item/paraceratherium.json
 a5490543b38b8a01f03f219abbce107f80431e87 assets/permafrost/models/item/permafrost.json

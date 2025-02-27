@@ -3,6 +3,8 @@
   "values": [
     "permafrost:mammoth",
     "permafrost:deinotherium",
-    "permafrost:direwolf"
+    "permafrost:direwolf",
+    "permafrost:cervid",
+    "permafrost:paraceratherium"
   ]
 }

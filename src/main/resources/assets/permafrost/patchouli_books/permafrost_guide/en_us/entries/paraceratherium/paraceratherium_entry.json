@@ -1,0 +1,24 @@
+{
+  "name": "Paraceratherium",
+  "icon": "permafrost:paraceratherium",
+  "category": "permafrost:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Paraceratherium wander the plains of the Overworld. If TFC is installed, you can find Paraceratherium alongside Yaks. $(br2)Paraceratherium can be tamed much like horses and can have saddles and chests."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When tamed, they can carry up to 2 players. $(br2)Paraceratherium enjoy: $(br2)Apples, Wheat and (TFC)Barely."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "permafrost:paraceratherium{Variant:1}",
+      "name": "The Paraceratherium",
+      "default_rotation": 45,
+      "scale": 1.1,
+      "rotate": "false",
+      "text": "A grey paraceratherium."
+    }
+  ]
+}
