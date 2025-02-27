@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Dinofelis wander the warm landscapes of the Overworld. If TFC is installed, you can find Dinofelis in the same areas as TFC Sabertooths. $(br2)Dinofelis can be tamed much like wolves and be ridden without a saddle."
+      "text": "Dinofelis wander the warm landscapes of the Overworld. If TFC is installed, you can find Dinofelis in the same areas as TFC Sabertooths. $(br2)Dinofelis can be tamed much like wolves and be ridden without a saddle. $(br2)When tamed and in wander mode, they will hunt other animals."
     },
     {
       "type": "patchouli:text",
@@ -13,10 +13,10 @@
     },
     {
       "type": "patchouli:entity",
-      "entity": "permafrost:dinofelis{Variant:5}",
+      "entity": "permafrost:dinofelis{Variant:4}",
       "name": "The Dinofelis",
       "default_rotation": 45,
-      "scale": 0.8,
+      "scale": 0.6,
       "rotate": "false",
       "text": "A red dinofelis."
     }

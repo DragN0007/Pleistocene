@@ -88,7 +88,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       this.goalSelector.addGoal(1, new Direwolf.WolfPanicGoal(1.4D));
       this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
       this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
-      this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.8D, true));
+      this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.6D, true));
       this.goalSelector.addGoal(7, new BreedGoal(this, 1.0D));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
       this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -102,29 +102,12 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       this.goalSelector.addGoal(6, new DirewolfFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 
       this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-              entity -> entity.getType().is(PFTags.Entity_Types.DIREWOLF_PREY) && (entity instanceof TamableAnimal && !((TamableAnimal) entity).isTame()))  {
-         @Override
-         public boolean canUse() {
-            if (this.mob instanceof Direwolf) {
-               Direwolf customMob = (Direwolf) this.mob;
-               return ((customMob.isTame() && customMob.wasToldToWander() && super.canUse()) || (!customMob.isTame() && (customMob.hasFollowers() || customMob.isFollower()) && super.canUse()));
-               //only attack if im tamed & wandering and/ or if im wild and in a group
-            }
-            return super.canUse();
-         }
+              entity -> entity.getType().is(PFTags.Entity_Types.DIREWOLF_PREY) && ((!this.isTame() && (this.isFollower() || this.hasFollowers())) || (this.isTame() && this.wasToldToWander())))  {
       });
 
       this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
-              entity -> entity instanceof Player && (!this.isTame()))  {
-         @Override
-         public boolean canUse() {
-            if (this.mob instanceof Direwolf) {
-               Direwolf customMob = (Direwolf) this.mob;
-               return ((!customMob.isTame() && super.canUse()));
-            }
-            return super.canUse();
-         }
-      });
+              entity -> entity instanceof Player && (!this.isTame())
+      ));
    }
 
    public static AttributeSupplier.Builder createAttributes() {

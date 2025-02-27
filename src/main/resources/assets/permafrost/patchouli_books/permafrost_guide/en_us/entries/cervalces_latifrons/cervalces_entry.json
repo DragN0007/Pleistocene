@@ -13,12 +13,12 @@
     },
     {
       "type": "patchouli:entity",
-      "entity": "permafrost:cervalces_latifrons{Variant:0}",
+      "entity": "permafrost:cervalces_latifrons{Variant:0, Gender:1}",
       "name": "The Cervalces Latifrons",
       "default_rotation": 45,
       "scale": 1,
       "rotate": "false",
-      "text": "A brown cervalces latifrons."
+      "text": "A brown (male) cervalces latifrons."
     }
   ]
 }

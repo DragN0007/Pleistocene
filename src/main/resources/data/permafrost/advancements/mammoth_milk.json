@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "permafrost:mammoth_milk_jug"
+    },
+    "title": "Weirdo",
+    "description": "Obtain Mammoth Milk.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["permafrost:mammoth_milk_bucket"]
+          }
+        ]
+      }
+    }
+  }
+}
