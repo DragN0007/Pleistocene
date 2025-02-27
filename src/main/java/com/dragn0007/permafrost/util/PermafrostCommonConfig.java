@@ -16,7 +16,7 @@ public class PermafrostCommonConfig {
 
 
     static {
-        BUILDER.push("Spawning (ONLY APPLIES IF TFC IS INSTALLED)");
+        BUILDER.push("Spawning (ONLY APPLIES IF TFC IS INSTALLED, please use a mob spawn controller mod otherwise.)");
 
         SPAWN_MAMMOTHS = BUILDER.comment("Should Mammoths spawn alongside Musk Ox and Alpacas?")
                 .define("Spawn Mammoths", true);
