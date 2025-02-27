@@ -31,6 +31,8 @@ public class PFItems {
             () -> new ForgeSpawnEggItem(EntityTypes.CERVALCES_LATIFRONS_ENTITY, 0x4f3b2f, 0x362923, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> PARACERATHERIUM_SPAWN_EGG = ITEMS.register("paraceratherium_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.PARACERATHERIUM_ENTITY, 0x87837f, 0x524c47, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> DINOFELIS_SPAWN_EGG = ITEMS.register("dinofelis_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.DINOFELIS_ENTITY, 0x8b471b, 0x1f1d1b, new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> MAMMOTH_MILK_BUCKET = ITEMS.register("mammoth_milk_bucket",
          () -> new MilkBucketItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(1).build()).craftRemainder(Items.BUCKET).stacksTo(1)));
@@ -58,6 +60,10 @@ public class PFItems {
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
     public static final RegistryObject<Item> COOKED_PARACERATHERIUM = ITEMS.register("cooked_paraceratherium",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).build())));
+    public static final RegistryObject<Item> DINOFELIS = ITEMS.register("dinofelis",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
+    public static final RegistryObject<Item> COOKED_DINOFELIS = ITEMS.register("cooked_dinofelis",
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
 
 
     public static final RegistryObject<Item> PERMAFROST = ITEMS.register("permafrost",

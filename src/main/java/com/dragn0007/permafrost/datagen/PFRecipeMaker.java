@@ -55,6 +55,13 @@ public class PFRecipeMaker extends RecipeProvider implements IConditionBuilder {
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(PFItems.PARACERATHERIUM.get()), RecipeCategory.MISC, PFItems.COOKED_PARACERATHERIUM.get(), 0.35F, 600)
                 .unlockedBy("has_paraceratherium", has(PFItems.PARACERATHERIUM.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_paraceratherium_campfire_cooking"));
 
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(PFItems.DINOFELIS.get()), RecipeCategory.MISC, PFItems.COOKED_DINOFELIS.get(), 0.35F, 100)
+                .unlockedBy("has_dinofelis", has(PFItems.DINOFELIS.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_dinofelis_smoking"));
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(PFItems.DINOFELIS.get()), RecipeCategory.MISC, PFItems.COOKED_DINOFELIS.get(), 0.35F, 200)
+                .unlockedBy("has_dinofelis", has(PFItems.DINOFELIS.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_dinofelis_smelting"));
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(PFItems.DINOFELIS.get()), RecipeCategory.MISC, PFItems.COOKED_DINOFELIS.get(), 0.35F, 600)
+                .unlockedBy("has_dinofelis", has(PFItems.DINOFELIS.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_dinofelis_campfire_cooking"));
+
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PFItems.MAMMOTH_MILK_JUG.get()), RecipeCategory.MISC, PFItems.MAMMOTH_CHEESE.get(), 0.35F, 200)
                 .unlockedBy("has_mammoth_milk", has(PFItems.MAMMOTH_MILK_JUG.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "mammoth_cheese_smelting"));
 

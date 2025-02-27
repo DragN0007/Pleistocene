@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dinofelis": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "permafrost:dinofelis"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "permafrost:cooked_dinofelis_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_dinofelis",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "permafrost:cooked_dinofelis_smelting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

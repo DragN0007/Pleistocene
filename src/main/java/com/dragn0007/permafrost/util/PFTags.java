@@ -17,6 +17,7 @@ public class PFTags {
         public static final TagKey<Item> MAMMOTH_FOOD = forgeTag("mammoth_food");
         public static final TagKey<Item> PARACERATHERIUM_FOOD = forgeTag("paraceratherium_food");
         public static final TagKey<Item> CERVALCES_FOOD = forgeTag("cervalces_food");
+        public static final TagKey<Item> DINOFELIS_FOOD = forgeTag("dinofelis_food");
 
         public static TagKey<Item> forgeTag (String name) {
             return ItemTags.create(new ResourceLocation("forge", name));

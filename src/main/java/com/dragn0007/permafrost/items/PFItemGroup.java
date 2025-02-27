@@ -24,6 +24,7 @@ public class PFItemGroup {
                         output.accept(PFItems.QUAGGA_SPAWN_EGG.get());
                         output.accept(PFItems.CERVALCES_SPAWN_EGG.get());
                         output.accept(PFItems.PARACERATHERIUM_SPAWN_EGG.get());
+                        output.accept(PFItems.DINOFELIS_SPAWN_EGG.get());
 
                         output.accept(PFItems.MAMMOTH.get());
                         output.accept(PFItems.COOKED_MAMMOTH.get());
@@ -35,6 +36,8 @@ public class PFItemGroup {
                         output.accept(PFItems.COOKED_CERVID.get());
                         output.accept(PFItems.PARACERATHERIUM.get());
                         output.accept(PFItems.COOKED_PARACERATHERIUM.get());
+                        output.accept(PFItems.DINOFELIS.get());
+                        output.accept(PFItems.COOKED_DINOFELIS.get());
                         output.accept(PFItems.MAMMOTH_MILK_BUCKET.get());
                         output.accept(PFItems.MAMMOTH_MILK_JUG.get());
                         output.accept(PFItems.MAMMOTH_CHEESE.get());

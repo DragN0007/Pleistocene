@@ -3,6 +3,7 @@ package com.dragn0007.permafrost.entities;
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.Cervalces;
 import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
+import com.dragn0007.permafrost.entities.dinofelis.Dinofelis;
 import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.entities.mammoth.Mammoth;
 import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
@@ -54,5 +55,11 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(2f,4f)
                     .build(new ResourceLocation(LivestockOverhaul.MODID,"paraceratherium").toString()));
+
+    public static final RegistryObject<EntityType<Dinofelis>> DINOFELIS_ENTITY = ENTITY_TYPES.register("dinofelis",
+            () -> EntityType.Builder.of(Dinofelis::new,
+                            MobCategory.CREATURE)
+                    .sized(1.5f,1.5f)
+                    .build(new ResourceLocation(MODID,"dinofelis").toString()));
 }
 
