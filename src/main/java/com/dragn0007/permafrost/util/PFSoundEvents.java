@@ -13,6 +13,7 @@ public class PFSoundEvents {
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Permafrost.MODID);
 
     public static final RegistryObject<SoundEvent> MAMMOTH_AMBIENT = registerSoundEvents("mammoth_ambient");
+    public static final RegistryObject<SoundEvent> TITANIS_AMBIENT = registerSoundEvents("titanis_ambient");
 
 
     public static RegistryObject<SoundEvent> registerSoundEvents(String name) {

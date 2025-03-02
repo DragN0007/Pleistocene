@@ -393,7 +393,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
             return InteractionResult.SUCCESS;
          } else {
 
-            if (!this.isOrderedToSit() && this.isOwnedBy(player)) {
+            if (!this.isOrderedToSit() && this.isOwnedBy(player) && !this.isFood(itemstack)) {
                this.doPlayerRide(player);
                return InteractionResult.SUCCESS;
             } else {
@@ -510,7 +510,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       this.toldToWander = toldToWander;
    }
 
-   public static final Ingredient FOOD_ITEMS = Ingredient.of(LOTags.Items.RAW_MEATS);
+   public static final Ingredient FOOD_ITEMS = Ingredient.of(PFTags.Items.DIREWOLF_FOOD);
 
    @Override
    public boolean isFood(ItemStack itemStack) {

@@ -4,5 +4,11 @@
     "sounds": [
       "permafrost:mammoth_ambient"
     ]
+  },
+  "titanis_ambient": {
+    "subtitles": "sounds.permafrost.titanis_ambient",
+    "sounds": [
+      "permafrost:titanis_ambient"
+    ]
   }
 }

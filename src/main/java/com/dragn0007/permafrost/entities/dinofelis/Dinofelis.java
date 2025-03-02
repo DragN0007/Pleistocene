@@ -281,7 +281,7 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
             return InteractionResult.SUCCESS;
          } else {
 
-            if (!this.isOrderedToSit() && this.isOwnedBy(player)) {
+            if (!this.isOrderedToSit() && this.isOwnedBy(player) && !this.isFood(itemstack)) {
                this.doPlayerRide(player);
                return InteractionResult.SUCCESS;
             } else {
