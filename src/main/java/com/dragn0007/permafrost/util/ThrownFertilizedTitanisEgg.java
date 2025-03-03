@@ -1,11 +1,6 @@
 package com.dragn0007.permafrost.util;
 
-import com.dragn0007.dragnlivestock.entities.EntityTypes;
-import com.dragn0007.dragnlivestock.entities.chicken.OChicken;
-import com.dragn0007.dragnlivestock.entities.chicken.OChickenMarkingLayer;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
-import com.dragn0007.dragnlivestock.items.LOItems;
-import com.dragn0007.dragnlivestock.util.ThrownFertilizedEgg;
 import com.dragn0007.permafrost.entities.titanis.Titanis;
 import com.dragn0007.permafrost.entities.titanis.TitanisModel;
 import com.dragn0007.permafrost.items.PFItems;

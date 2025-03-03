@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.items;
 
-import com.dragn0007.dragnlivestock.items.custom.FertilizedEggItem;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.items.custom.FertilizedTitanisEggItem;

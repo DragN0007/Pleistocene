@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.items.custom;
 
-import com.dragn0007.dragnlivestock.util.ThrownFertilizedEgg;
 import com.dragn0007.permafrost.util.ThrownFertilizedTitanisEgg;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

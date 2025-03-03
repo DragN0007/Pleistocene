@@ -1,7 +1,6 @@
 package com.dragn0007.permafrost.entities.ai;
 
 import com.dragn0007.permafrost.entities.dinofelis.Dinofelis;
-import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
