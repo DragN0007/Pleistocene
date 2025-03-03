@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-
+    "permafrost:titanis_egg",
+    "permafrost:fertilized_titanis_egg"
   ]
 }

@@ -1,7 +1,6 @@
 package com.dragn0007.permafrost.entities.direwolf;
 
 import com.dragn0007.dragnlivestock.items.LOItems;
-import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.entities.ai.DirewolfFollowOwnerGoal;
@@ -102,7 +101,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       this.goalSelector.addGoal(6, new DirewolfFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 
       this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
-              entity -> entity.getType().is(PFTags.Entity_Types.DIREWOLF_PREY) && ((!this.isTame() && (this.isFollower() || this.hasFollowers())) || (this.isTame() && this.wasToldToWander())))  {
+              entity -> entity.getType().is(PFTags.Entity_Types.MEDIUM_PREDATOR_PREY) && ((!this.isTame() && (this.isFollower() || this.hasFollowers())) || (this.isTame() && this.wasToldToWander())))  {
       });
 
       this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 2, true, false,

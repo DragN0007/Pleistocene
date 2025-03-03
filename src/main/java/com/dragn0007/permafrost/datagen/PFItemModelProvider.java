@@ -1,5 +1,6 @@
 package com.dragn0007.permafrost.datagen;
 
+import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.items.PFItems;
 import net.minecraft.data.PackOutput;
@@ -32,6 +33,9 @@ public class PFItemModelProvider extends ItemModelProvider {
         advancedItem(PFItems.COOKED_PARACERATHERIUM, "cooked_cervid");
         simpleItem(PFItems.DINOFELIS);
         simpleItem(PFItems.COOKED_DINOFELIS);
+
+        advancedItem(PFItems.TITANIS_EGG, "fertilized_titanis_egg");
+        simpleItem(PFItems.FERTILIZED_TITANIS_EGG);
 
         simpleItem(PFItems.PERMAFROST);
     }

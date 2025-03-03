@@ -13,6 +13,7 @@ public class PermafrostCommonConfig {
     public static final ForgeConfigSpec.BooleanValue SPAWN_CERVALCES;
     public static final ForgeConfigSpec.BooleanValue SPAWN_PARACERATHERIUM;
     public static final ForgeConfigSpec.BooleanValue SPAWN_DINOFELIS;
+    public static final ForgeConfigSpec.BooleanValue SPAWN_TITANIS;
 
 
     static {
@@ -38,6 +39,9 @@ public class PermafrostCommonConfig {
 
         SPAWN_DINOFELIS = BUILDER.comment("Should Permafrost Dinofelis replace TFC Sabertooths?")
                 .define("Dinofelis Replacer", true);
+
+        SPAWN_TITANIS = BUILDER.comment("Should Titanis Walleri spawn alongside Turkeys?")
+                .define("Spawn Titanis Walleri", true);
 
         BUILDER.pop();
 

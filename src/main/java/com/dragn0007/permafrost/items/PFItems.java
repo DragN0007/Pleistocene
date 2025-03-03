@@ -1,7 +1,9 @@
 package com.dragn0007.permafrost.items;
 
+import com.dragn0007.dragnlivestock.items.custom.FertilizedEggItem;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
+import com.dragn0007.permafrost.items.custom.FertilizedTitanisEggItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -33,6 +35,8 @@ public class PFItems {
             () -> new ForgeSpawnEggItem(EntityTypes.PARACERATHERIUM_ENTITY, 0x87837f, 0x524c47, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> DINOFELIS_SPAWN_EGG = ITEMS.register("dinofelis_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.DINOFELIS_ENTITY, 0x8b471b, 0x1f1d1b, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> TITANIS_SPAWN_EGG = ITEMS.register("titanis_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.TITANIS_ENTITY, 0x5e3a35, 0xeeeae4, new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> MAMMOTH_MILK_BUCKET = ITEMS.register("mammoth_milk_bucket",
          () -> new MilkBucketItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(1).build()).craftRemainder(Items.BUCKET).stacksTo(1)));
@@ -64,6 +68,11 @@ public class PFItems {
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
     public static final RegistryObject<Item> COOKED_DINOFELIS = ITEMS.register("cooked_dinofelis",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
+
+    public static final RegistryObject<Item> TITANIS_EGG = ITEMS.register("titanis_egg",
+            () -> new Item((new Item.Properties()).stacksTo(64)));
+    public static final RegistryObject<Item> FERTILIZED_TITANIS_EGG = ITEMS.register("fertilized_titanis_egg",
+            () -> new FertilizedTitanisEggItem((new Item.Properties()).stacksTo(1)));
 
 
     public static final RegistryObject<Item> PERMAFROST = ITEMS.register("permafrost",

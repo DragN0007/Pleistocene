@@ -17,6 +17,8 @@ import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
 import com.dragn0007.permafrost.entities.paraceratherium.ParaceratheriumModel;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
 import com.dragn0007.permafrost.entities.quagga.QuaggaModel;
+import com.dragn0007.permafrost.entities.titanis.Titanis;
+import com.dragn0007.permafrost.entities.titanis.TitanisModel;
 import com.dragn0007.permafrost.util.PermafrostCommonConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -197,7 +199,23 @@ public class ModdedSpawnInjector {
                 }
             }
 
+            if (PermafrostCommonConfig.SPAWN_TITANIS.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "turkey"))) {
+                Entity entity = event.getEntity();
+                Titanis permafrostAnimal = EntityTypes.TITANIS_ENTITY.get().create(event.getLevel());
+                if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.30) {
+                    permafrostAnimal.copyPosition(entity);
+                    permafrostAnimal.copyPosition(entity);
+                    event.getLevel().addFreshEntity(permafrostAnimal);
 
+                    int randomVariant = event.getLevel().getRandom().nextInt(TitanisModel.Variant.values().length);
+                    permafrostAnimal.setVariant(randomVariant);
+
+                    int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);
+                    permafrostAnimal.setGender(randomGender);
+
+                    event.setCanceled(true);
+                }
+            }
 
         }
     }

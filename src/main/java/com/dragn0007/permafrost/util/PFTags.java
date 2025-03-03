@@ -19,6 +19,7 @@ public class PFTags {
         public static final TagKey<Item> CERVALCES_FOOD = forgeTag("cervalces_food");
         public static final TagKey<Item> DINOFELIS_FOOD = forgeTag("dinofelis_food");
         public static final TagKey<Item> DIREWOLF_FOOD = forgeTag("direwolf_food");
+        public static final TagKey<Item> TITANIS_FOOD = forgeTag("titanis_food");
 
         public static TagKey<Item> forgeTag (String name) {
             return ItemTags.create(new ResourceLocation("forge", name));
@@ -26,7 +27,7 @@ public class PFTags {
     }
 
     public static class Entity_Types {
-        public static final TagKey<EntityType<?>> DIREWOLF_PREY = forgeTag("direwolf_prey");
+        public static final TagKey<EntityType<?>> MEDIUM_PREDATOR_PREY = forgeTag("medium_predator_prey");
 
         public static TagKey<EntityType<?>> forgeTag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge", name));

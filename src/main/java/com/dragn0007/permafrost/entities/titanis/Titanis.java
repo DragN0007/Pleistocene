@@ -1,10 +1,14 @@
-package com.dragn0007.permafrost.entities.dinofelis;
+package com.dragn0007.permafrost.entities.titanis;
 
 import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.entities.ai.DinofelisFollowOwnerGoal;
+import com.dragn0007.permafrost.entities.ai.TitanisFollowOwnerGoal;
+import com.dragn0007.permafrost.items.PFItems;
+import com.dragn0007.permafrost.util.PFSoundEvents;
 import com.dragn0007.permafrost.util.PFTags;
+import com.ibm.icu.impl.duration.impl.PeriodFormatterDataService;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -58,15 +62,15 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Random;
 import java.util.UUID;
 
-public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
+public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
 
-   public static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Dinofelis.class, EntityDataSerializers.INT);
+   public static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Titanis.class, EntityDataSerializers.INT);
 
    public static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
    @Nullable
    public UUID persistentAngerTarget;
 
-   public Dinofelis(EntityType<? extends Dinofelis> entityType, Level level) {
+   public Titanis(EntityType<? extends Titanis> entityType, Level level) {
       super(entityType, level);
       this.setTame(false);
       this.setPathfindingMalus(BlockPathTypes.POWDER_SNOW, -1.0F);
@@ -88,7 +92,7 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
       this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
       this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, AbstractSkeleton.class, false));
       this.targetSelector.addGoal(8, new ResetUniversalAngerTargetGoal<>(this, true));
-      this.goalSelector.addGoal(6, new DinofelisFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+      this.goalSelector.addGoal(6, new TitanisFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
 
       this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 2, true, false,
               entity -> entity.getType().is(PFTags.Entity_Types.MEDIUM_PREDATOR_PREY) && ((!this.isTame()) || (this.isTame() && this.wasToldToWander())))  {
@@ -101,9 +105,9 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
 
    public static AttributeSupplier.Builder createAttributes() {
       return Mob.createMobAttributes()
-              .add(Attributes.MOVEMENT_SPEED, 0.30F)
-              .add(Attributes.MAX_HEALTH, 28.0D)
-              .add(Attributes.ATTACK_DAMAGE, 4.0D);
+              .add(Attributes.MOVEMENT_SPEED, 0.32F)
+              .add(Attributes.MAX_HEALTH, 24.0D)
+              .add(Attributes.ATTACK_DAMAGE, 3.0D);
    }
 
    public final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -165,9 +169,27 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
 
    }
 
+   public int eggTime = this.random.nextInt(LivestockOverhaulCommonConfig.CHICKEN_EGG_LAY_TIME.get()) + 6000;
+
+   public void aiStep() {
+      super.aiStep();
+
+      Vec3 vec3 = this.getDeltaMovement();
+      if (!this.onGround() && vec3.y < 0.0D) {
+         this.setDeltaMovement(vec3.multiply(1.0D, 0.6D, 1.0D));
+      }
+
+      if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!LivestockOverhaulCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (LivestockOverhaulCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
+         this.spawnAtLocation(PFItems.TITANIS_EGG.get());
+         this.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+         this.eggTime = this.random.nextInt(LivestockOverhaulCommonConfig.CHICKEN_EGG_LAY_TIME.get()) + 6000;
+      }
+
+   }
+
    @Override
    public float getStepHeight() {
-      return 2F;
+      return 1.6F;
    }
 
    public void playStepSound(BlockPos p_30415_, BlockState p_30416_) {
@@ -175,21 +197,15 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
    }
 
    public SoundEvent getAmbientSound() {
-      if (this.isAngry()) {
-         return SoundEvents.CAT_HISS;
-      } else if (this.random.nextInt(3) == 0) {
-         return this.isTame() && this.getHealth() < 10.0F ? SoundEvents.CAT_PURR : SoundEvents.CAT_PURREOW;
-      } else {
-         return SoundEvents.CAT_PURR;
-      }
+      return PFSoundEvents.TITANIS_AMBIENT.get();
    }
 
    public SoundEvent getHurtSound(DamageSource p_30424_) {
-      return SoundEvents.CAT_HISS;
+      return SoundEvents.PHANTOM_HURT;
    }
 
    public SoundEvent getDeathSound() {
-      return SoundEvents.CAT_DEATH;
+      return SoundEvents.PHANTOM_DEATH;
    }
 
    public float getSoundVolume() {
@@ -287,7 +303,7 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
                return interactionresult;
             }
          }
-      } else if (itemstack.is(PFTags.Items.DINOFELIS_FOOD) && !this.isAngry()) {
+      } else if (this.isFood(itemstack) && !this.isAngry()) {
          if (!player.getAbilities().instabuild) {
             itemstack.shrink(1);
          }
@@ -396,7 +412,7 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
       this.toldToWander = toldToWander;
    }
 
-   public static final Ingredient FOOD_ITEMS = Ingredient.of(PFTags.Items.DINOFELIS_FOOD);
+   public static final Ingredient FOOD_ITEMS = Ingredient.of(PFTags.Items.TITANIS_FOOD);
 
    @Override
    public boolean isFood(ItemStack itemStack) {
@@ -425,10 +441,10 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
    }
 
    public ResourceLocation getTextureLocation() {
-      return DinofelisModel.Variant.variantFromOrdinal(getVariant()).resourceLocation;
+      return TitanisModel.Variant.variantFromOrdinal(getVariant()).resourceLocation;
    }
 
-   public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Dinofelis.class, EntityDataSerializers.INT);
+   public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Titanis.class, EntityDataSerializers.INT);
 
    public int getVariant() {
       return this.entityData.get(VARIANT);
@@ -486,7 +502,7 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
       }
       Random random = new Random();
       setGender(random.nextInt(Gender.values().length));
-      setVariant(random.nextInt(DinofelisModel.Variant.values().length));
+      setVariant(random.nextInt(TitanisModel.Variant.values().length));
 
       return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
    }
@@ -504,7 +520,7 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
       return this.getGender() == 1;
    }
 
-   public static final EntityDataAccessor<Integer> GENDER = SynchedEntityData.defineId(Dinofelis.class, EntityDataSerializers.INT);
+   public static final EntityDataAccessor<Integer> GENDER = SynchedEntityData.defineId(Titanis.class, EntityDataSerializers.INT);
 
    public int getGender() {
       return this.entityData.get(GENDER);
@@ -521,13 +537,13 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
    public boolean canMate(Animal animal) {
       if (animal == this) {
          return false;
-      } else if (!(animal instanceof Dinofelis)) {
+      } else if (!(animal instanceof Titanis)) {
          return false;
       } else {
          if (!LivestockOverhaulCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-            return this.canParent() && ((Dinofelis) animal).canParent();
+            return this.canParent() && ((Titanis) animal).canParent();
          } else {
-            Dinofelis partner = (Dinofelis) animal;
+            Titanis partner = (Titanis) animal;
             if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
                return true;
             }
@@ -545,29 +561,29 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
 
    @Override
    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-      Dinofelis dinofelis1 = (Dinofelis) ageableMob;
-      if (ageableMob instanceof Dinofelis) {
-         Dinofelis dinofelis = (Dinofelis) ageableMob;
-         dinofelis1 = EntityTypes.DINOFELIS_ENTITY.get().create(serverLevel);
+      Titanis titanis1 = (Titanis) ageableMob;
+      if (ageableMob instanceof Titanis) {
+         Titanis titanis = (Titanis) ageableMob;
+         titanis1 = EntityTypes.TITANIS_ENTITY.get().create(serverLevel);
 
          int i = this.random.nextInt(9);
          int variant;
          if (i < 4) {
             variant = this.getVariant();
          } else if (i < 8) {
-            variant = dinofelis.getVariant();
+            variant = titanis.getVariant();
          } else {
-            variant = this.random.nextInt(DinofelisModel.Variant.values().length);
+            variant = this.random.nextInt(TitanisModel.Variant.values().length);
          }
 
          int gender;
          gender = this.random.nextInt(Gender.values().length);
 
-         dinofelis1.setVariant(variant);
-         dinofelis1.setGender(gender);
+         titanis1.setVariant(variant);
+         titanis1.setGender(gender);
       }
 
-      return dinofelis1;
+      return titanis1;
    }
 
    public boolean canBeLeashed(Player p_30396_) {
@@ -594,7 +610,7 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
 
    class CatPanicGoal extends PanicGoal {
       public CatPanicGoal(double v) {
-         super(Dinofelis.this, v);
+         super(Titanis.this, v);
       }
 
       public boolean shouldPanic() {

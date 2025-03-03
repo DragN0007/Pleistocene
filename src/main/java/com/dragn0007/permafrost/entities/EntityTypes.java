@@ -8,6 +8,7 @@ import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.entities.mammoth.Mammoth;
 import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
+import com.dragn0007.permafrost.entities.titanis.Titanis;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -61,5 +62,11 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(1.5f,1.5f)
                     .build(new ResourceLocation(MODID,"dinofelis").toString()));
+
+    public static final RegistryObject<EntityType<Titanis>> TITANIS_ENTITY = ENTITY_TYPES.register("titanis",
+            () -> EntityType.Builder.of(Titanis::new,
+                            MobCategory.CREATURE)
+                    .sized(1.5f,1.5f)
+                    .build(new ResourceLocation(MODID,"titanis").toString()));
 }
 

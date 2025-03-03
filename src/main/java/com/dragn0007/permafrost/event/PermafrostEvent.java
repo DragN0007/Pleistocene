@@ -16,6 +16,8 @@ import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
 import com.dragn0007.permafrost.entities.paraceratherium.ParaceratheriumRender;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
 import com.dragn0007.permafrost.entities.quagga.QuaggaRender;
+import com.dragn0007.permafrost.entities.titanis.Titanis;
+import com.dragn0007.permafrost.entities.titanis.TitanisRender;
 import com.dragn0007.permafrost.gui.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -41,6 +43,7 @@ public class PermafrostEvent {
         event.put(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(), Cervalces.createBaseHorseAttributes().build());
         event.put(EntityTypes.PARACERATHERIUM_ENTITY.get(), Paraceratherium.createAttributes().build());
         event.put(EntityTypes.DINOFELIS_ENTITY.get(), Dinofelis.createAttributes().build());
+        event.put(EntityTypes.TITANIS_ENTITY.get(), Titanis.createAttributes().build());
     }
 
     @SubscribeEvent
@@ -52,6 +55,7 @@ public class PermafrostEvent {
         EntityRenderers.register(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(), CervalcesRender::new);
         EntityRenderers.register(EntityTypes.PARACERATHERIUM_ENTITY.get(), ParaceratheriumRender::new);
         EntityRenderers.register(EntityTypes.DINOFELIS_ENTITY.get(), DinofelisRender::new);
+        EntityRenderers.register(EntityTypes.TITANIS_ENTITY.get(), TitanisRender::new);
 
         MenuScreens.register(PFMenuTypes.MAMMOTH_MENU.get(), MammothScreen::new);
         MenuScreens.register(PFMenuTypes.DEINOTHERIUM_MENU.get(), DeinotheriumScreen::new);
@@ -68,6 +72,7 @@ public class PermafrostEvent {
         event.register(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.PARACERATHERIUM_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.DINOFELIS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.TITANIS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 
 }

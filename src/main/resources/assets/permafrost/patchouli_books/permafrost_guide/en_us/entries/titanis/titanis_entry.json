@@ -1,0 +1,24 @@
+{
+  "name": "Titanis Walleri",
+  "icon": "permafrost:titanis_egg",
+  "category": "permafrost:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Titanis wander the warm landscapes of the Overworld. If TFC is installed, you can find Titanis alongside Turkeys. $(br2)Titanis can be tamed much like wolves and be ridden without a saddle. $(br2)When tamed and in wander mode, they will hunt other animals."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When tamed, they can carry their owner. They can be sat down/ up by shift-left-clicking them, and put to Follow/ Wander mode by shift-right-clicking.  $(br2)Be careful, as they'll attack players on-sight. Tame them as fast as possible! $(br2)Titanis enjoy Raw Meat, Eggs and Fish."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "permafrost:titanis{Variant:3, Gender:1}",
+      "name": "The Titanis",
+      "default_rotation": 45,
+      "scale": 0.6,
+      "rotate": "false",
+      "text": "A burgundy (male) titanis."
+    }
+  ]
+}
