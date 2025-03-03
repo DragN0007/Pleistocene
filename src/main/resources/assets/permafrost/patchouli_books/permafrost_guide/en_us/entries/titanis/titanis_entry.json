@@ -5,11 +5,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Titanis wander the warm landscapes of the Overworld. If TFC is installed, you can find Titanis alongside Turkeys. $(br2)Titanis can be tamed much like wolves and be ridden without a saddle. $(br2)When tamed and in wander mode, they will hunt other animals."
+      "text": "Titanis wander the warm landscapes of the Overworld. If TFC is installed, you can find Titanis alongside Turkeys. $(br2)Titanis can be tamed much like wolves and be ridden without a saddle. $(br2)When tamed and in wander mode, they will hunt other animals. $(br2)Titanis aren't strong enough to jump with a player on their back, unlike horses or quaggas."
     },
     {
       "type": "patchouli:text",
-      "text": "When tamed, they can carry their owner. They can be sat down/ up by shift-left-clicking them, and put to Follow/ Wander mode by shift-right-clicking.  $(br2)Be careful, as they'll attack players on-sight. Tame them as fast as possible! $(br2)Titanis enjoy Raw Meat, Eggs and Fish."
+      "text": "When tamed, they can carry their owner. They can be sat down/ up by shift-left-clicking them, and put to Follow/ Wander mode by shift-right-clicking. $(br2)Be careful, as they'll attack players on-sight. Tame them as fast as possible! $(br2)Females will lay unfertilized eggs once in a while, much like chickens. $(br2)Titanis enjoy Raw Meat, Eggs and Fish."
     },
     {
       "type": "patchouli:entity",

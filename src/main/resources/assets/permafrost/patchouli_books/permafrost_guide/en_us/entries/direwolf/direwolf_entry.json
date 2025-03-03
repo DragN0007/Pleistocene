@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Direwolves wander the cold landscapes of the Overworld. If TFC is installed, you can find Direwolves in the same areas as TFC Direwolves. $(br2)Direwolves can be tamed much like wolves and be ridden without a saddle. $(br2)When tamed and in wander mode, they will hunt other animals."
+      "text": "Direwolves wander the cold landscapes of the Overworld. If TFC is installed, you can find Direwolves in the same areas as TFC Direwolves. $(br2)Direwolves can be tamed much like wolves and be ridden without a saddle. $(br2)When tamed and in wander mode, they will hunt other animals. $(br2)Direwolves aren't strong enough to jump with a player on their back, unlike horses or quaggas."
     },
     {
       "type": "patchouli:text",

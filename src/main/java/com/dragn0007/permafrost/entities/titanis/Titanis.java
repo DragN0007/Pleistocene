@@ -82,7 +82,7 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
       this.goalSelector.addGoal(1, new CatPanicGoal(1.4D));
       this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
       this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
-      this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.6D, true));
+      this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 2.0D, true));
       this.goalSelector.addGoal(7, new BreedGoal(this, 1.0D));
       this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
       this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -105,7 +105,7 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
 
    public static AttributeSupplier.Builder createAttributes() {
       return Mob.createMobAttributes()
-              .add(Attributes.MOVEMENT_SPEED, 0.32F)
+              .add(Attributes.MOVEMENT_SPEED, 0.30F)
               .add(Attributes.MAX_HEALTH, 24.0D)
               .add(Attributes.ATTACK_DAMAGE, 3.0D);
    }
@@ -114,7 +114,7 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
 
    public <T extends GeoAnimatable> PlayState predicate(software.bernie.geckolib.core.animation.AnimationState<T> tAnimationState) {
       double currentSpeed = this.getDeltaMovement().lengthSqr();
-      double speedThreshold = 0.015;
+      double speedThreshold = 0.03;
       double x = this.getX() - this.xo;
       double z = this.getZ() - this.zo;
 
@@ -122,20 +122,26 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
 
       AnimationController<T> controller = tAnimationState.getController();
 
-      if (isMoving) {
+      if (!onGround()) {
+         controller.setAnimation(RawAnimation.begin().then("jump", Animation.LoopType.LOOP));
+         controller.setAnimationSpeed(1.7);
+      } else if (isMoving) {
          if (currentSpeed > speedThreshold) {
-            controller.setAnimation(RawAnimation.begin().then("run", Animation.LoopType.LOOP));
-            controller.setAnimationSpeed(2.5);
+            controller.setAnimation(RawAnimation.begin().then("Run_R", Animation.LoopType.LOOP));
+            controller.setAnimationSpeed(2.1);
          } else {
-            controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-            controller.setAnimationSpeed(1.0);
+            controller.setAnimation(RawAnimation.begin().then("Walk_R", Animation.LoopType.LOOP));
+            controller.setAnimationSpeed(1.85);
          }
       } else {
          if (isInSittingPose()) {
             controller.setAnimation(RawAnimation.begin().then("sit", Animation.LoopType.LOOP));
             controller.setAnimationSpeed(1.0);
+         } else if (isVehicle()) {
+            controller.setAnimation(RawAnimation.begin().then("Idle_R", Animation.LoopType.LOOP));
+            controller.setAnimationSpeed(1.0);
          } else {
-            controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+            controller.setAnimation(RawAnimation.begin().then("Idle_MoreBounce_R", Animation.LoopType.LOOP));
             controller.setAnimationSpeed(1.0);
          }
       }
@@ -176,7 +182,7 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
 
       Vec3 vec3 = this.getDeltaMovement();
       if (!this.onGround() && vec3.y < 0.0D) {
-         this.setDeltaMovement(vec3.multiply(1.0D, 0.6D, 1.0D));
+         this.setDeltaMovement(vec3.multiply(1.0D, 0.8D, 1.0D));
       }
 
       if (!this.level().isClientSide && this.isAlive() && !this.isBaby() && --this.eggTime <= 0 && (!LivestockOverhaulCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() || (LivestockOverhaulCommonConfig.GENDERS_AFFECT_BIPRODUCTS.get() && this.isFemale()))) {
@@ -350,8 +356,8 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
    public void positionRider(Entity entity, MoveFunction moveFunction) {
       if (this.hasPassenger(entity)) {
          double offsetX = 0;
-         double offsetY = 0.5;
-         double offsetZ = -0.2;
+         double offsetY = 0.7;
+         double offsetZ = -0.3;
 
          double radYaw = Math.toRadians(this.getYRot());
 

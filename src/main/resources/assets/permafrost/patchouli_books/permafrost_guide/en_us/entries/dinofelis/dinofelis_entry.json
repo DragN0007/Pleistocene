@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Dinofelis wander the warm landscapes of the Overworld. If TFC is installed, you can find Dinofelis in the same areas as TFC Sabertooths. $(br2)Dinofelis can be tamed much like wolves and be ridden without a saddle. $(br2)When tamed and in wander mode, they will hunt other animals."
+      "text": "Dinofelis wander the warm landscapes of the Overworld. If TFC is installed, you can find Dinofelis in the same areas as TFC Sabertooths. $(br2)Dinofelis can be tamed much like wolves and be ridden without a saddle. $(br2)When tamed and in wander mode, they will hunt other animals. $(br2)Dinofelis aren't strong enough to jump with a player on their back, unlike horses or quaggas."
     },
     {
       "type": "patchouli:text",
