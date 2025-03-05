@@ -44,29 +44,29 @@ public class PFItems {
     public static final RegistryObject<Item> MAMMOTH_CHEESE = ITEMS.register("mammoth_cheese",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(9).saturationMod(1).effect(new MobEffectInstance(MobEffects.ABSORPTION, 600, 0), 0.8F).build())));
     public static final RegistryObject<Item> MAMMOTH = ITEMS.register("mammoth",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> COOKED_MAMMOTH = ITEMS.register("cooked_mammoth",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> DEINOTHERIUM = ITEMS.register("deinotherium",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(10).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(10).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> COOKED_DEINOTHERIUM = ITEMS.register("cooked_deinotherium",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(14).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(14).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> DIREWOLF = ITEMS.register("direwolf",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> COOKED_DIREWOLF = ITEMS.register("cooked_direwolf",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> CERVID = ITEMS.register("cervid",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> COOKED_CERVID = ITEMS.register("cooked_cervid",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> PARACERATHERIUM = ITEMS.register("paraceratherium",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> COOKED_PARACERATHERIUM = ITEMS.register("cooked_paraceratherium",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> DINOFELIS = ITEMS.register("dinofelis",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> COOKED_DINOFELIS = ITEMS.register("cooked_dinofelis",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).build())));
+            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
 
     public static final RegistryObject<Item> TITANIS_EGG = ITEMS.register("titanis_egg",
             () -> new Item((new Item.Properties()).stacksTo(64)));

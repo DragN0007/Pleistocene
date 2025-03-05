@@ -1,0 +1,18 @@
+{
+  "type":"tfc:heating",
+  "ingredient": {
+    "type":"tfc:not_rotten",
+    "ingredient": {
+      "item":"permafrost:dinofelis"
+    }
+  },
+  "result_item": {
+    "stack": {
+      "item":"permafrost:cooked_dinofelis"
+    },
+    "modifiers":[
+      "tfc:copy_food"
+    ]
+  },
+  "temperature":200
+}
