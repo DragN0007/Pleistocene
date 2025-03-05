@@ -5,6 +5,11 @@
     "minecraft:wheat",
 
     {
+      "id": "#dragnlivestock:o_horse_eats",
+      "required": false
+    },
+
+    {
       "id": "tfc:food/barley",
       "required": false
     },

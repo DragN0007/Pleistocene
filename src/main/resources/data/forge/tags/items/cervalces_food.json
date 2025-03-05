@@ -5,6 +5,11 @@
     "minecraft:carrot",
 
     {
+      "id": "#dragnlivestock:o_horse_eats",
+      "required": false
+    },
+
+    {
       "id": "tfc:food/blueberry",
       "required": false
     },
