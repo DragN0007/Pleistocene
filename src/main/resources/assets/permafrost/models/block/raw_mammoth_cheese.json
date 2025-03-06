@@ -1,0 +1,6 @@
+{
+  "parent": "dragnlivestock:block/parent/cheese",
+  "textures": {
+    "cheese": "permafrost:block/raw_mammoth_cheese"
+  }
+}

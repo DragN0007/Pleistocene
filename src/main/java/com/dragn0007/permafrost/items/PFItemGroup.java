@@ -42,6 +42,7 @@ public class PFItemGroup {
                         output.accept(PFItems.COOKED_DINOFELIS.get());
                         output.accept(PFItems.MAMMOTH_MILK_BUCKET.get());
                         output.accept(PFItems.MAMMOTH_MILK_JUG.get());
+                        output.accept(PFItems.RAW_MAMMOTH_CHEESE.get());
                         output.accept(PFItems.MAMMOTH_CHEESE.get());
 
                         output.accept(PFItems.TITANIS_EGG.get());

@@ -1,11 +1,11 @@
 package com.dragn0007.permafrost.datagen;
 
+import com.dragn0007.dragnlivestock.items.LOItems;
+import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.permafrost.items.PFItems;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -19,6 +19,14 @@ public class PFRecipeMaker extends RecipeProvider implements IConditionBuilder {
 
     @Override
     public void buildRecipes(Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, PFItems.RAW_MAMMOTH_CHEESE.get())
+                .requires(PFItems.MAMMOTH_MILK_JUG.get())
+                .requires(PFItems.MAMMOTH_MILK_JUG.get())
+                .unlockedBy("has_milk", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(LOTags.Items.MILK)
+                        .build()))
+                .save(pFinishedRecipeConsumer);
 
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(PFItems.MAMMOTH.get()), RecipeCategory.MISC, PFItems.COOKED_MAMMOTH.get(), 0.35F, 100)
                 .unlockedBy("has_mammoth", has(PFItems.MAMMOTH.get())).save(pFinishedRecipeConsumer, new ResourceLocation("permafrost", "cooked_mammoth_smoking"));

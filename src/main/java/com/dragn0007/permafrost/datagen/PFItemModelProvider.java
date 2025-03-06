@@ -1,5 +1,6 @@
 package com.dragn0007.permafrost.datagen;
 
+import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.items.PFItems;
 import net.minecraft.data.PackOutput;
@@ -21,6 +22,7 @@ public class PFItemModelProvider extends ItemModelProvider {
         simpleItem(PFItems.COOKED_MAMMOTH);
         simpleItem(PFItems.MAMMOTH_MILK_BUCKET);
         simpleItem(PFItems.MAMMOTH_MILK_JUG);
+        simpleItem(PFItems.RAW_MAMMOTH_CHEESE);
         simpleItem(PFItems.MAMMOTH_CHEESE);
         advancedItem(PFItems.DEINOTHERIUM, "mammoth");
         advancedItem(PFItems.COOKED_DEINOTHERIUM, "cooked_mammoth");

@@ -1,5 +1,7 @@
 package com.dragn0007.permafrost;
 
+import com.dragn0007.dragnlivestock.blocks.LOBlocks;
+import com.dragn0007.permafrost.blocks.PFBlocks;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.gui.PFMenuTypes;
 import com.dragn0007.permafrost.items.PFItemGroup;
@@ -30,6 +32,7 @@ public class Permafrost
 
         PFItems.register(eventBus);
         PFItemGroup.register(eventBus);
+        PFBlocks.register(eventBus);
         EntityTypes.ENTITY_TYPES.register(eventBus);
         PFMenuTypes.register(eventBus);
         PFSoundEvents.register(eventBus);

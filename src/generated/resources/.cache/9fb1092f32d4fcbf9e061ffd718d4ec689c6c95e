@@ -1,4 +1,4 @@
-// 1.20.1	2025-02-27T02:08:18.5028138	Recipes
+// 1.20.1	2025-03-06T03:21:27.4062899	Recipes
 773319711cf4372267cca110ba1696ccaf1e4f7a data/permafrost/advancements/recipes/misc/cooked_cervid_campfire_cooking.json
 51050926ee79c0f0169eaf370b898ab2564d0466 data/permafrost/advancements/recipes/misc/cooked_cervid_smelting.json
 c173a397b0a81d24d24538fc1d958ebb9f692234 data/permafrost/advancements/recipes/misc/cooked_cervid_smoking.json
@@ -18,6 +18,7 @@ e4ec0cda5e00884ea36891314879bd4b61b0963b data/permafrost/advancements/recipes/mi
 86383283b87790a64873d7d97855b26fdad2f83d data/permafrost/advancements/recipes/misc/cooked_paraceratherium_smelting.json
 cad1d55c710206059ca890989460e2c1ee0d50eb data/permafrost/advancements/recipes/misc/cooked_paraceratherium_smoking.json
 910c78312436a7e68082421dc9dbcff927a613d9 data/permafrost/advancements/recipes/misc/mammoth_cheese_smelting.json
+f8efb397040772bdd16c87d05376db2fdd3840e3 data/permafrost/advancements/recipes/misc/raw_mammoth_cheese.json
 1ae8fbf79ad0af64611c8016046c0b4624ad9c49 data/permafrost/recipes/cooked_cervid_campfire_cooking.json
 2ad46155c5ab4b2a0fe44dd5ed9acc22d91a949d data/permafrost/recipes/cooked_cervid_smelting.json
 6a7967716dfac26ab07b4a5a53022e4922705ea1 data/permafrost/recipes/cooked_cervid_smoking.json
@@ -37,3 +38,4 @@ b73bdc60fe1e0842f73ed01b768c1b1fec71c773 data/permafrost/recipes/cooked_mammoth_
 0c599c9d7c3ad9908a4c3a0193a9197e6a69210a data/permafrost/recipes/cooked_paraceratherium_smelting.json
 9cf1a3c1c95a4cffa56ac51d008bc452f029a809 data/permafrost/recipes/cooked_paraceratherium_smoking.json
 ba6060b6c59223c0ead017ff7277f678ccc7caf5 data/permafrost/recipes/mammoth_cheese_smelting.json
+aeb4c886664225ab8df4221fabc3f9e495304b3a data/permafrost/recipes/raw_mammoth_cheese.json

@@ -27,6 +27,7 @@
 
   "item.permafrost.mammoth_milk_jug": "Mammoth Milk Jug",
 
+  "item.permafrost.raw_mammoth_cheese": "Raw Mammoth Cheese",
   "item.permafrost.mammoth_cheese": "Mammoth Cheese",
 
   "item.permafrost.mammoth": "Raw Mammoth",
@@ -45,6 +46,10 @@
 
   "item.permafrost.titanis_egg": "Titanis Egg",
   "item.permafrost.fertilized_titanis_egg": "Fertilized Titanis Egg",
+
+
+  "block.dragnlivestock.raw_mammoth_cheese": "Raw Mammoth Cheese",
+  "block.dragnlivestock.mammoth_cheese": "Mammoth Cheese",
 
 
   "sounds.permafrost.mammoth_ambient": "Prehistoric Elephant Trumpets",

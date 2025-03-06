@@ -1,12 +1,15 @@
 package com.dragn0007.permafrost.items;
 
+import com.dragn0007.dragnlivestock.blocks.LOBlocks;
 import com.dragn0007.permafrost.Permafrost;
+import com.dragn0007.permafrost.blocks.PFBlocks;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.items.custom.FertilizedTitanisEggItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.MilkBucketItem;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -43,9 +46,12 @@ public class PFItems {
          () -> new MilkBucketItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(1).build()).craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> MAMMOTH_MILK_JUG = ITEMS.register("mammoth_milk_jug",
             () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> RAW_MAMMOTH_CHEESE = ITEMS.register("raw_mammoth_cheese",
+            () -> new ItemNameBlockItem(PFBlocks.RAW_MAMMOTH_CHEESE.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(4).build())));
     public static final RegistryObject<Item> MAMMOTH_CHEESE = ITEMS.register("mammoth_cheese",
-            () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(9).saturationMod(1).effect(new MobEffectInstance(MobEffects.ABSORPTION, 600, 0), 0.8F).build())));
-    public static final RegistryObject<Item> MAMMOTH = ITEMS.register("mammoth",
+            () -> new ItemNameBlockItem(PFBlocks.MAMMOTH_CHEESE.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(9).saturationMod(1).effect(new MobEffectInstance(MobEffects.ABSORPTION, 600, 0), 0.8F).build())));
+     public static final RegistryObject<Item> MAMMOTH = ITEMS.register("mammoth",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(1).meat().build())));
     public static final RegistryObject<Item> COOKED_MAMMOTH = ITEMS.register("cooked_mammoth",
             () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(12).saturationMod(1).meat().build())));
