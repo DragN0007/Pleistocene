@@ -117,7 +117,8 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
     private void renderBaseCoatLabel(GuiGraphics graphics) {
         String text = this.quagga.getTextureResource().toString();
         String noFillerText = text.replaceAll(".+quagga_", "");
-        String noUnderscoresText = noFillerText.replaceAll("_", " ");
+        String noFillerText2 = noFillerText.replaceAll(".+horse_", "");
+        String noUnderscoresText = noFillerText2.replaceAll("_", " ");
         String noPNGText = noUnderscoresText.replace(".png", "");
         String replaceDefault = noPNGText.replace("default", "grey");
         String labelText = "Base Coat: " + replaceDefault.toUpperCase();

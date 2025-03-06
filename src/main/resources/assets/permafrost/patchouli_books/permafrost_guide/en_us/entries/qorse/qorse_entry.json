@@ -1,0 +1,15 @@
+{
+  "name": "Qorse",
+  "icon": "minecraft:apple",
+  "category": "permafrost:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Qorses are a cross between a Horse and a Quagga. $(br2)They can come in any base coat and marking that a horse can, while also sporting the classic Quagga markings."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Qorses act similarly to Quaggas, but aren't as frightened by humans, and can wear armor. $(br2)They cannot be found naturally and cannot produce offspring, much like a mule. $(br2)Qorses enjoy the same foods as horses."
+    }
+  ]
+}

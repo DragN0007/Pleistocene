@@ -8,6 +8,7 @@ import com.dragn0007.permafrost.entities.direwolf.Direwolf;
 import com.dragn0007.permafrost.entities.mammoth.Mammoth;
 import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
+import com.dragn0007.permafrost.entities.quagga.qorse.Qorse;
 import com.dragn0007.permafrost.entities.titanis.Titanis;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -68,5 +69,11 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(1.5f,1.5f)
                     .build(new ResourceLocation(MODID,"titanis").toString()));
+
+    public static final RegistryObject<EntityType<Qorse>> QORSE_ENTITY = ENTITY_TYPES.register("qorse",
+            () -> EntityType.Builder.of(Qorse::new,
+                            MobCategory.CREATURE)
+                    .sized(1.5f,2f)
+                    .build(new ResourceLocation(LivestockOverhaul.MODID,"qorse").toString()));
 }
 

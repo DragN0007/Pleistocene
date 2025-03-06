@@ -16,6 +16,8 @@ import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
 import com.dragn0007.permafrost.entities.paraceratherium.ParaceratheriumRender;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
 import com.dragn0007.permafrost.entities.quagga.QuaggaRender;
+import com.dragn0007.permafrost.entities.quagga.qorse.Qorse;
+import com.dragn0007.permafrost.entities.quagga.qorse.QorseRender;
 import com.dragn0007.permafrost.entities.titanis.Titanis;
 import com.dragn0007.permafrost.entities.titanis.TitanisRender;
 import com.dragn0007.permafrost.gui.*;
@@ -44,6 +46,7 @@ public class PermafrostEvent {
         event.put(EntityTypes.PARACERATHERIUM_ENTITY.get(), Paraceratherium.createAttributes().build());
         event.put(EntityTypes.DINOFELIS_ENTITY.get(), Dinofelis.createAttributes().build());
         event.put(EntityTypes.TITANIS_ENTITY.get(), Titanis.createAttributes().build());
+        event.put(EntityTypes.QORSE_ENTITY.get(), Qorse.createBaseHorseAttributes().build());
     }
 
     @SubscribeEvent
@@ -56,6 +59,7 @@ public class PermafrostEvent {
         EntityRenderers.register(EntityTypes.PARACERATHERIUM_ENTITY.get(), ParaceratheriumRender::new);
         EntityRenderers.register(EntityTypes.DINOFELIS_ENTITY.get(), DinofelisRender::new);
         EntityRenderers.register(EntityTypes.TITANIS_ENTITY.get(), TitanisRender::new);
+        EntityRenderers.register(EntityTypes.QORSE_ENTITY.get(), QorseRender::new);
 
         MenuScreens.register(PFMenuTypes.MAMMOTH_MENU.get(), MammothScreen::new);
         MenuScreens.register(PFMenuTypes.DEINOTHERIUM_MENU.get(), DeinotheriumScreen::new);

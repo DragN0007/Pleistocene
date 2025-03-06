@@ -1,17 +1,13 @@
-package com.dragn0007.permafrost.entities.quagga;
+package com.dragn0007.permafrost.entities.quagga.qorse;
 
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.dragnlivestock.entities.ai.GroundTieGoal;
-import com.dragn0007.dragnlivestock.entities.horse.OHorse;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
 import com.dragn0007.dragnlivestock.event.LivestockOverhaulClientEvent;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
-import com.dragn0007.permafrost.entities.EntityTypes;
-import com.dragn0007.permafrost.entities.quagga.qorse.Qorse;
-import com.dragn0007.permafrost.entities.quagga.qorse.QorseMarkingLayer;
-import com.dragn0007.permafrost.entities.quagga.qorse.QorseModel;
+import com.dragn0007.permafrost.entities.quagga.Quagga;
 import com.dragn0007.permafrost.gui.QuaggaMenu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -47,36 +43,16 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class Quagga extends OHorse implements GeoEntity {
+public class Qorse extends Quagga implements GeoEntity {
 
-	private static final ResourceLocation LOOT_TABLE = new ResourceLocation(LivestockOverhaul.MODID, "entities/o_horse");
-	private static final ResourceLocation VANILLA_LOOT_TABLE = new ResourceLocation("minecraft", "entities/horse");
-	private static final ResourceLocation TFC_LOOT_TABLE = new ResourceLocation("tfc", "entities/horse");
-	@Override
-	public @NotNull ResourceLocation getDefaultLootTable() {
-		if (LivestockOverhaulCommonConfig.USE_VANILLA_LOOT.get()) {
-			return VANILLA_LOOT_TABLE;
-		}
-		if (ModList.get().isLoaded("tfc")) {
-			return TFC_LOOT_TABLE;
-		}
-		return LOOT_TABLE;
-	}
-
-	public Quagga(EntityType<? extends Quagga> type, Level level) {
+	public Qorse(EntityType<? extends Qorse> type, Level level) {
 		super(type, level);
-	}
-
-	@Override
-	public Vec3 getLeashOffset() {
-		return new Vec3(0D, (double) this.getEyeHeight() * 0.6F, (double) (this.getBbWidth() * 1F));
-		//              ^ Side offset                      ^ Height offset                   ^ Length offset
 	}
 
 	public static AttributeSupplier.Builder createBaseHorseAttributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.JUMP_STRENGTH)
-				.add(Attributes.MAX_HEALTH, 30.0D)
+				.add(Attributes.MAX_HEALTH, 40.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.255F)
 				.add(Attributes.ATTACK_DAMAGE, 1D);
 	}
@@ -110,29 +86,25 @@ public class Quagga extends OHorse implements GeoEntity {
 				(entity.getType().is(LOTags.Entity_Types.O_WOLVES) && !this.isTamed()) ||
 						(entity.getType().is(LOTags.Entity_Types.O_WOLVES) && (entity instanceof TamableAnimal && !((TamableAnimal) entity).isTame())) && this.isTamed()
 		));
-
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, 15.0F, 1.8F, 1.8F, entity ->
-				entity instanceof Player && !this.isTamed()
-		));
 	}
 
 	public float generateRandomMaxHealth() {
 		float baseHealth;
-		baseHealth = 16.0F;
+		baseHealth = 20.0F;
 		return baseHealth + this.random.nextInt(3) + this.random.nextInt(5);
 	}
 
 	public double generateRandomJumpStrength() {
 		double baseStrength = 0.4F;
 		double multiplier = this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.25D;
-		baseStrength = 0.2F;
+		baseStrength = 0.25F;
 		return baseStrength + multiplier;
 	}
 
 	public double generateRandomSpeed() {
 		double baseSpeed = 0.0F;
 		double multiplier = (this.random.nextDouble() * 0.1D + this.random.nextDouble() * 0.1D + this.random.nextDouble() * 0.1D) * 0.30D;
-		baseSpeed = 0.2F;
+		baseSpeed = 0.25F;
 		return baseSpeed + multiplier;
 	}
 
@@ -148,7 +120,7 @@ public class Quagga extends OHorse implements GeoEntity {
 		if (this.hasPassenger(entity)) {
 
 			double offsetX = 0;
-			double offsetY = 0.7;
+			double offsetY = 0.74;
 			double offsetZ = -0.1;
 
 			if (this.isJumping()) {
@@ -289,13 +261,13 @@ public class Quagga extends OHorse implements GeoEntity {
 
 	@Override
 	public boolean canWearArmor() {
-		return false;
+		return true;
 	}
 
-	public static final EntityDataAccessor<ResourceLocation> VARIANT_TEXTURE = SynchedEntityData.defineId(Quagga.class, LivestockOverhaul.RESOURCE_LOCATION);
-	public static final EntityDataAccessor<ResourceLocation> OVERLAY_TEXTURE = SynchedEntityData.defineId(Quagga.class, LivestockOverhaul.RESOURCE_LOCATION);
-	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Quagga.class, EntityDataSerializers.INT);
-	public static final EntityDataAccessor<Integer> OVERLAY = SynchedEntityData.defineId(Quagga.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<ResourceLocation> VARIANT_TEXTURE = SynchedEntityData.defineId(Qorse.class, LivestockOverhaul.RESOURCE_LOCATION);
+	public static final EntityDataAccessor<ResourceLocation> OVERLAY_TEXTURE = SynchedEntityData.defineId(Qorse.class, LivestockOverhaul.RESOURCE_LOCATION);
+	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> OVERLAY = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
 
 	public ResourceLocation getTextureResource() {
 		return this.entityData.get(VARIANT_TEXTURE);
@@ -315,19 +287,19 @@ public class Quagga extends OHorse implements GeoEntity {
 	}
 
 	public void setVariant(int variant) {
-		this.entityData.set(VARIANT_TEXTURE, QuaggaModel.Variant.variantFromOrdinal(variant).resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, QorseModel.Variant.variantFromOrdinal(variant).resourceLocation);
 		this.entityData.set(VARIANT, variant);
 	}
 
 	public void setOverlayVariant(int variant) {
-		this.entityData.set(OVERLAY_TEXTURE, QuaggaMarkingLayer.Overlay.overlayFromOrdinal(variant).resourceLocation);
+		this.entityData.set(OVERLAY_TEXTURE, QorseMarkingLayer.Overlay.overlayFromOrdinal(variant).resourceLocation);
 		this.entityData.set(OVERLAY, variant);
 	}
 
 	public void setVariantTexture(String variant) {
 		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
 		if (resourceLocation == null) {
-			resourceLocation = QuaggaModel.Variant.CREAM.resourceLocation;
+			resourceLocation = QorseModel.Variant.CREAM.resourceLocation;
 		}
 		this.entityData.set(VARIANT_TEXTURE, resourceLocation);
 	}
@@ -335,7 +307,7 @@ public class Quagga extends OHorse implements GeoEntity {
 	public void setOverlayVariantTexture(String variant) {
 		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
 		if (resourceLocation == null) {
-			resourceLocation = QuaggaMarkingLayer.Overlay.NONE.resourceLocation;
+			resourceLocation = QorseMarkingLayer.Overlay.NONE.resourceLocation;
 		}
 		this.entityData.set(OVERLAY_TEXTURE, resourceLocation);
 	}
@@ -383,11 +355,11 @@ public class Quagga extends OHorse implements GeoEntity {
 		}
 
 		Random random = new Random();
-		this.setVariant(random.nextInt(QuaggaModel.Variant.values().length));
+		this.setVariant(random.nextInt(QorseModel.Variant.values().length));
 		this.setGender(random.nextInt(Gender.values().length));
 
 		if (spawnType == MobSpawnType.SPAWN_EGG) {
-			this.setOverlayVariant(random.nextInt(QuaggaMarkingLayer.Overlay.values().length));
+			this.setOverlayVariant(random.nextInt(QorseMarkingLayer.Overlay.values().length));
 		}
 
 		this.randomizeAttributes();
@@ -399,8 +371,8 @@ public class Quagga extends OHorse implements GeoEntity {
 		super.defineSynchedData();
 		this.entityData.define(VARIANT, 0);
 		this.entityData.define(OVERLAY, 0);
-		this.entityData.define(VARIANT_TEXTURE, QuaggaModel.Variant.CREAM.resourceLocation);
-		this.entityData.define(OVERLAY_TEXTURE, QuaggaMarkingLayer.Overlay.NONE.resourceLocation);
+		this.entityData.define(VARIANT_TEXTURE, QorseModel.Variant.CREAM.resourceLocation);
+		this.entityData.define(OVERLAY_TEXTURE, QorseMarkingLayer.Overlay.NONE.resourceLocation);
 	}
 
 	@Override
@@ -408,97 +380,13 @@ public class Quagga extends OHorse implements GeoEntity {
 		return !this.isVehicle() && !this.isPassenger() && !this.isBaby() && this.isInLove();
 	}
 
+	@Override
 	public boolean canMate(Animal animal) {
-		if (animal == this) {
-			return false;
-		} else if (!(animal instanceof OHorse)) {
-			return false;
-		} else {
-			if (!LivestockOverhaulCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
-				return this.canParent() && ((OHorse) animal).canParent();
-			} else {
-				OHorse partner = (OHorse) animal;
-				if (this.canParent() && partner.canParent() && this.getGender() != partner.getGender()) {
-					return true;
-				}
-
-				boolean partnerIsFemale = partner.isFemale();
-				boolean partnerIsMale = partner.isMale();
-				if (LivestockOverhaulCommonConfig.GENDERS_AFFECT_BREEDING.get() && this.canParent() && partner.canParent()
-						&& ((isFemale() && partnerIsMale) || (isMale() && partnerIsFemale))) {
-					return isFemale();
-				}
-			}
-		}
 		return false;
 	}
 
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-		Quagga abstracthorse;
-		if (ageableMob instanceof OHorse horse) {
-			abstracthorse = EntityTypes.QORSE_ENTITY.get().create(serverLevel);
-
-			int i = this.random.nextInt(9);
-			int variant;
-			if (i < 4) {
-				variant = this.getVariant();
-			} else if (i < 8) {
-				variant = horse.getVariant();
-			} else {
-				variant = this.random.nextInt(QorseModel.Variant.values().length);
-			}
-
-			int j = this.random.nextInt(5);
-			int overlay;
-			if (j < 2) {
-				overlay = this.getOverlayVariant();
-			} else if (j < 4) {
-				overlay = horse.getOverlayVariant();
-			} else {
-				overlay = this.random.nextInt(QorseMarkingLayer.Overlay.values().length);
-			}
-
-			int gender;
-			gender = this.random.nextInt(AbstractOMount.Gender.values().length);
-
-			abstracthorse.setVariant(variant);
-			abstracthorse.setOverlayVariant(overlay);
-			abstracthorse.setGender(gender);
-		} else {
-			Quagga quagga = (Quagga) ageableMob;
-			abstracthorse = EntityTypes.QUAGGA_ENTITY.get().create(serverLevel);
-
-			int i = this.random.nextInt(9);
-			int variant;
-			if (i < 4) {
-				variant = this.getVariant();
-			} else if (i < 8) {
-				variant = quagga.getVariant();
-			} else {
-				variant = this.random.nextInt(QuaggaModel.Variant.values().length);
-			}
-
-			int j = this.random.nextInt(5);
-			int overlay;
-			if (j < 2) {
-				overlay = this.getOverlayVariant();
-			} else if (j < 4) {
-				overlay = quagga.getOverlayVariant();
-			} else {
-				overlay = this.random.nextInt(QuaggaMarkingLayer.Overlay.values().length);
-			}
-
-			int gender;
-			gender = this.random.nextInt(AbstractOMount.Gender.values().length);
-
-			abstracthorse.setVariant(variant);
-			abstracthorse.setOverlayVariant(overlay);
-			(abstracthorse).setGender(gender);
-		}
-
-		this.setOffspringAttributes(ageableMob, abstracthorse);
-		return abstracthorse;
+		return null;
 	}
-
 }

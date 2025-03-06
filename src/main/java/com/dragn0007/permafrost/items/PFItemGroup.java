@@ -26,6 +26,7 @@ public class PFItemGroup {
                         output.accept(PFItems.PARACERATHERIUM_SPAWN_EGG.get());
                         output.accept(PFItems.DINOFELIS_SPAWN_EGG.get());
                         output.accept(PFItems.TITANIS_SPAWN_EGG.get());
+                        output.accept(PFItems.QORSE_SPAWN_EGG.get());
 
                         output.accept(PFItems.MAMMOTH.get());
                         output.accept(PFItems.COOKED_MAMMOTH.get());
