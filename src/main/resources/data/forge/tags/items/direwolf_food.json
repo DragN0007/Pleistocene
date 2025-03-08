@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
-    "#forge:raw_meats"
+    "#forge:raw_meats",
+
+    {
+      "id": "#tfc:foods/raw_meats",
+      "required": false
+    }
   ]
 }

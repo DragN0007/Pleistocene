@@ -3,6 +3,11 @@
   "values": [
     "#minecraft:fishes",
     "#forge:raw_meats",
-    "#forge:eggs"
+    "#forge:eggs",
+
+    {
+      "id": "#tfc:foods/raw_meats",
+      "required": false
+    }
   ]
 }
