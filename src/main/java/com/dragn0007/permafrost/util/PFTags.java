@@ -28,6 +28,7 @@ public class PFTags {
 
     public static class Entity_Types {
         public static final TagKey<EntityType<?>> MEDIUM_PREDATOR_PREY = forgeTag("medium_predator_prey");
+        public static final TagKey<EntityType<?>> PREDATORS = forgeTag("predators");
 
         public static TagKey<EntityType<?>> forgeTag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge", name));

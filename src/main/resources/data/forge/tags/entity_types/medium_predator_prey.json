@@ -24,12 +24,12 @@
     },
 
     {
-      "id": "#forge:o_foxes",
+      "id": "#forge:foxes",
       "required": false
     },
 
     {
-      "id": "#forge:o_wolves",
+      "id": "#forge:wolves",
       "required": false
     }
   ]

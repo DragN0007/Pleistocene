@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "permafrost:direwolf",
+    "permafrost:dinofelis",
+    "permafrost:titanis",
+
+    {
+      "id": "#forge:dogs",
+      "required": false
+    },
+
+    {
+      "id": "#forge:foxes",
+      "required": false
+    },
+
+    {
+      "id": "#forge:wolves",
+      "required": false
+    }
+  ]
+}

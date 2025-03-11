@@ -6,6 +6,7 @@ import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
 import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
+import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.entities.ai.MammothFollowHerdLeaderGoal;
 import com.dragn0007.permafrost.entities.direwolf.Direwolf;
@@ -44,7 +45,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -60,6 +63,16 @@ import java.util.stream.Stream;
 
 public class Mammoth extends AbstractOMount implements GeoEntity {
 	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Mammoth.class, EntityDataSerializers.INT);
+
+	private static final ResourceLocation LOOT_TABLE = new ResourceLocation(Permafrost.MODID, "entities/mammoth");
+	private static final ResourceLocation TFC_LOOT_TABLE = new ResourceLocation(Permafrost.MODID, "entities/tfc/tfc_mammoth");
+	@Override
+	public @NotNull ResourceLocation getDefaultLootTable() {
+		if (ModList.get().isLoaded("tfc")) {
+			return TFC_LOOT_TABLE;
+		}
+		return LOOT_TABLE;
+	}
 
 	public Mammoth(EntityType<? extends Mammoth> type, Level level) {
 		super(type, level);

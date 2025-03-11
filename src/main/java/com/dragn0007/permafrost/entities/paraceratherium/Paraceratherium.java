@@ -5,6 +5,7 @@ import com.dragn0007.dragnlivestock.entities.ai.GroundTieGoal;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
+import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.gui.ParaceratheriumMenu;
 import com.dragn0007.permafrost.util.PFTags;
@@ -34,7 +35,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -52,6 +55,16 @@ public class Paraceratherium extends AbstractOMount implements GeoEntity {
 
 	public Paraceratherium(EntityType<? extends Paraceratherium> type, Level level) {
 		super(type, level);
+	}
+
+	private static final ResourceLocation LOOT_TABLE = new ResourceLocation(Permafrost.MODID, "entities/paraceratherium");
+	private static final ResourceLocation TFC_LOOT_TABLE = new ResourceLocation(Permafrost.MODID, "entities/tfc/tfc_paraceratherium");
+	@Override
+	public @NotNull ResourceLocation getDefaultLootTable() {
+		if (ModList.get().isLoaded("tfc")) {
+			return TFC_LOOT_TABLE;
+		}
+		return LOOT_TABLE;
 	}
 
 	@Override

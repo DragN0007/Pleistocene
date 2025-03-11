@@ -2,6 +2,7 @@ package com.dragn0007.permafrost.entities.direwolf;
 
 import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
+import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.entities.ai.DirewolfFollowOwnerGoal;
 import com.dragn0007.permafrost.entities.ai.DirewolfFollowPackLeaderGoal;
@@ -51,6 +52,8 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fml.ModList;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -68,6 +71,16 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
+
+   private static final ResourceLocation LOOT_TABLE = new ResourceLocation(Permafrost.MODID, "entities/direwolf");
+   private static final ResourceLocation TFC_LOOT_TABLE = new ResourceLocation(Permafrost.MODID, "entities/tfc/tfc_direwolf");
+   @Override
+   public @NotNull ResourceLocation getDefaultLootTable() {
+      if (ModList.get().isLoaded("tfc")) {
+         return TFC_LOOT_TABLE;
+      }
+      return LOOT_TABLE;
+   }
 
    public static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(Direwolf.class, EntityDataSerializers.INT);
 
