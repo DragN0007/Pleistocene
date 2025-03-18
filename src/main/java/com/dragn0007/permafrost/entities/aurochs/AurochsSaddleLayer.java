@@ -25,8 +25,8 @@ public class AurochsSaddleLayer extends GeoRenderLayer<Aurochs> {
 
         ResourceLocation resourceLocation = null;
 
-        if (animatable.isSaddled() && LivestockOverhaulClientConfig.HORSE_SADDLE_EXTRAS.get()) {
-            resourceLocation = new ResourceLocation(Permafrost.MODID, "textures/entity/aurochs/tack/aurochs_saddle.png");
+        if (animatable.hasChest()) {
+            resourceLocation = new ResourceLocation(Permafrost.MODID, "textures/entity/aurochs/tack/aurochs_saddlebags.png");
         } else {
             return;
         }

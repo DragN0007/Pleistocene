@@ -35,15 +35,17 @@ public class AurochsRender extends GeoEntityRenderer<Aurochs> {
         }
 
         if (entity.isBaby() || entity.isFemale()) {
-            model.getBone("horns").ifPresent(b -> b.setScaleX(0.7F));
-            model.getBone("horns").ifPresent(b -> b.setScaleY(0.7F));
-            model.getBone("horns").ifPresent(b -> b.setScaleZ(0.7F));
+            model.getBone("horns").ifPresent(b -> b.setScaleX(0.6F));
+            model.getBone("horns").ifPresent(b -> b.setScaleY(0.6F));
+            model.getBone("horns").ifPresent(b -> b.setScaleZ(0.6F));
+            model.getBone("utters").ifPresent(b -> b.setHidden(false));
         }
 
         if (!entity.isBaby() && entity.isMale()) {
             model.getBone("horns").ifPresent(b -> b.setScaleX(1.0F));
             model.getBone("horns").ifPresent(b -> b.setScaleY(1.0F));
             model.getBone("horns").ifPresent(b -> b.setScaleZ(1.0F));
+            model.getBone("utters").ifPresent(b -> b.setHidden(true));
         }
 
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);

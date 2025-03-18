@@ -80,7 +80,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 
 	@Override
 	public Vec3 getLeashOffset() {
-		return new Vec3(0D, (double) this.getEyeHeight() * 0.8F, (double) (this.getBbWidth() * 1.2F));
+		return new Vec3(0D, (double) this.getEyeHeight() * 0.6F, (double) (this.getBbWidth() * 1.4F));
 		//              ^ Side offset                      ^ Height offset                   ^ Length offset
 	}
 
@@ -117,7 +117,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 	}
 
 	protected int getInventorySize() {
-		return this.hasChest() ? 26 : super.getInventorySize();
+		return this.hasChest() ? 25 : super.getInventorySize();
 	}
 
 	@Override

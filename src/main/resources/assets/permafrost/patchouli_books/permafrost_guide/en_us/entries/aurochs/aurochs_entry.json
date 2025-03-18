@@ -1,0 +1,24 @@
+{
+  "name": "Aurochs",
+  "icon": "dragnlivestock:cow_milk_jug",
+  "category": "permafrost:animals_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Aurochs wander the plains of the Overworld. If TFC is installed, you can find Aurochs alongside Cows. $(br2)Aurochs can be tamed with their favorite foods and can have chests."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When tamed, they can carry up to 25 slots of items and can be milked. $(br2)Be careful, as they'll attack players on-sight unless they're crouched. $(br2)Aurochs enjoy the same foods as cows."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "permafrost:aurochs{Variant:1, Gender:1}",
+      "name": "The Aurochs",
+      "default_rotation": 45,
+      "scale": 1,
+      "rotate": "false",
+      "text": "A blue (male) Aurochs."
+    }
+  ]
+}
