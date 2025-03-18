@@ -21,6 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -34,6 +35,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -111,7 +113,7 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
       });
 
       this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
-              entity -> entity instanceof Player && (!this.isTame())
+              entity -> entity instanceof Player && (!this.isTame() && !this.isBaby())
       ));
    }
 
@@ -183,6 +185,11 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
          this.setHealth(this.getHealth() + 2);
          regenHealthCounter = 0;
          this.level().addParticle(ParticleTypes.HEART, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 0.7D, 0.7D, 0.7D);
+      }
+
+      if (eggsLaid >= LivestockOverhaulCommonConfig.CHICKEN_EGG_LAY_AMOUNT.get() && eggLayCooldown >= 100) {
+         eggsLaid = 0;
+         eggLayCooldown = 0;
       }
 
    }
@@ -577,31 +584,33 @@ public class Titanis extends TamableAnimal implements NeutralMob, GeoEntity {
       return false;
    }
 
+   public int eggsLaid = 0;
+   public int eggLayCooldown = 0;
+
    @Override
    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
-      Titanis titanis1 = (Titanis) ageableMob;
-      if (ageableMob instanceof Titanis) {
-         Titanis titanis = (Titanis) ageableMob;
-         titanis1 = EntityTypes.TITANIS_ENTITY.get().create(serverLevel);
 
-         int i = this.random.nextInt(9);
-         int variant;
-         if (i < 4) {
-            variant = this.getVariant();
-         } else if (i < 8) {
-            variant = titanis.getVariant();
-         } else {
-            variant = this.random.nextInt(TitanisModel.Variant.values().length);
-         }
-
-         int gender;
-         gender = this.random.nextInt(Gender.values().length);
-
-         titanis1.setVariant(variant);
-         titanis1.setGender(gender);
+      if (this.isMale() || !this.isInLove() || !this.isAlive() || eggsLaid >= LivestockOverhaulCommonConfig.CHICKEN_EGG_LAY_AMOUNT.get()) {
+         return null;
       }
 
-      return titanis1;
+      eggsLaid++;
+      dropFertilizedEgg(serverLevel);
+      return null;
+   }
+
+   private void dropFertilizedEgg(ServerLevel serverLevel) {
+      if (!this.isFemale() || !LivestockOverhaulCommonConfig.GENDERS_AFFECT_BREEDING.get()) {
+         return;
+      }
+
+      if(this.isFemale()) {
+         ItemStack fertilizedEgg = new ItemStack(PFItems.FERTILIZED_TITANIS_EGG.get());
+         ItemEntity eggEntity = new ItemEntity(serverLevel, this.getX(), this.getY(), this.getZ(), fertilizedEgg);
+         serverLevel.addFreshEntity(eggEntity);
+      }
+
+      serverLevel.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.CHICKEN_EGG, SoundSource.NEUTRAL, 1.0F, 1.0F);
    }
 
    public boolean canBeLeashed(Player p_30396_) {

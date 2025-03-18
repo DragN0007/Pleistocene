@@ -131,10 +131,6 @@ public class Deinotherium extends AbstractOMount implements GeoEntity {
 		));
 
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, entity ->
-				entity.getType().is(LOTags.Entity_Types.O_WOLVES) && (entity instanceof TamableAnimal && !((TamableAnimal) entity).isTame())
-		));
-
-		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, entity ->
 				entity instanceof Direwolf && !((Direwolf) entity).isTame() && !this.isTamed()
 		));
 	}

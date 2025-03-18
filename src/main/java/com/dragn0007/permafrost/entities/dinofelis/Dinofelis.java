@@ -108,7 +108,7 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
       });
 
       this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 2, true, false,
-              entity -> entity instanceof Player && (!this.isTame())
+              entity -> entity instanceof Player && (!this.isTame() && !this.isBaby())
       ));
    }
 
