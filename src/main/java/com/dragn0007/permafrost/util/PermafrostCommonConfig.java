@@ -14,6 +14,7 @@ public class PermafrostCommonConfig {
     public static final ForgeConfigSpec.BooleanValue SPAWN_PARACERATHERIUM;
     public static final ForgeConfigSpec.BooleanValue SPAWN_DINOFELIS;
     public static final ForgeConfigSpec.BooleanValue SPAWN_TITANIS;
+    public static final ForgeConfigSpec.BooleanValue SPAWN_AUROCHS;
 
 
     static {
@@ -42,6 +43,9 @@ public class PermafrostCommonConfig {
 
         SPAWN_TITANIS = BUILDER.comment("Should Titanis Walleri spawn alongside Turkeys?")
                 .define("Spawn Titanis Walleri", true);
+
+        SPAWN_AUROCHS = BUILDER.comment("Should Titanis Walleri spawn alongside Cows?")
+                .define("Spawn Aurochs", true);
 
         BUILDER.pop();
 

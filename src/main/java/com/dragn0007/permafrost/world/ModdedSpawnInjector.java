@@ -3,6 +3,9 @@ package com.dragn0007.permafrost.world;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
+import com.dragn0007.permafrost.entities.aurochs.Aurochs;
+import com.dragn0007.permafrost.entities.aurochs.AurochsModel;
+import com.dragn0007.permafrost.entities.aurochs.AurochsRender;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.Cervalces;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.CervalcesModel;
 import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
@@ -208,6 +211,24 @@ public class ModdedSpawnInjector {
                     event.getLevel().addFreshEntity(permafrostAnimal);
 
                     int randomVariant = event.getLevel().getRandom().nextInt(TitanisModel.Variant.values().length);
+                    permafrostAnimal.setVariant(randomVariant);
+
+                    int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);
+                    permafrostAnimal.setGender(randomGender);
+
+                    event.setCanceled(true);
+                }
+            }
+
+            if (PermafrostCommonConfig.SPAWN_AUROCHS.get() && ForgeRegistries.ENTITY_TYPES.getKey(event.getEntity().getType()).equals(new ResourceLocation("tfc", "cow"))) {
+                Entity entity = event.getEntity();
+                Aurochs permafrostAnimal = EntityTypes.AUROCHS_ENTITY.get().create(event.getLevel());
+                if (permafrostAnimal != null && event.getLevel().getRandom().nextDouble() < 0.30) {
+                    permafrostAnimal.copyPosition(entity);
+                    permafrostAnimal.copyPosition(entity);
+                    event.getLevel().addFreshEntity(permafrostAnimal);
+
+                    int randomVariant = event.getLevel().getRandom().nextInt(AurochsModel.Variant.values().length);
                     permafrostAnimal.setVariant(randomVariant);
 
                     int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);

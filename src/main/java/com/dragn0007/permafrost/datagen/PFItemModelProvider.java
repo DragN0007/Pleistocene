@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.datagen;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.items.PFItems;
 import net.minecraft.data.PackOutput;

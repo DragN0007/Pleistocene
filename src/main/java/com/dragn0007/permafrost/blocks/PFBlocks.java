@@ -1,7 +1,7 @@
 package com.dragn0007.permafrost.blocks;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
-import com.dragn0007.dragnlivestock.blocks.custom.*;
+import com.dragn0007.dragnlivestock.blocks.custom.AgedCheese;
+import com.dragn0007.dragnlivestock.blocks.custom.RawCheese;
 import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.permafrost.Permafrost;
 import net.minecraft.world.item.BlockItem;

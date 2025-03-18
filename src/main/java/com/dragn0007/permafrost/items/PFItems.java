@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.items;
 
-import com.dragn0007.dragnlivestock.blocks.LOBlocks;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.blocks.PFBlocks;
 import com.dragn0007.permafrost.entities.EntityTypes;
@@ -41,6 +40,8 @@ public class PFItems {
             () -> new ForgeSpawnEggItem(EntityTypes.TITANIS_ENTITY, 0x5e3a35, 0xeeeae4, new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> QORSE_SPAWN_EGG = ITEMS.register("qorse_spawn_egg",
             () -> new ForgeSpawnEggItem(EntityTypes.QORSE_ENTITY, 0xbca995, 0xf3ebe2, new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> AUROCHS_SPAWN_EGG = ITEMS.register("aurochs_spawn_egg",
+            () -> new ForgeSpawnEggItem(EntityTypes.AUROCHS_ENTITY, 0x634939, 0x4c3428, new Item.Properties().stacksTo(64)));
 
     public static final RegistryObject<Item> MAMMOTH_MILK_BUCKET = ITEMS.register("mammoth_milk_bucket",
          () -> new MilkBucketItem(new Item.Properties().food(new FoodProperties.Builder().nutrition(3).saturationMod(1).build()).craftRemainder(Items.BUCKET).stacksTo(1)));

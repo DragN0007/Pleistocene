@@ -25,6 +25,7 @@ public class BiomeHitter {
     public static final ResourceKey<BiomeModifier> SPAWN_PARACERATHERIUM_PLAINS = registerKey("spawn_paraceratherium_plains");
     public static final ResourceKey<BiomeModifier> SPAWN_DINOFELIS_HOT = registerKey("spawn_dinofelis_hot");
     public static final ResourceKey<BiomeModifier> SPAWN_TITANIS_HOT = registerKey("spawn_titanis_hot");
+    public static final ResourceKey<BiomeModifier> SPAWN_AUROCHS_PLAINS = registerKey("spawn_aurochs_plains");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -99,6 +100,14 @@ public class BiomeHitter {
                 biomes.getOrThrow(Tags.Biomes.IS_HOT),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.TITANIS_ENTITY.get(),
                         5,
+                        1,
+                        3
+                ))));
+
+        context.register(SPAWN_AUROCHS_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+                biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
+                List.of(new MobSpawnSettings.SpawnerData(EntityTypes.AUROCHS_ENTITY.get(),
+                        4,
                         1,
                         3
                 ))));

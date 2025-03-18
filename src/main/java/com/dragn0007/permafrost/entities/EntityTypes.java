@@ -1,6 +1,7 @@
 package com.dragn0007.permafrost.entities;
 
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
+import com.dragn0007.permafrost.entities.aurochs.Aurochs;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.Cervalces;
 import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
 import com.dragn0007.permafrost.entities.dinofelis.Dinofelis;
@@ -75,5 +76,11 @@ public class EntityTypes {
                             MobCategory.CREATURE)
                     .sized(1.5f,2f)
                     .build(new ResourceLocation(LivestockOverhaul.MODID,"qorse").toString()));
+
+    public static final RegistryObject<EntityType<Aurochs>> AUROCHS_ENTITY = ENTITY_TYPES.register("aurochs",
+            () -> EntityType.Builder.of(Aurochs::new,
+                            MobCategory.CREATURE)
+                    .sized(1.5f,2.5f)
+                    .build(new ResourceLocation(LivestockOverhaul.MODID,"aurochs").toString()));
 }
 

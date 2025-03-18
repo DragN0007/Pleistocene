@@ -2,6 +2,7 @@ package com.dragn0007.permafrost.event;
 
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
+import com.dragn0007.permafrost.entities.aurochs.AurochsRender;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.Cervalces;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.CervalcesRender;
 import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
@@ -47,6 +48,7 @@ public class PermafrostEvent {
         event.put(EntityTypes.DINOFELIS_ENTITY.get(), Dinofelis.createAttributes().build());
         event.put(EntityTypes.TITANIS_ENTITY.get(), Titanis.createAttributes().build());
         event.put(EntityTypes.QORSE_ENTITY.get(), Qorse.createBaseHorseAttributes().build());
+        event.put(EntityTypes.AUROCHS_ENTITY.get(), Qorse.createBaseHorseAttributes().build());
     }
 
     @SubscribeEvent
@@ -60,6 +62,7 @@ public class PermafrostEvent {
         EntityRenderers.register(EntityTypes.DINOFELIS_ENTITY.get(), DinofelisRender::new);
         EntityRenderers.register(EntityTypes.TITANIS_ENTITY.get(), TitanisRender::new);
         EntityRenderers.register(EntityTypes.QORSE_ENTITY.get(), QorseRender::new);
+        EntityRenderers.register(EntityTypes.AUROCHS_ENTITY.get(), AurochsRender::new);
 
         MenuScreens.register(PFMenuTypes.MAMMOTH_MENU.get(), MammothScreen::new);
         MenuScreens.register(PFMenuTypes.DEINOTHERIUM_MENU.get(), DeinotheriumScreen::new);
@@ -77,6 +80,7 @@ public class PermafrostEvent {
         event.register(EntityTypes.PARACERATHERIUM_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.DINOFELIS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(EntityTypes.TITANIS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
+        event.register(EntityTypes.AUROCHS_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 
 }

@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:beetroot",
+    "minecraft:wheat",
+
+    {
+      "id": "#dragnlivestock:o_cow_eats",
+      "required": false
+    },
+
+    {
+      "id": "tfc:foods/grains",
+      "required": false
+    },
+
+    {
+      "id": "tfc:foods/fruits",
+      "required": false
+    },
+
+    {
+      "id": "tfc:foods/vegetables",
+      "required": false
+    }
+  ]
+}

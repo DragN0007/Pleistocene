@@ -1,10 +1,8 @@
 package com.dragn0007.permafrost.entities.titanis;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.Permafrost;
-import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.entities.ai.TitanisFollowOwnerGoal;
 import com.dragn0007.permafrost.items.PFItems;
 import com.dragn0007.permafrost.util.PFSoundEvents;

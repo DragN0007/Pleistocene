@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.datagen;
 
-import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.permafrost.items.PFItems;
 import net.minecraft.advancements.critereon.ItemPredicate;
