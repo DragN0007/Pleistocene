@@ -629,7 +629,7 @@ public class Quagga extends OHorse implements GeoEntity {
 		Quagga foal;
 
 		if (ageableMob instanceof OHorse horse && ageableMob.getClass() == OHorse.class) {
-			foal = EntityTypes.QUAGGA_ENTITY.get().create(serverLevel);
+			foal = EntityTypes.QORSE_ENTITY.get().create(serverLevel);
 
 			int variantChance = this.random.nextInt(14);
 			int variant;

@@ -23,6 +23,8 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
     public int baseColorLabelY;
     public int markingLabelX;
     public int markingLabelY;
+    public int stripeLabelX;
+    public int stripeLabelY;
     public int speedLabelX;
     public int speedLabelY;
     public int jumpStrengthLabelX;
@@ -50,17 +52,20 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
         baseColorLabelX = leftPos + 1;
         baseColorLabelY = topPos + 170;
 
+        stripeLabelX = leftPos + 1;
+        stripeLabelY = topPos + 180;
+
         markingLabelX = leftPos + 1;
-        markingLabelY = topPos + 180;
+        markingLabelY = topPos + 190;
 
         jumpStrengthLabelX = leftPos + 1;
-        jumpStrengthLabelY = topPos + 190;
+        jumpStrengthLabelY = topPos + 200;
 
         speedLabelX = leftPos + 1;
-        speedLabelY = topPos + 200;
+        speedLabelY = topPos + 210;
 
         healthLabelX = leftPos + 1;
-        healthLabelY = topPos + 210;
+        healthLabelY = topPos + 220;
     }
 
     public void renderBg(GuiGraphics graphics, float f, int i, int j) {
@@ -96,6 +101,7 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
 
         if (LivestockOverhaulClientConfig.HORSE_COAT_GUI.get()) {
             renderBaseCoatLabel(graphics);
+            renderStripeLabel(graphics);
             renderMarkingLabel(graphics);
             renderSpeedLabel(graphics);
             renderJumpStrengthLabel(graphics);
@@ -115,13 +121,11 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
     }
 
     private void renderBaseCoatLabel(GuiGraphics graphics) {
-        String text = this.quagga.getTextureResource().toString();
-        String noFillerText = text.replaceAll(".+quagga_", "");
-        String noFillerText2 = noFillerText.replaceAll(".+horse_", "");
-        String noUnderscoresText = noFillerText2.replaceAll("_", " ");
-        String noPNGText = noUnderscoresText.replace(".png", "");
-        String replaceDefault = noPNGText.replace("default", "grey");
-        String labelText = "Base Coat: " + replaceDefault.toUpperCase();
+        String text = this.quagga.getTextureResource().toString(); //texture name
+        String noFillerText = text.replaceAll(".+horse/", ""); //remove 'horse_' and anything before it
+        String noUnderscoresText = noFillerText.replaceAll("_", " "); //replace any underscores with spaces
+        String noPNGText = noUnderscoresText.replace(".png", ""); //remove '.png'
+        String labelText = "Base Coat: " + noPNGText.toUpperCase(); //print just the coat name
 
         String noTextureText = "Base Coat: " + "No Coat Found.";
 
@@ -132,9 +136,25 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
         }
     }
 
+    private void renderStripeLabel(GuiGraphics graphics) {
+        String text = this.quagga.getStripeTextureResource().toString();
+        String noFillerText = text.replaceAll(".+quagga/", "");
+        String noUnderscoresText = noFillerText.replaceAll("_", " ");
+        String noPNGText = noUnderscoresText.replace(".png", "");
+        String labelText = "Quagga Stripes: " + noPNGText.toUpperCase();
+
+        String noTextureText = "Quagga Stripes: " + "No Stripes Found.";
+
+        if (this.quagga.getTextureResource() == null) {
+            graphics.drawString(this.font, noTextureText, stripeLabelX, stripeLabelY, 0xFFFFFF, false);
+        } else {
+            graphics.drawString(this.font, labelText, stripeLabelX, stripeLabelY, 0xFFFFFF, false);
+        }
+    }
+
     private void renderMarkingLabel(GuiGraphics graphics) {
         String text = this.quagga.getOverlayLocation().toString();
-        String noFillerText = text.replaceAll(".+overlay_", "");
+        String noFillerText = text.replaceAll(".+overlay/", "");
         String noUnderscoresText = noFillerText.replaceAll("_", " ");
         String noPNGText = noUnderscoresText.replace(".png", "");
         String addPinkNoseText = noPNGText.replace("pink", "pink-nosed");

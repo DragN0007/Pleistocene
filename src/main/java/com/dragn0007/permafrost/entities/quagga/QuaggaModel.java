@@ -30,7 +30,7 @@ public class QuaggaModel extends DefaultedEntityGeoModel<Quagga> {
     }
 
     public static final ResourceLocation ANIMATION = new ResourceLocation(LivestockOverhaul.MODID, "animations/o_horse.animation.json");
-    public static final ResourceLocation BABY_MODEL = new ResourceLocation(LivestockOverhaul.MODID, "geo/baby_o_horse.geo.json");
+    public static final ResourceLocation BABY_MODEL = new ResourceLocation(LivestockOverhaul.MODID, "geo/horse/baby_o_horse.geo.json");
     public static final ResourceLocation MODEL = new ResourceLocation(Permafrost.MODID, "geo/quagga.geo.json");
 
     @Override

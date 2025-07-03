@@ -152,6 +152,12 @@ public class QorseRender extends GeoEntityRenderer<Qorse> {
             model.getBone("front_left_feathering").ifPresent(b -> b.setScaleY(1F));
             model.getBone("back_right_feathering").ifPresent(b -> b.setScaleY(1F));
             model.getBone("back_left_feathering").ifPresent(b -> b.setScaleY(1F));
+            model.getBone("front_right_feathering").ifPresent(b -> b.setPosY(0F));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setPosY(0F));
+            model.getBone("back_right_feathering").ifPresent(b -> b.setPosY(0F));
+            model.getBone("back_left_feathering").ifPresent(b -> b.setPosY(0F));
+            model.getBone("front_right_feathering").ifPresent(b -> b.setPosZ(0F));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setPosZ(0F));
         }
 
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
