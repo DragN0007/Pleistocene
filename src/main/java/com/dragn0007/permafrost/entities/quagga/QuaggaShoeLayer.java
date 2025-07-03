@@ -1,7 +1,7 @@
-package com.dragn0007.permafrost.entities.cervalces_latifrons;
+package com.dragn0007.permafrost.entities.quagga;
 
-import com.dragn0007.dragnlivestock.util.LivestockOverhaulClientConfig;
-import com.dragn0007.permafrost.Permafrost;
+import com.dragn0007.dragnlivestock.LivestockOverhaul;
+import com.dragn0007.dragnlivestock.entities.horse.OHorse;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -15,18 +15,18 @@ import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
 @OnlyIn(Dist.CLIENT)
-public class CervalcesSaddleLayer extends GeoRenderLayer<Cervalces> {
-    public CervalcesSaddleLayer(GeoRenderer<Cervalces> entityRendererIn) {
+public class QuaggaShoeLayer extends GeoRenderLayer<Quagga> {
+    public QuaggaShoeLayer(GeoRenderer<Quagga> entityRendererIn) {
         super(entityRendererIn);
     }
 
     @Override
-    public void render(PoseStack poseStack, Cervalces animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
+    public void render(PoseStack poseStack, Quagga animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
 
         ResourceLocation resourceLocation = null;
 
         if (animatable.isSaddled()) {
-            resourceLocation = new ResourceLocation(Permafrost.MODID, "textures/entity/cervalces_latifrons/tack/cervalces_saddle.png");
+            resourceLocation = new ResourceLocation(LivestockOverhaul.MODID, "textures/entity/horse/tack/stone_horseshoes.png");
         } else {
             return;
         }

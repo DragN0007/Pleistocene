@@ -1,33 +1,38 @@
 package com.dragn0007.permafrost.entities.quagga;
 
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
+import com.dragn0007.dragnlivestock.entities.mule.OMule;
 import com.dragn0007.permafrost.Permafrost;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import software.bernie.geckolib.constant.DataTickets;
+import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.model.data.EntityModelData;
 
-public class QuaggaModel extends GeoModel<Quagga> {
+public class QuaggaModel extends DefaultedEntityGeoModel<Quagga> {
 
-    public enum Variant {
-        BUCKSKIN(new ResourceLocation(Permafrost.MODID, "textures/entity/quagga/quagga_buckskin.png")),
-        CHESTNUT(new ResourceLocation(Permafrost.MODID, "textures/entity/quagga/quagga_chestnut.png")),
-        CREAM(new ResourceLocation(Permafrost.MODID, "textures/entity/quagga/quagga_cream.png")),
-        GREY(new ResourceLocation(Permafrost.MODID, "textures/entity/quagga/quagga_grey.png")),
-        GRULLO(new ResourceLocation(Permafrost.MODID, "textures/entity/quagga/quagga_grullo.png")),
-        PEACH(new ResourceLocation(Permafrost.MODID, "textures/entity/quagga/quagga_peach.png")),
-        STRAWBERRY(new ResourceLocation(Permafrost.MODID, "textures/entity/quagga/quagga_strawberry.png")),
-        WHITE(new ResourceLocation(Permafrost.MODID, "textures/entity/quagga/quagga_white.png"));
+    public QuaggaModel() {
+        super(new ResourceLocation(Permafrost.MODID, "quagga"), true);
+    }
 
-        public final ResourceLocation resourceLocation;
-        Variant(ResourceLocation resourceLocation) {
-            this.resourceLocation = resourceLocation;
-        }
+    @Override
+    public void setCustomAnimations(Quagga animatable, long instanceId, AnimationState<Quagga> animationState) {
 
-        public static Variant variantFromOrdinal(int variant) { return Variant.values()[variant % Variant.values().length];
+        CoreGeoBone neck = getAnimationProcessor().getBone("neck");
+
+        if (neck != null) {
+            EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+            neck.setRotX(neck.getRotX() + (entityData.headPitch() * Mth.DEG_TO_RAD));
+            float maxYaw = Mth.clamp(entityData.netHeadYaw(), -25.0f, 25.0f);
+            neck.setRotY(neck.getRotY() + (maxYaw * Mth.DEG_TO_RAD));
         }
     }
 
-    public static final ResourceLocation ANIMATION = new ResourceLocation(LivestockOverhaul.MODID, "animations/horse_overhaul.animation.json");
-    public static final ResourceLocation BABY_MODEL = new ResourceLocation(LivestockOverhaul.MODID, "geo/baby_horse_overhauled.geo.json");
+    public static final ResourceLocation ANIMATION = new ResourceLocation(LivestockOverhaul.MODID, "animations/o_horse.animation.json");
+    public static final ResourceLocation BABY_MODEL = new ResourceLocation(LivestockOverhaul.MODID, "geo/baby_o_horse.geo.json");
     public static final ResourceLocation MODEL = new ResourceLocation(Permafrost.MODID, "geo/quagga.geo.json");
 
     @Override

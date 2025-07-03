@@ -83,6 +83,16 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 	}
 
 	@Override
+	public int saddleSlot() {
+		return 0;
+	}
+
+	@Override
+	public int decorSlot() {
+		return 1;
+	}
+
+	@Override
 	public int getInventorySize() {
 		return 26;
 	}
@@ -107,7 +117,6 @@ public class Mammoth extends AbstractOMount implements GeoEntity {
 
 	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
-				.add(Attributes.JUMP_STRENGTH)
 				.add(Attributes.MAX_HEALTH, 60.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.19F)
 				.add(Attributes.ATTACK_DAMAGE, 5D);

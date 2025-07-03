@@ -2,12 +2,17 @@ package com.dragn0007.permafrost.entities.quagga.qorse;
 
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.dragnlivestock.entities.ai.GroundTieGoal;
+import com.dragn0007.dragnlivestock.entities.horse.OHorse;
+import com.dragn0007.dragnlivestock.entities.horse.OHorseModel;
+import com.dragn0007.dragnlivestock.entities.marking_layer.EquineEyeColorOverlay;
+import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
 import com.dragn0007.dragnlivestock.event.LivestockOverhaulClientEvent;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
+import com.dragn0007.permafrost.entities.quagga.QuaggaStripeLayer;
 import com.dragn0007.permafrost.gui.QuaggaMenu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -51,6 +56,11 @@ public class Qorse extends Quagga implements GeoEntity {
 				.add(Attributes.MAX_HEALTH, 40.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.255F)
 				.add(Attributes.ATTACK_DAMAGE, 1D);
+	}
+
+	@Override
+	public boolean hasGrowableHair() {
+		return true;
 	}
 
 	public void randomizeAttributes() {
@@ -104,7 +114,7 @@ public class Qorse extends Quagga implements GeoEntity {
 		return baseSpeed + multiplier;
 	}
 
-	protected int getInventorySize() {
+	public int getInventorySize() {
 		if (this.hasChest()) {
 			return 17;
 		}
@@ -150,7 +160,7 @@ public class Qorse extends Quagga implements GeoEntity {
 	}
 
 	@Override
-	protected boolean canPerformRearing() {
+	public boolean canPerformRearing() {
 		return false;
 	}
 
@@ -176,39 +186,60 @@ public class Qorse extends Quagga implements GeoEntity {
 
 		AnimationController<T> controller = tAnimationState.getController();
 
-		if (this.isJumping()) {
+		if ((!this.isTamed() || this.isWearingHarness()) && this.isVehicle() && !this.isJumping()) {
+			controller.setAnimation(RawAnimation.begin().then("buck", Animation.LoopType.LOOP));
+			controller.setAnimationSpeed(1.3);
+		} else if (this.isJumping()) {
 			controller.setAnimation(RawAnimation.begin().then("jump", Animation.LoopType.PLAY_ONCE));
 			controller.setAnimationSpeed(1.0);
 		} else {
 			if (isMoving) {
-				if (this.isAggressive() || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) || (!this.isVehicle() && currentSpeed > speedThreshold)) {
-					controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
-					controller.setAnimationSpeed(Math.max(0.1, 0.82 * controller.getAnimationSpeed() + animationSpeed));
+				if (!LivestockOverhaulClientEvent.HORSE_WALK_BACKWARDS.isDown()) {
+					if (this.isAggressive() || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) || (!this.isVehicle() && currentSpeed > speedThreshold)) {
+						controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
+						controller.setAnimationSpeed(Math.max(0.1, 0.82 * controller.getAnimationSpeed() + animationSpeed));
 
-				} else if (this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) {
-					controller.setAnimation(RawAnimation.begin().then("run", Animation.LoopType.LOOP));
-					controller.setAnimationSpeed(Math.max(0.1, 0.8 * controller.getAnimationSpeed() + animationSpeed));
+					} else if (this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) {
+						controller.setAnimation(RawAnimation.begin().then("run", Animation.LoopType.LOOP));
+						controller.setAnimationSpeed(Math.max(0.1, 0.78 * controller.getAnimationSpeed() + animationSpeed));
 
-				} else if (this.isOnSand() && this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) {
-					controller.setAnimation(RawAnimation.begin().then("run", Animation.LoopType.LOOP));
-					controller.setAnimationSpeed(Math.max(0.1, 0.78 * controller.getAnimationSpeed() + animationSpeed));
+					} else if (this.isOnSand() && this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) {
+						controller.setAnimation(RawAnimation.begin().then("run", Animation.LoopType.LOOP));
+						controller.setAnimationSpeed(Math.max(0.1, 0.78 * controller.getAnimationSpeed() + animationSpeed));
 
-				} else if (this.isVehicle() && LivestockOverhaulClientEvent.HORSE_SPANISH_WALK_TOGGLE.isDown() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
-					controller.setAnimation(RawAnimation.begin().then("spanish_walk", Animation.LoopType.LOOP));
-					controller.setAnimationSpeed(Math.max(0.1, 0.82 * controller.getAnimationSpeed() + animationSpeed));
+					} else if (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
+						controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+						controller.setAnimationSpeed(Math.max(0.1, 0.83 * controller.getAnimationSpeed() + animationSpeed));
 
-				} else {
-					controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
-					controller.setAnimationSpeed(Math.max(0.1, 0.82 * controller.getAnimationSpeed() + animationSpeed));
+					} else if (this.isVehicle() && LivestockOverhaulClientEvent.HORSE_SPANISH_WALK_TOGGLE.isDown() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
+						controller.setAnimation(RawAnimation.begin().then("spanish_walk", Animation.LoopType.LOOP));
+						controller.setAnimationSpeed(Math.max(0.1, 0.78 * controller.getAnimationSpeed() + animationSpeed));
+					} else {
+						controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
+						controller.setAnimationSpeed(Math.max(0.1, 0.80 * controller.getAnimationSpeed() + animationSpeed));
+					}
+				} else if (this.isVehicle() && LivestockOverhaulClientEvent.HORSE_WALK_BACKWARDS.isDown()) {
+					if (this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
+						controller.setAnimation(RawAnimation.begin().then("walk_back", Animation.LoopType.LOOP));
+						controller.setAnimationSpeed(Math.max(0.1, 0.76 * controller.getAnimationSpeed() + animationSpeed));
+					} else {
+						controller.setAnimation(RawAnimation.begin().then("walk_back", Animation.LoopType.LOOP));
+						controller.setAnimationSpeed(Math.max(0.1, 0.83 * controller.getAnimationSpeed() + animationSpeed));
+					}
 				}
 			} else {
 				if (this.isVehicle() || !LivestockOverhaulCommonConfig.GROUND_TIE.get()) {
 					controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+				} else if (this.isSleeping()) {
+					controller.setAnimation(RawAnimation.begin().then("idle_sleep", Animation.LoopType.LOOP));
+				} else if (this.isSleeping() && !this.isVehicle() && this.isFollower()) {
+					controller.setAnimation(RawAnimation.begin().then("sleep", Animation.LoopType.LOOP));
 				} else {
-					controller.setAnimation(RawAnimation.begin().then("idle3", Animation.LoopType.LOOP));
+					controller.setAnimation(RawAnimation.begin().then("ground_tie", Animation.LoopType.LOOP));
 				}
 				controller.setAnimationSpeed(1.0);
 			}
+
 		}
 		return PlayState.CONTINUE;
 	}
@@ -241,6 +272,11 @@ public class Qorse extends Quagga implements GeoEntity {
 	}
 
 	@Override
+	public boolean isWarmbloodedBreed() {
+		return true;
+	}
+
+	@Override
 	public void tick() {
 		super.tick();
 		
@@ -260,52 +296,98 @@ public class Qorse extends Quagga implements GeoEntity {
 		return true;
 	}
 
-	public static final EntityDataAccessor<ResourceLocation> VARIANT_TEXTURE = SynchedEntityData.defineId(Qorse.class, LivestockOverhaul.RESOURCE_LOCATION);
-	public static final EntityDataAccessor<ResourceLocation> OVERLAY_TEXTURE = SynchedEntityData.defineId(Qorse.class, LivestockOverhaul.RESOURCE_LOCATION);
 	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
-	public static final EntityDataAccessor<Integer> OVERLAY = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
-
-	public ResourceLocation getTextureResource() {
-		return this.entityData.get(VARIANT_TEXTURE);
-	}
-
-	public ResourceLocation getOverlayLocation() {
-		return this.entityData.get(OVERLAY_TEXTURE);
-	}
-
-
 	public int getVariant() {
 		return this.entityData.get(VARIANT);
 	}
-
-	public int getOverlayVariant() {
-		return this.entityData.get(OVERLAY);
-	}
-
 	public void setVariant(int variant) {
-		this.entityData.set(VARIANT_TEXTURE, QorseModel.Variant.variantFromOrdinal(variant).resourceLocation);
 		this.entityData.set(VARIANT, variant);
+		this.entityData.set(VARIANT_TEXTURE, OHorseModel.Variant.variantFromOrdinal(variant).resourceLocation);
 	}
-
-	public void setOverlayVariant(int variant) {
-		this.entityData.set(OVERLAY_TEXTURE, QorseMarkingLayer.Overlay.overlayFromOrdinal(variant).resourceLocation);
-		this.entityData.set(OVERLAY, variant);
+	public static final EntityDataAccessor<ResourceLocation> VARIANT_TEXTURE = SynchedEntityData.defineId(Qorse.class, LivestockOverhaul.RESOURCE_LOCATION);
+	public ResourceLocation getTextureResource() {
+		return this.entityData.get(VARIANT_TEXTURE);
 	}
-
 	public void setVariantTexture(String variant) {
 		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
 		if (resourceLocation == null) {
-			resourceLocation = QorseModel.Variant.CREAM.resourceLocation;
+			resourceLocation = OHorseModel.Variant.CREAM.resourceLocation;
 		}
 		this.entityData.set(VARIANT_TEXTURE, resourceLocation);
 	}
 
+	public static final EntityDataAccessor<Integer> OVERLAY = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
+	public int getOverlayVariant() {
+		return this.entityData.get(OVERLAY);
+	}
+	public void setOverlayVariant(int variant) {
+		this.entityData.set(OVERLAY, variant);
+		this.entityData.set(OVERLAY_TEXTURE, EquineMarkingOverlay.overlayFromOrdinal(variant).resourceLocation);
+	}
+	public static final EntityDataAccessor<ResourceLocation> OVERLAY_TEXTURE = SynchedEntityData.defineId(Qorse.class, LivestockOverhaul.RESOURCE_LOCATION);
+	public ResourceLocation getOverlayLocation() {
+		return this.entityData.get(OVERLAY_TEXTURE);
+	}
 	public void setOverlayVariantTexture(String variant) {
 		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
 		if (resourceLocation == null) {
-			resourceLocation = QorseMarkingLayer.Overlay.NONE.resourceLocation;
+			resourceLocation = EquineMarkingOverlay.NONE.resourceLocation;
 		}
 		this.entityData.set(OVERLAY_TEXTURE, resourceLocation);
+	}
+
+	public static final EntityDataAccessor<Integer> STRIPES = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
+	public ResourceLocation getStripeTextureResource() {
+		return QorseStripeLayer.Overlay.overlayFromOrdinal(getEyeVariant()).resourceLocation;
+	}
+	public int getStripeVariant() {
+		return this.entityData.get(STRIPES);
+	}
+	public void setStripeVariant(int variant) {
+		this.entityData.set(STRIPES, variant);
+	}
+
+	public static final EntityDataAccessor<Integer> EYES = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
+	public ResourceLocation getEyeTextureResource() {
+		return EquineEyeColorOverlay.eyesFromOrdinal(getEyeVariant()).resourceLocation;
+	}
+	public int getEyeVariant() {
+		return this.entityData.get(EYES);
+	}
+	public void setEyeVariant(int eyeVariant) {
+		this.entityData.set(EYES, eyeVariant);
+	}
+
+	public enum Feathering {
+		NONE,
+		HALF,
+		FULL;
+		public Qorse.Feathering next() {
+			return Qorse.Feathering.values()[(this.ordinal() + 1) % Qorse.Feathering.values().length];
+		}
+	}
+	public static final EntityDataAccessor<Integer> FEATHERING = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
+	public int getFeathering() {
+		return this.entityData.get(FEATHERING);
+	}
+	public void setFeathering(int feathering) {
+		this.entityData.set(FEATHERING, feathering);
+	}
+
+	public static final EntityDataAccessor<Integer> MANE_TYPE = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
+	public int getManeType() {
+		return this.entityData.get(MANE_TYPE);
+	}
+	public void setManeType(int mane) {
+		this.entityData.set(MANE_TYPE, mane);
+	}
+
+	public static final EntityDataAccessor<Integer> TAIL_TYPE = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
+	public int getTailType() {
+		return this.entityData.get(TAIL_TYPE);
+	}
+	public void setTailType(int tail) {
+		this.entityData.set(TAIL_TYPE, tail);
 	}
 
 	@Override
@@ -320,6 +402,10 @@ public class Qorse extends Quagga implements GeoEntity {
 			this.setOverlayVariant(tag.getInt("Overlay"));
 		}
 
+		if (tag.contains("Stripes")) {
+			this.setStripeVariant(tag.getInt("Stripes"));
+		}
+
 		if (tag.contains("Variant_Texture")) {
 			this.setVariantTexture(tag.getString("Variant_Texture"));
 		}
@@ -331,6 +417,26 @@ public class Qorse extends Quagga implements GeoEntity {
 		if (tag.contains("Gender")) {
 			this.setGender(tag.getInt("Gender"));
 		}
+
+		if (tag.contains("Eyes")) {
+			this.setEyeVariant(tag.getInt("Eyes"));
+		}
+
+		if (tag.contains("Feathering")) {
+			this.setFeathering(tag.getInt("Feathering"));
+		}
+
+		if (tag.contains("ManeGrowthTime")) {
+			this.maneGrowthTick = tag.getInt("ManeGrowthTime");
+		}
+
+		if (tag.contains("TailGrowthTime")) {
+			this.tailGrowthTick = tag.getInt("TailGrowthTime");
+		}
+
+		if (tag.contains("SprintTime")) {
+			this.sprintTick = tag.getInt("SprintTime");
+		}
 	}
 
 	@Override
@@ -338,9 +444,15 @@ public class Qorse extends Quagga implements GeoEntity {
 		super.addAdditionalSaveData(tag);
 		tag.putInt("Variant", this.getVariant());
 		tag.putInt("Overlay", this.getOverlayVariant());
+		tag.putInt("Stripes", this.getStripeVariant());
 		tag.putString("Variant_Texture", this.getTextureResource().toString());
 		tag.putString("Overlay_Texture", this.getOverlayLocation().toString());
 		tag.putInt("Gender", this.getGender());
+		tag.putInt("Eyes", this.getEyeVariant());
+		tag.putInt("Feathering", this.getFeathering());
+		tag.putInt("SprintTime", this.sprintTick);
+		tag.putInt("ManeGrowthTime", this.maneGrowthTick);
+		tag.putInt("TailGrowthTime", this.tailGrowthTick);
 	}
 
 	@Override
@@ -349,26 +461,79 @@ public class Qorse extends Quagga implements GeoEntity {
 		if (data == null) {
 			data = new AgeableMobGroupData(0.2F);
 		}
-
 		Random random = new Random();
-		this.setVariant(random.nextInt(QorseModel.Variant.values().length));
-		this.setGender(random.nextInt(Gender.values().length));
+		this.setGender(random.nextInt(Qorse.Gender.values().length));
+		this.setStripeVariant(random.nextInt(QorseStripeLayer.Overlay.values().length));
+		this.setVariant(random.nextInt(OHorseModel.Variant.values().length));
+		this.setFeatheringByBreed();
 
-		if (spawnType == MobSpawnType.SPAWN_EGG) {
-			this.setOverlayVariant(random.nextInt(QorseMarkingLayer.Overlay.values().length));
+		if (LivestockOverhaulCommonConfig.SPAWN_BY_BREED.get()) {
+			this.setMarking();
+		} else {
+			this.setOverlayVariant(random.nextInt(EquineMarkingOverlay.values().length));
+		}
+
+		if (LivestockOverhaulCommonConfig.EYES_BY_COLOR.get()) {
+			this.setEyeColorByChance();
+		} else {
+			this.setEyeVariant(random.nextInt(EquineEyeColorOverlay.values().length));
 		}
 
 		this.randomizeAttributes();
 		return super.finalizeSpawn(serverLevelAccessor, instance, spawnType, data, tag);
 	}
 
+	public void setMarking() {
+		if (random.nextDouble() < 0.40) {
+			this.setOverlayVariant(random.nextInt(EquineMarkingOverlay.values().length));
+		} else if (random.nextDouble() > 0.40) {
+			this.setVariant(0);
+		}
+	}
+
+	public void setFeatheringByBreed() {
+			if (random.nextDouble() < 0.20) {
+				this.setFeathering(2);
+			} else if (random.nextDouble() < 0.50 && random.nextDouble() > 0.20) {
+				this.setFeathering(1);
+			} else if (random.nextDouble() > 0.50) {
+				this.setFeathering(0);
+			} else {
+				this.setFeathering(0);
+			}
+		}
+
 	@Override
 	public void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(VARIANT, 0);
 		this.entityData.define(OVERLAY, 0);
-		this.entityData.define(VARIANT_TEXTURE, QorseModel.Variant.CREAM.resourceLocation);
-		this.entityData.define(OVERLAY_TEXTURE, QorseMarkingLayer.Overlay.NONE.resourceLocation);
+		this.entityData.define(STRIPES, 0);
+		this.entityData.define(GENDER, 0);
+		this.entityData.define(VARIANT_TEXTURE, OHorseModel.Variant.CREAM.resourceLocation);
+		this.entityData.define(OVERLAY_TEXTURE, EquineMarkingOverlay.NONE.resourceLocation);
+		this.entityData.define(EYES, 0);
+		this.entityData.define(MANE_TYPE, 0);
+		this.entityData.define(TAIL_TYPE, 0);
+		this.entityData.define(FEATHERING, 0);
+	}
+
+	public enum Gender {
+		FEMALE,
+		MALE
+	}
+	public boolean isFemale() {
+		return this.getGender() == 0;
+	}
+	public boolean isMale() {
+		return this.getGender() == 1;
+	}
+	public static final EntityDataAccessor<Integer> GENDER = SynchedEntityData.defineId(Qorse.class, EntityDataSerializers.INT);
+	public int getGender() {
+		return this.entityData.get(GENDER);
+	}
+	public void setGender(int gender) {
+		this.entityData.set(GENDER, gender);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.dragn0007.permafrost.entities.quagga;
 
+import com.dragn0007.dragnlivestock.entities.horse.*;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulClientConfig;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -12,106 +13,147 @@ public class QuaggaRender extends GeoEntityRenderer<Quagga> {
 
     public QuaggaRender(EntityRendererProvider.Context renderManager) {
         super(renderManager, new QuaggaModel());
+        this.addRenderLayer(new QuaggaStripeLayer(this));
         this.addRenderLayer(new QuaggaMarkingLayer(this));
+        this.addRenderLayer(new QuaggaEyeLayer(this));
+        this.addRenderLayer(new QuaggaCarpetLayer(this));
         this.addRenderLayer(new QuaggaSaddleLayer(this));
+        this.addRenderLayer(new QuaggaShoeLayer(this));
     }
 
     @Override
     public void preRender(PoseStack poseStack, Quagga entity, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 
-        if (!entity.isBaby()) {
-            if (entity.hasChest()) {
+        model.getBone("wagon_harness").ifPresent(b -> b.setHidden(true));
+
+        if (!animatable.isBaby()) {
+            if (animatable.hasChest()) {
                 model.getBone("saddlebags").ifPresent(b -> b.setHidden(false));
             } else {
                 model.getBone("saddlebags").ifPresent(b -> b.setHidden(true));
             }
 
-            if (entity.isSaddled() && (LivestockOverhaulClientConfig.HORSE_SADDLE_EXTRAS.get() && LivestockOverhaulClientConfig.LEGACY_HORSE_SADDLES.get())) {
+            if (animatable.isSaddled()) {
                 model.getBone("saddle").ifPresent(b -> b.setHidden(false));
                 model.getBone("saddle2").ifPresent(b -> b.setHidden(false));
-                model.getBone("extras").ifPresent(b -> b.setHidden(false));
-            } else if (entity.isSaddled() && (!LivestockOverhaulClientConfig.HORSE_SADDLE_EXTRAS.get() || !LivestockOverhaulClientConfig.LEGACY_HORSE_SADDLES.get())) {
-                model.getBone("saddle").ifPresent(b -> b.setHidden(false));
-                model.getBone("saddle2").ifPresent(b -> b.setHidden(false));
-                model.getBone("extras").ifPresent(b -> b.setHidden(true));
+                model.getBone("front_right_shoe").ifPresent(b -> b.setHidden(false));
+                model.getBone("front_left_shoe").ifPresent(b -> b.setHidden(false));
+                model.getBone("back_right_shoe").ifPresent(b -> b.setHidden(false));
+                model.getBone("back_left_shoe").ifPresent(b -> b.setHidden(false));
             } else {
                 model.getBone("saddle").ifPresent(b -> b.setHidden(true));
                 model.getBone("saddle2").ifPresent(b -> b.setHidden(true));
-                model.getBone("extras").ifPresent(b -> b.setHidden(true));
+                model.getBone("front_right_shoe").ifPresent(b -> b.setHidden(true));
+                model.getBone("front_left_shoe").ifPresent(b -> b.setHidden(true));
+                model.getBone("back_right_shoe").ifPresent(b -> b.setHidden(true));
+                model.getBone("back_left_shoe").ifPresent(b -> b.setHidden(true));
             }
         }
 
-        if (entity.isBaby()) {
-            model.getBone("saddlebags").ifPresent(b -> b.setHidden(true));
-            model.getBone("saddle").ifPresent(b -> b.setHidden(true));
-            model.getBone("saddle2").ifPresent(b -> b.setHidden(true));
+        if (animatable.getManeType() == 0) {
+            model.getBone("roached").ifPresent(b -> b.setHidden(true));
+            model.getBone("short").ifPresent(b -> b.setHidden(true));
+            model.getBone("buttons").ifPresent(b -> b.setHidden(false));
+            model.getBone("long").ifPresent(b -> b.setHidden(true));
         }
 
-        if (entity.hasDefaultMane()) {
-            model.getBone("roached_mane").ifPresent(b -> b.setHidden(false));
-            model.getBone("button_mane").ifPresent(b -> b.setHidden(true));
-            model.getBone("long_mane").ifPresent(b -> b.setHidden(true));
+        if (animatable.getManeType() == 1) {
+            model.getBone("roached").ifPresent(b -> b.setHidden(true));
+            model.getBone("short").ifPresent(b -> b.setHidden(true));
+            model.getBone("buttons").ifPresent(b -> b.setHidden(true));
+            model.getBone("long").ifPresent(b -> b.setHidden(false));
         }
 
-        if (entity.hasButtonMane()) {
-            model.getBone("roached_mane").ifPresent(b -> b.setHidden(true));
-            model.getBone("button_mane").ifPresent(b -> b.setHidden(false));
-            model.getBone("long_mane").ifPresent(b -> b.setHidden(true));
+        if (animatable.getManeType() == 2) {
+            model.getBone("roached").ifPresent(b -> b.setHidden(false));
+            model.getBone("short").ifPresent(b -> b.setHidden(true));
+            model.getBone("buttons").ifPresent(b -> b.setHidden(true));
+            model.getBone("long").ifPresent(b -> b.setHidden(true));
+            model.getBone("mane").ifPresent(b -> b.setScaleY(1.0F));
         }
 
-        if (entity.hasShortMane()) {
-            model.getBone("roached_mane").ifPresent(b -> b.setHidden(false));
-            model.getBone("button_mane").ifPresent(b -> b.setHidden(true));
-            model.getBone("long_mane").ifPresent(b -> b.setHidden(true));
-            model.getBone("mane").ifPresent(b -> b.setScaleZ(0.5F));
+        if (animatable.getManeType() == 3) {
+            model.getBone("roached").ifPresent(b -> b.setHidden(true));
+            model.getBone("short").ifPresent(b -> b.setHidden(false));
+            model.getBone("buttons").ifPresent(b -> b.setHidden(true));
+            model.getBone("long").ifPresent(b -> b.setHidden(true));
         }
 
-        if (entity.hasShortMane()) {
-            model.getBone("roached_mane").ifPresent(b -> b.setHidden(false));
-            model.getBone("button_mane").ifPresent(b -> b.setHidden(true));
-            model.getBone("long_mane").ifPresent(b -> b.setHidden(true));
-            model.getBone("mane").ifPresent(b -> b.setScaleZ(0.5F));
+        if (animatable.getManeType() == 4) {
+            model.getBone("roached").ifPresent(b -> b.setHidden(true));
+            model.getBone("short").ifPresent(b -> b.setHidden(true));
+            model.getBone("buttons").ifPresent(b -> b.setHidden(true));
+            model.getBone("long").ifPresent(b -> b.setHidden(true));
         }
 
-        if (entity.hasNoMane()) {
-            model.getBone("roached_mane").ifPresent(b -> b.setHidden(true));
-            model.getBone("button_mane").ifPresent(b -> b.setHidden(true));
-            model.getBone("long_mane").ifPresent(b -> b.setHidden(true));
-        }
-
-        if (entity.hasDefaultTail()) {
-            model.getBone("tail").ifPresent(b -> b.setScaleX(1.0F));
-            model.getBone("tail").ifPresent(b -> b.setScaleY(1.0F));
-            model.getBone("tail").ifPresent(b -> b.setScaleZ(1.0F));
-            model.getBone("tail_bottom").ifPresent(b -> b.setHidden(false));
-        }
-
-        if (entity.hasLongTail()) {
-            model.getBone("tail").ifPresent(b -> b.setScaleX(1.0F));
-            model.getBone("tail").ifPresent(b -> b.setScaleY(1.3F));
-            model.getBone("tail").ifPresent(b -> b.setScaleZ(1.0F));
-            model.getBone("tail_bottom").ifPresent(b -> b.setHidden(false));
-        }
-
-        if (entity.hasShortTail()) {
-            model.getBone("tail").ifPresent(b -> b.setScaleX(1.0F));
-            model.getBone("tail").ifPresent(b -> b.setScaleY(0.6F));
-            model.getBone("tail").ifPresent(b -> b.setScaleZ(1.0F));
-            model.getBone("tail_bottom").ifPresent(b -> b.setHidden(false));
-        }
-
-        if (entity.hasTuckedTail()) {
-            model.getBone("tail").ifPresent(b -> b.setScaleY(0.7F));
-            model.getBone("tail").ifPresent(b -> b.setScaleX(1.1F));
-            model.getBone("tail").ifPresent(b -> b.setScaleZ(1.0F));
-            model.getBone("tail_bottom").ifPresent(b -> b.setHidden(true));
-        }
-
-        if (entity.hasTiedTail()) {
+        if (animatable.getTailType() == 0) {
             model.getBone("tail").ifPresent(b -> b.setScaleY(0.9F));
             model.getBone("tail").ifPresent(b -> b.setScaleX(0.7F));
             model.getBone("tail").ifPresent(b -> b.setScaleZ(0.7F));
-            model.getBone("tail_bottom").ifPresent(b -> b.setHidden(true));
+            model.getBone("tail_2").ifPresent(b -> b.setHidden(true));
+        }
+
+        if (animatable.getTailType() == 1) {
+            model.getBone("tail").ifPresent(b -> b.setScaleX(1.0F));
+            model.getBone("tail").ifPresent(b -> b.setScaleY(1.3F));
+            model.getBone("tail").ifPresent(b -> b.setScaleZ(1.0F));
+            model.getBone("tail_2").ifPresent(b -> b.setHidden(false));
+        }
+
+        if (animatable.getTailType() == 2) {
+            model.getBone("tail").ifPresent(b -> b.setScaleX(1.0F));
+            model.getBone("tail").ifPresent(b -> b.setScaleY(1.0F));
+            model.getBone("tail").ifPresent(b -> b.setScaleZ(1.0F));
+            model.getBone("tail_2").ifPresent(b -> b.setHidden(false));
+        }
+
+        if (animatable.getTailType() == 3) {
+            model.getBone("tail").ifPresent(b -> b.setScaleX(1.0F));
+            model.getBone("tail").ifPresent(b -> b.setScaleY(0.6F));
+            model.getBone("tail").ifPresent(b -> b.setScaleZ(1.0F));
+            model.getBone("tail_2").ifPresent(b -> b.setHidden(false));
+        }
+
+        if (animatable.getTailType() == 4) {
+            model.getBone("tail").ifPresent(b -> b.setScaleY(0.7F));
+            model.getBone("tail").ifPresent(b -> b.setScaleX(1.1F));
+            model.getBone("tail").ifPresent(b -> b.setScaleZ(1.0F));
+            model.getBone("tail_2").ifPresent(b -> b.setHidden(true));
+        }
+
+        if (animatable.getFeathering() == 0) {
+            model.getBone("front_right_feathering").ifPresent(b -> b.setHidden(true));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setHidden(true));
+            model.getBone("back_right_feathering").ifPresent(b -> b.setHidden(true));
+            model.getBone("back_left_feathering").ifPresent(b -> b.setHidden(true));
+        }
+
+        if (animatable.getFeathering() == 1) {
+            model.getBone("front_right_feathering").ifPresent(b -> b.setHidden(false));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setHidden(false));
+            model.getBone("back_right_feathering").ifPresent(b -> b.setHidden(false));
+            model.getBone("back_left_feathering").ifPresent(b -> b.setHidden(false));
+            model.getBone("front_right_feathering").ifPresent(b -> b.setScaleY(0.6F));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setScaleY(0.6F));
+            model.getBone("back_right_feathering").ifPresent(b -> b.setScaleY(0.6F));
+            model.getBone("back_left_feathering").ifPresent(b -> b.setScaleY(0.6F));
+            model.getBone("front_right_feathering").ifPresent(b -> b.setPosY(-3.5F));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setPosY(-3.5F));
+            model.getBone("back_right_feathering").ifPresent(b -> b.setPosY(-3.5F));
+            model.getBone("back_left_feathering").ifPresent(b -> b.setPosY(-3.5F));
+            model.getBone("front_right_feathering").ifPresent(b -> b.setPosZ(-0.8F));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setPosZ(-0.8F));
+        }
+
+        if (animatable.getFeathering() == 2) {
+            model.getBone("front_right_feathering").ifPresent(b -> b.setHidden(false));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setHidden(false));
+            model.getBone("back_right_feathering").ifPresent(b -> b.setHidden(false));
+            model.getBone("back_left_feathering").ifPresent(b -> b.setHidden(false));
+            model.getBone("front_right_feathering").ifPresent(b -> b.setScaleY(1F));
+            model.getBone("front_left_feathering").ifPresent(b -> b.setScaleY(1F));
+            model.getBone("back_right_feathering").ifPresent(b -> b.setScaleY(1F));
+            model.getBone("back_left_feathering").ifPresent(b -> b.setScaleY(1F));
         }
 
         super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);

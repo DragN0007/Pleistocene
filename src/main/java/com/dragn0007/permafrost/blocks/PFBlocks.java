@@ -21,16 +21,16 @@ public class PFBlocks {
     public static final RegistryObject<Block> RAW_MAMMOTH_CHEESE = registerBlockWithoutItem("raw_mammoth_cheese", RawCheese::new);
     public static final RegistryObject<Block> MAMMOTH_CHEESE = registerBlockWithoutItem("mammoth_cheese", AgedCheese::new);
 
-    protected static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block){
+    public static <T extends Block>RegistryObject<T> registerBlockWithoutItem(String name, Supplier<T> block){
         return BLOCKS.register(name, block);
     }
 
-    protected static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
+    public static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
-    protected static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
+    public static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         LOItems.ITEMS.register(name, () -> new BlockItem(block.get(),
                 new Item.Properties()));
     }

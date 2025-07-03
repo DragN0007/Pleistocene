@@ -1,6 +1,12 @@
 package com.dragn0007.permafrost.world;
 
+import com.dragn0007.dragnlivestock.entities.horse.HorseBreed;
+import com.dragn0007.dragnlivestock.entities.horse.OHorse;
+import com.dragn0007.dragnlivestock.entities.horse.OHorseModel;
+import com.dragn0007.dragnlivestock.entities.marking_layer.EquineEyeColorOverlay;
+import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
+import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.entities.aurochs.Aurochs;
@@ -31,6 +37,8 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Random;
+
 @Mod.EventBusSubscriber(modid = Permafrost.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModdedSpawnInjector {
 
@@ -42,6 +50,8 @@ public class ModdedSpawnInjector {
 
     @SubscribeEvent
     public static void onModdedSpawn(EntityJoinLevelEvent event) {
+
+        Random random = new Random();
 
         if (ModList.get().isLoaded("tfc")) {
 
@@ -138,11 +148,24 @@ public class ModdedSpawnInjector {
                     permafrostAnimal.copyPosition(entity);
                     event.getLevel().addFreshEntity(permafrostAnimal);
 
-                    int randomVariant = event.getLevel().getRandom().nextInt(QuaggaModel.Variant.values().length);
-                    permafrostAnimal.setVariant(randomVariant);
+                    permafrostAnimal.setGender(random.nextInt(AbstractOMount.Gender.values().length));
 
-                    int randomGender = event.getLevel().getRandom().nextInt(AbstractOMount.Gender.values().length);
-                    permafrostAnimal.setGender(randomGender);
+                    permafrostAnimal.setManeType(2);
+                    permafrostAnimal.setTailType(1 + random.nextInt(4));
+
+                    if (LivestockOverhaulCommonConfig.SPAWN_BY_BREED.get()) {
+                        permafrostAnimal.setColorByBreed();
+                        permafrostAnimal.setMarkingByBreed();
+                    } else {
+                        permafrostAnimal.setVariant(random.nextInt(OHorseModel.Variant.values().length));
+                        permafrostAnimal.setOverlayVariant(random.nextInt(EquineMarkingOverlay.values().length));
+                    }
+
+                    if (LivestockOverhaulCommonConfig.EYES_BY_COLOR.get()) {
+                        permafrostAnimal.setEyeColorByChance();
+                    } else {
+                        permafrostAnimal.setEyeVariant(random.nextInt(EquineEyeColorOverlay.values().length));
+                    }
 
                     event.setCanceled(true);
                 }

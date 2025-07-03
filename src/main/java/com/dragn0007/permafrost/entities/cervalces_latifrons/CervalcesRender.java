@@ -25,10 +25,7 @@ public class CervalcesRender extends GeoEntityRenderer<Cervalces> {
                 model.getBone("saddlebags").ifPresent(b -> b.setHidden(true));
             }
 
-            if (entity.isSaddled() && (LivestockOverhaulClientConfig.HORSE_SADDLE_EXTRAS.get() && LivestockOverhaulClientConfig.LEGACY_HORSE_SADDLES.get())) {
-                model.getBone("saddle").ifPresent(b -> b.setHidden(false));
-                model.getBone("saddle2").ifPresent(b -> b.setHidden(false));
-            } else if (entity.isSaddled() && (!LivestockOverhaulClientConfig.HORSE_SADDLE_EXTRAS.get() || !LivestockOverhaulClientConfig.LEGACY_HORSE_SADDLES.get())) {
+            if (entity.isSaddled()) {
                 model.getBone("saddle").ifPresent(b -> b.setHidden(false));
                 model.getBone("saddle2").ifPresent(b -> b.setHidden(false));
             } else {

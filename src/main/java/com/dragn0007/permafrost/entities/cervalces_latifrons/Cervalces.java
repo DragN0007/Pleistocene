@@ -149,7 +149,7 @@ public class Cervalces extends OHorse implements GeoEntity {
 		return baseSpeed + multiplier;
 	}
 
-	protected int getInventorySize() {
+	public int getInventorySize() {
 		if (this.hasChest()) {
 			return 17;
 		}
@@ -195,7 +195,7 @@ public class Cervalces extends OHorse implements GeoEntity {
 	}
 
 	@Override
-	protected boolean canPerformRearing() {
+	public boolean canPerformRearing() {
 		return false;
 	}
 

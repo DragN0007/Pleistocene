@@ -25,7 +25,7 @@ public class ParaceratheriumSaddleLayer extends GeoRenderLayer<Paraceratherium> 
 
         ResourceLocation resourceLocation = null;
 
-        if (animatable.isSaddled() && LivestockOverhaulClientConfig.HORSE_SADDLE_EXTRAS.get()) {
+        if (animatable.isSaddled()) {
             resourceLocation = new ResourceLocation(Permafrost.MODID, "textures/entity/cervalces_latifrons/tack/cervalces_saddle.png");
         } else {
             return;

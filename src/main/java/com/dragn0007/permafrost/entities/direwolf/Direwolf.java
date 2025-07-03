@@ -439,7 +439,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       super.updateControlFlags();
    }
 
-   protected int calculateFallDamage(float v, float v1) {
+   public int calculateFallDamage(float v, float v1) {
       return Mth.ceil((v * 0.5F - 3.0F) * v1);
    }
 
@@ -477,11 +477,11 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       }
    }
 
-   protected Vec2 getRiddenRotation(LivingEntity livingEntity) {
+   public Vec2 getRiddenRotation(LivingEntity livingEntity) {
       return new Vec2(livingEntity.getXRot() * 0.5F, livingEntity.getYRot());
    }
 
-   protected void tickRidden(Player p_278233_, Vec3 p_275693_) {
+   public void tickRidden(Player p_278233_, Vec3 p_275693_) {
       super.tickRidden(p_278233_, p_275693_);
       Vec2 vec2 = this.getRiddenRotation(p_278233_);
       this.setRot(vec2.y, vec2.x);
@@ -493,7 +493,7 @@ public class Direwolf extends TamableAnimal implements NeutralMob, GeoEntity {
       return super.isImmobile() && this.isVehicle();
    }
 
-   protected Vec3 getRiddenInput(Player p_278278_, Vec3 p_275506_) {
+   public Vec3 getRiddenInput(Player p_278278_, Vec3 p_275506_) {
       float f = p_278278_.xxa * 0.5F;
       float f1 = p_278278_.zza;
       if (f1 <= 0.0F) {

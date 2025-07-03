@@ -84,7 +84,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 		//              ^ Side offset                      ^ Height offset                   ^ Length offset
 	}
 
-	public static AttributeSupplier.Builder createBaseHorseAttributes() {
+	public static AttributeSupplier.Builder createAttributes() {
 		return Mob.createMobAttributes()
 				.add(Attributes.MAX_HEALTH, 45.0D)
 				.add(Attributes.MOVEMENT_SPEED, 0.20F)
@@ -106,7 +106,6 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 6, true, false,
 				entity -> entity.getType().is(LOTags.Entity_Types.WOLVES) && (entity instanceof TamableAnimal && !((TamableAnimal) entity).isTame()))  {
 		});
-
 		this.goalSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 6, true, false,
 				entity -> entity.getType().is(PFTags.Entity_Types.PREDATORS) && (entity instanceof TamableAnimal && !((TamableAnimal) entity).isTame()))  {
 		});
@@ -116,7 +115,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 		));
 	}
 
-	protected int getInventorySize() {
+	public int getInventorySize() {
 		return this.hasChest() ? 25 : super.getInventorySize();
 	}
 
@@ -133,7 +132,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 	}
 
 	@Override
-	protected boolean canPerformRearing() {
+	public boolean canPerformRearing() {
 		return false;
 	}
 
@@ -317,7 +316,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 	}
 
 	@Override
-	protected void doPlayerRide(Player player) {
+	public void doPlayerRide(Player player) {
 	}
 
 	@Override

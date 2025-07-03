@@ -1,7 +1,7 @@
 package com.dragn0007.permafrost.entities.quagga;
 
-import com.dragn0007.dragnlivestock.entities.donkey.ODonkey;
-import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
+import com.dragn0007.dragnlivestock.entities.horse.OHorse;
+import com.dragn0007.dragnlivestock.entities.marking_layer.EquineEyeColorOverlay;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -11,16 +11,20 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
-public class QuaggaMarkingLayer extends GeoRenderLayer<Quagga> {
-    public QuaggaMarkingLayer(GeoRenderer entityRendererIn) {
+public class QuaggaEyeLayer extends GeoRenderLayer<Quagga> {
+    public QuaggaEyeLayer(GeoRenderer entityRendererIn) {
         super(entityRendererIn);
     }
 
     @Override
     public void render(PoseStack poseStack, Quagga animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
 
-        EquineMarkingOverlay overlay = EquineMarkingOverlay.overlayFromOrdinal(animatable.getOverlayVariant());
-        RenderType renderMarkingType = RenderType.entityCutout(overlay.resourceLocation);
+        if (animatable.getDecompVariant() > 0) {
+            return;
+        }
+
+        EquineEyeColorOverlay eyes = EquineEyeColorOverlay.eyesFromOrdinal(animatable.getEyeVariant());
+        RenderType renderEyeType = RenderType.entityCutout(eyes.resourceLocation);
 
         poseStack.pushPose();
         poseStack.scale(1.0f, 1.0f, 1.0f);
@@ -30,8 +34,8 @@ public class QuaggaMarkingLayer extends GeoRenderLayer<Quagga> {
                 poseStack,
                 bufferSource,
                 animatable,
-                renderMarkingType,
-                bufferSource.getBuffer(renderMarkingType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
+                renderEyeType,
+                bufferSource.getBuffer(renderEyeType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
                 1, 1, 1, 1);
     }
 

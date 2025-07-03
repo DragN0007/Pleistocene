@@ -1,10 +1,43 @@
 package com.dragn0007.permafrost.entities.titanis;
 
 import com.dragn0007.permafrost.Permafrost;
+import com.dragn0007.permafrost.entities.dinofelis.Dinofelis;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import software.bernie.geckolib.constant.DataTickets;
+import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.model.data.EntityModelData;
 
-public class TitanisModel extends GeoModel<Titanis> {
+public class TitanisModel extends DefaultedEntityGeoModel<Titanis> {
+
+    public TitanisModel() {
+        super(new ResourceLocation(Permafrost.MODID, "titanis"), true);
+    }
+
+    @Override
+    public void setCustomAnimations(Titanis animatable, long instanceId, AnimationState<Titanis> animationState) {
+
+        CoreGeoBone neck = getAnimationProcessor().getBone("neck");
+        CoreGeoBone head = getAnimationProcessor().getBone("head");
+        CoreGeoBone left_ear = getAnimationProcessor().getBone("left_ear");
+        CoreGeoBone right_ear = getAnimationProcessor().getBone("right_ear");
+        EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+
+        if (neck != null) {
+            neck.setRotX(neck.getRotX() + (entityData.headPitch() * Mth.DEG_TO_RAD));
+            float maxYaw = Mth.clamp(entityData.netHeadYaw(), -25.0f, 25.0f);
+            neck.setRotY(neck.getRotY() + (maxYaw * Mth.DEG_TO_RAD));
+        }
+
+        if (head != null) {
+            head.setRotX(head.getRotX() + (entityData.headPitch() * Mth.DEG_TO_RAD));
+            float maxYaw = Mth.clamp(entityData.netHeadYaw(), -25.0f, 25.0f);
+            head.setRotY(head.getRotY() + (maxYaw * Mth.DEG_TO_RAD));
+        }
+    }
 
     public enum Variant {
         BLACK(new ResourceLocation(Permafrost.MODID, "textures/entity/titanis/titanis_black.png")),

@@ -4,7 +4,7 @@ license="All Rights Reserved, DragN0007"
 #issueTrackerURL="https://discord.gg/2WznNTtVac"
 [[mods]]
 modId="permafrost"
-version="${1.4}"
+version="${1.5}"
 displayName="DragN's Permafrost"
 logoFile="permafrost_logo.png"
 authors="DragN0007"
@@ -32,12 +32,12 @@ side="BOTH"
 [[dependencies.permafrost]]
 modId="dragnlivestock"
 mandatory=true
-versionRange = "[2.5,)"
+versionRange = "[2.8,)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.permafrost]]
 modId="patchouli"
-mandatory=false
+mandatory=true
 versionRange = "[1.20.1-84,)"
 ordering="NONE"
 side="BOTH"

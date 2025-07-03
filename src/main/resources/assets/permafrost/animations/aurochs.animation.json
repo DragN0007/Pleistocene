@@ -3053,7 +3053,6 @@
 			}
 		},
 		"attack": {
-			"loop": true,
 			"animation_length": 0.625,
 			"bones": {
 				"body": {

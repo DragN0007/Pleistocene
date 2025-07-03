@@ -82,6 +82,16 @@ public class Deinotherium extends AbstractOMount implements GeoEntity {
 	}
 
 	@Override
+	public int saddleSlot() {
+		return 0;
+	}
+
+	@Override
+	public int decorSlot() {
+		return 1;
+	}
+
+	@Override
 	public int getInventorySize() {
 		return 26;
 	}

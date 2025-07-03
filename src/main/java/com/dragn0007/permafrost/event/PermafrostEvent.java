@@ -2,6 +2,7 @@ package com.dragn0007.permafrost.event;
 
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
+import com.dragn0007.permafrost.entities.aurochs.Aurochs;
 import com.dragn0007.permafrost.entities.aurochs.AurochsRender;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.Cervalces;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.CervalcesRender;
@@ -48,7 +49,7 @@ public class PermafrostEvent {
         event.put(EntityTypes.DINOFELIS_ENTITY.get(), Dinofelis.createAttributes().build());
         event.put(EntityTypes.TITANIS_ENTITY.get(), Titanis.createAttributes().build());
         event.put(EntityTypes.QORSE_ENTITY.get(), Qorse.createBaseHorseAttributes().build());
-        event.put(EntityTypes.AUROCHS_ENTITY.get(), Qorse.createBaseHorseAttributes().build());
+        event.put(EntityTypes.AUROCHS_ENTITY.get(), Aurochs.createAttributes().build());
     }
 
     @SubscribeEvent

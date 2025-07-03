@@ -3,9 +3,32 @@ package com.dragn0007.permafrost.entities.cervalces_latifrons;
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.permafrost.Permafrost;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import software.bernie.geckolib.constant.DataTickets;
+import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.model.data.EntityModelData;
 
-public class CervalcesModel extends GeoModel<Cervalces> {
+public class CervalcesModel extends DefaultedEntityGeoModel<Cervalces> {
+
+    public CervalcesModel() {
+        super(new ResourceLocation(Permafrost.MODID, "cervalces"), true);
+    }
+
+    @Override
+    public void setCustomAnimations(Cervalces animatable, long instanceId, AnimationState<Cervalces> animationState) {
+
+        CoreGeoBone neck = getAnimationProcessor().getBone("neck");
+
+        if (neck != null) {
+            EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+            neck.setRotX(neck.getRotX() + (entityData.headPitch() * Mth.DEG_TO_RAD));
+            float maxYaw = Mth.clamp(entityData.netHeadYaw(), -25.0f, 25.0f);
+            neck.setRotY(neck.getRotY() + (maxYaw * Mth.DEG_TO_RAD));
+        }
+    }
 
     public enum Variant {
         BROWN(new ResourceLocation(Permafrost.MODID, "textures/entity/cervalces_latifrons/cervalces_brown.png")),
