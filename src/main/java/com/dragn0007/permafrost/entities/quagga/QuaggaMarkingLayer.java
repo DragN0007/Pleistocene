@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.entities.quagga;
 
-import com.dragn0007.dragnlivestock.entities.donkey.ODonkey;
 import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

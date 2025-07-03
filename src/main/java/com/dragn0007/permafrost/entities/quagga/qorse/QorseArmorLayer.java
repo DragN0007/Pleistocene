@@ -1,7 +1,6 @@
 package com.dragn0007.permafrost.entities.quagga.qorse;
 
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
-import com.dragn0007.dragnlivestock.entities.horse.OHorse;
 import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.items.custom.LightHorseArmorItem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -12,7 +11,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.HorseArmorItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.cache.object.BakedGeoModel;

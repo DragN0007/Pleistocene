@@ -1,7 +1,5 @@
 package com.dragn0007.permafrost.world;
 
-import com.dragn0007.dragnlivestock.entities.horse.HorseBreed;
-import com.dragn0007.dragnlivestock.entities.horse.OHorse;
 import com.dragn0007.dragnlivestock.entities.horse.OHorseModel;
 import com.dragn0007.dragnlivestock.entities.marking_layer.EquineEyeColorOverlay;
 import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
@@ -11,7 +9,6 @@ import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
 import com.dragn0007.permafrost.entities.aurochs.Aurochs;
 import com.dragn0007.permafrost.entities.aurochs.AurochsModel;
-import com.dragn0007.permafrost.entities.aurochs.AurochsRender;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.Cervalces;
 import com.dragn0007.permafrost.entities.cervalces_latifrons.CervalcesModel;
 import com.dragn0007.permafrost.entities.deinotherium.Deinotherium;
@@ -25,7 +22,6 @@ import com.dragn0007.permafrost.entities.mammoth.MammothModel;
 import com.dragn0007.permafrost.entities.paraceratherium.Paraceratherium;
 import com.dragn0007.permafrost.entities.paraceratherium.ParaceratheriumModel;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
-import com.dragn0007.permafrost.entities.quagga.QuaggaModel;
 import com.dragn0007.permafrost.entities.titanis.Titanis;
 import com.dragn0007.permafrost.entities.titanis.TitanisModel;
 import com.dragn0007.permafrost.util.PermafrostCommonConfig;

@@ -2,7 +2,6 @@ package com.dragn0007.permafrost.entities.quagga.qorse;
 
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.dragnlivestock.entities.ai.GroundTieGoal;
-import com.dragn0007.dragnlivestock.entities.horse.OHorse;
 import com.dragn0007.dragnlivestock.entities.horse.OHorseModel;
 import com.dragn0007.dragnlivestock.entities.marking_layer.EquineEyeColorOverlay;
 import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
@@ -12,7 +11,6 @@ import com.dragn0007.dragnlivestock.event.LivestockOverhaulClientEvent;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
-import com.dragn0007.permafrost.entities.quagga.QuaggaStripeLayer;
 import com.dragn0007.permafrost.gui.QuaggaMenu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;

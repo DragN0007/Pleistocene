@@ -2,7 +2,6 @@ package com.dragn0007.permafrost.entities.quagga.qorse;
 
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.permafrost.Permafrost;
-import com.dragn0007.permafrost.entities.quagga.Quagga;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import software.bernie.geckolib.constant.DataTickets;

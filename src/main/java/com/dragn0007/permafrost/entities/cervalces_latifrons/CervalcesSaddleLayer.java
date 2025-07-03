@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.entities.cervalces_latifrons;
 
-import com.dragn0007.dragnlivestock.util.LivestockOverhaulClientConfig;
 import com.dragn0007.permafrost.Permafrost;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

@@ -1,7 +1,5 @@
 package com.dragn0007.permafrost.entities.mammoth;
 
-import com.dragn0007.dragnlivestock.entities.horse.OHorseCarpetLayer;
-import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.permafrost.Permafrost;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -10,8 +8,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WoolCarpetBlock;
@@ -20,8 +16,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
-
-import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class MammothCarpetLayer extends GeoRenderLayer<Mammoth> {

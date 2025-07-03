@@ -1,9 +1,5 @@
 package com.dragn0007.permafrost.entities.quagga;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
-import com.dragn0007.dragnlivestock.entities.chicken.OChickenMarkingLayer;
-import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
-import com.dragn0007.dragnlivestock.entities.pig.OPig;
 import com.dragn0007.permafrost.Permafrost;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
