@@ -37,7 +37,7 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
 
     public QuaggaScreen(QuaggaMenu quaggaMenu, Inventory inventory, Component component) {
         super(quaggaMenu, inventory, component);
-        this.quagga = quaggaMenu.quagga;
+        this.quagga = quaggaMenu.oMule;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
         }
 
         if (this.quagga.hasChest()) {
-            graphics.blit(INVENTORY_LOCATION, x + 79, y + 17, 0, this.imageHeight, 90, 54);
+            graphics.blit(INVENTORY_LOCATION, x + 79, y + 17, 0, this.imageHeight, 72, 54);
         }
 
         if (this.quagga.isFemale()) {

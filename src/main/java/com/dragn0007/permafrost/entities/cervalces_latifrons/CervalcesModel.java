@@ -45,7 +45,7 @@ public class CervalcesModel extends DefaultedEntityGeoModel<Cervalces> {
         }
     }
 
-    public static final ResourceLocation ANIMATION = new ResourceLocation(LivestockOverhaul.MODID, "animations/horse_overhaul.animation.json");
+    public static final ResourceLocation ANIMATION = new ResourceLocation(Permafrost.MODID, "animations/horse_overhaul.animation.json");
     public static final ResourceLocation MODEL = new ResourceLocation(Permafrost.MODID, "geo/cervalces_latifrons.geo.json");
 
     @Override
