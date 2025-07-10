@@ -4,7 +4,6 @@ import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.dragnlivestock.entities.horse.OHorseCarpetLayer;
 import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.items.custom.BlanketItem;
-import com.dragn0007.dragnlivestock.items.custom.CaparisonItem;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
