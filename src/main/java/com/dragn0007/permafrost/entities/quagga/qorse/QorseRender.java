@@ -14,9 +14,9 @@ public class QorseRender extends GeoEntityRenderer<Qorse> {
         this.addRenderLayer(new QorseStripeLayer(this));
         this.addRenderLayer(new QorseMarkingLayer(this));
         this.addRenderLayer(new QorseEyeLayer(this));
-        this.addRenderLayer(new QorseCarpetLayer(this));
         this.addRenderLayer(new QorseSaddleLayer(this));
-        this.addRenderLayer(new QorseShoeLayer(this));
+        this.addRenderLayer(new QorseArmorLayer(this));
+        this.addRenderLayer(new QorseCarpetLayer(this));
     }
 
     @Override

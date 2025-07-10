@@ -14,9 +14,8 @@ public class QuaggaRender extends GeoEntityRenderer<Quagga> {
         this.addRenderLayer(new QuaggaStripeLayer(this));
         this.addRenderLayer(new QuaggaMarkingLayer(this));
         this.addRenderLayer(new QuaggaEyeLayer(this));
-        this.addRenderLayer(new QuaggaCarpetLayer(this));
         this.addRenderLayer(new QuaggaSaddleLayer(this));
-        this.addRenderLayer(new QuaggaShoeLayer(this));
+        this.addRenderLayer(new QuaggaCarpetLayer(this));
     }
 
     @Override
