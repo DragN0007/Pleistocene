@@ -37,7 +37,7 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
 
     public QuaggaScreen(QuaggaMenu quaggaMenu, Inventory inventory, Component component) {
         super(quaggaMenu, inventory, component);
-        this.quagga = quaggaMenu.oMule;
+        this.quagga = quaggaMenu.quagga;
     }
 
     @Override
@@ -83,6 +83,10 @@ public class QuaggaScreen extends AbstractContainerScreen<QuaggaMenu> {
 
         if (this.quagga.canWearArmor()) {
             graphics.blit(INVENTORY_LOCATION, x + 7, y + 35, 0, this.imageHeight + 54, 18, 18);
+        }
+
+        if (this.quagga.canWearDecor()) {
+            graphics.blit(INVENTORY_LOCATION, x + 7, y + 53, 36, this.imageHeight + 54, 18, 18);
         }
 
         if (this.quagga.hasChest()) {

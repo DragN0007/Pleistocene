@@ -222,7 +222,7 @@ public class Quagga extends OHorse implements GeoEntity {
 
 		AnimationController<T> controller = tAnimationState.getController();
 
-		if ((!this.isTamed() || this.isWearingHarness()) && this.isVehicle() && !this.isJumping()) {
+		if ((!this.isTamed() || this.isWearingRodeoHarness()) && this.isVehicle() && !this.isJumping()) {
 			controller.setAnimation(RawAnimation.begin().then("buck", Animation.LoopType.LOOP));
 			controller.setAnimationSpeed(1.3);
 		} else if (this.isJumping()) {
@@ -380,6 +380,9 @@ public class Quagga extends OHorse implements GeoEntity {
 	@Override
 	public boolean canWearArmor() {
 		return false;
+	}
+	public boolean canWearDecor() {
+		return true;
 	}
 
 	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Quagga.class, EntityDataSerializers.INT);

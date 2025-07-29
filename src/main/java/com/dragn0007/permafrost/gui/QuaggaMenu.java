@@ -1,8 +1,5 @@
 package com.dragn0007.permafrost.gui;
 
-import com.dragn0007.dragnlivestock.entities.mule.OMule;
-import com.dragn0007.dragnlivestock.gui.LOMenuTypes;
-import com.dragn0007.dragnlivestock.gui.OMuleMenu;
 import com.dragn0007.dragnlivestock.items.custom.LightHorseArmorItem;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
@@ -19,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
 public class QuaggaMenu extends AbstractContainerMenu {
 
     public Container container;
-    public Quagga oMule;
+    public Quagga quagga;
 
     public QuaggaMenu(int containerId, Inventory inventory, FriendlyByteBuf extraData) {
         this(containerId, inventory, new SimpleContainer(extraData.readInt()), (Quagga) inventory.player.level().getEntity(extraData.readInt()));
@@ -28,58 +25,58 @@ public class QuaggaMenu extends AbstractContainerMenu {
     public QuaggaMenu(int containerId, Inventory inventory, Container container, Quagga abstractOMount) {
         super(PFMenuTypes.QUAGGA_MENU.get(), containerId);
         this.container = container;
-        this.oMule = abstractOMount;
+        this.quagga = abstractOMount;
 
-        int OMuleSlots = 0;
-        this.addSlot(new Slot(this.container, OMuleSlots++, 8, 18) {
+        int quaggaSlots = 0;
+        this.addSlot(new Slot(this.container, quaggaSlots++, 8, 18) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
-                return itemStack.is(LOTags.Items.SADDLE) && !this.hasItem() && QuaggaMenu.this.oMule.isSaddleable();
+                return itemStack.is(LOTags.Items.SADDLE) && !this.hasItem() && QuaggaMenu.this.quagga.isSaddleable();
             }
 
             @Override
             public boolean isActive() {
-                return QuaggaMenu.this.oMule.isSaddleable();
+                return QuaggaMenu.this.quagga.isSaddleable();
             }
         });
 
-        this.addSlot(new Slot(this.container, OMuleSlots++, 8, 36) {
+        this.addSlot(new Slot(this.container, quaggaSlots++, 8, 36) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
                 if (itemStack.getItem() instanceof HorseArmorItem || itemStack.getItem() instanceof LightHorseArmorItem) {
-                    return !this.hasItem() && QuaggaMenu.this.oMule.canWearArmor();
+                    return !this.hasItem() && QuaggaMenu.this.quagga.canWearArmor();
                 }
                 if (itemStack.is(LOTags.Items.ARMOR_FOR_O_MOUNTS)) {
-                    return !this.hasItem() && QuaggaMenu.this.oMule.canWearArmor();
+                    return !this.hasItem() && QuaggaMenu.this.quagga.canWearArmor();
                 }
                 return false;
             }
 
             @Override
             public boolean isActive() {
-                return QuaggaMenu.this.oMule.canWearArmor();
+                return QuaggaMenu.this.quagga.canWearArmor();
             }
         });
 
-        this.addSlot(new Slot(this.container, OMuleSlots++, 8, 54) {
+        this.addSlot(new Slot(this.container, quaggaSlots++, 8, 54) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
                 if (itemStack.is(LOTags.Items.DECOR_FOR_O_MOUNTS)) {
-                    return !this.hasItem() && QuaggaMenu.this.oMule.canWearArmor();
+                    return !this.hasItem() && QuaggaMenu.this.quagga.canWearDecor();
                 }
                 return false;
             }
 
             @Override
             public boolean isActive() {
-                return QuaggaMenu.this.oMule.canWearArmor();
+                return QuaggaMenu.this.quagga.canWearDecor();
             }
         });
 
-        if(this.oMule.hasChest()) {
+        if(this.quagga.hasChest()) {
             for(int y = 0; y < 3; y++) {
                 for(int x = 0; x < 5; x++) {
-                    this.addSlot(new Slot(this.container, OMuleSlots++, 80 + x * 18, 18 + y * 18));
+                    this.addSlot(new Slot(this.container, quaggaSlots++, 80 + x * 18, 18 + y * 18));
                 }
             }
         }
@@ -96,7 +93,7 @@ public class QuaggaMenu extends AbstractContainerMenu {
     }
 
     public boolean stillValid(Player player) {
-        return !this.oMule.hasInventoryChanged(this.container) && this.container.stillValid(player) && this.oMule.isAlive() && this.oMule.distanceTo(player) < 8.0F;
+        return !this.quagga.hasInventoryChanged(this.container) && this.container.stillValid(player) && this.quagga.isAlive() && this.quagga.distanceTo(player) < 8.0F;
     }
 
     @Override

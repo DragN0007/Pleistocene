@@ -8,6 +8,7 @@ import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
 import com.dragn0007.dragnlivestock.event.LivestockOverhaulClientEvent;
+import com.dragn0007.dragnlivestock.items.custom.LightHorseArmorItem;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.entities.quagga.Quagga;
@@ -28,6 +29,8 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HorseArmorItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.network.NetworkHooks;
@@ -40,6 +43,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class Qorse extends Quagga implements GeoEntity {
@@ -184,7 +188,7 @@ public class Qorse extends Quagga implements GeoEntity {
 
 		AnimationController<T> controller = tAnimationState.getController();
 
-		if ((!this.isTamed() || this.isWearingHarness()) && this.isVehicle() && !this.isJumping()) {
+		if ((!this.isTamed() || this.isWearingRodeoHarness()) && this.isVehicle() && !this.isJumping()) {
 			controller.setAnimation(RawAnimation.begin().then("buck", Animation.LoopType.LOOP));
 			controller.setAnimationSpeed(1.3);
 		} else if (this.isJumping()) {
@@ -277,6 +281,9 @@ public class Qorse extends Quagga implements GeoEntity {
 	@Override
 	public void tick() {
 		super.tick();
+
+		List<ItemStack> armorSlots = (List<ItemStack>) this.getArmorSlots();
+		ItemStack armorItemStack = armorSlots.get(2);
 		
 		if (this.isOnSand()) {
 			if (!this.hasSlownessEffect()) {
@@ -287,10 +294,27 @@ public class Qorse extends Quagga implements GeoEntity {
 				this.removeSlownessEffect();
 			}
 		}
+
+		if (armorItemStack.getItem() instanceof HorseArmorItem) {
+			if (!this.isOnSand()) {
+				if (!this.hasSlownessEffect()) {
+					this.applySlownessEffect();
+				}
+			}
+		} else if (armorItemStack.getItem() instanceof LightHorseArmorItem) {
+			if (!this.isOnSand()) {
+				if (this.hasSlownessEffect()) {
+					this.removeSlownessEffect();
+				}
+			}
+		}
 	}
 
 	@Override
 	public boolean canWearArmor() {
+		return true;
+	}
+	public boolean canWearDecor() {
 		return true;
 	}
 

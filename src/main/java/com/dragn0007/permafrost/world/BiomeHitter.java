@@ -35,7 +35,7 @@ public class BiomeHitter {
         context.register(SPAWN_MAMMOTH_COLD, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_COLD),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.MAMMOTH_ENTITY.get(),
-                        4,
+                        2,
                         2,
                         6
                 ))));
@@ -43,7 +43,7 @@ public class BiomeHitter {
         context.register(SPAWN_DEINOTHERIUM_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_HOT),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.DEINOTHERIUM_ENTITY.get(),
-                        3,
+                        1,
                         1,
                         3
                 ))));
@@ -51,7 +51,7 @@ public class BiomeHitter {
         context.register(SPAWN_DIREWOLF_COLD, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_COLD_OVERWORLD),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.DIREWOLF_ENTITY.get(),
-                        4,
+                        2,
                         1,
                         5
                 ))));
@@ -59,7 +59,7 @@ public class BiomeHitter {
         context.register(SPAWN_QUAGGA_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.QUAGGA_ENTITY.get(),
-                        3,
+                        1,
                         1,
                         3
                 ))));
@@ -75,7 +75,7 @@ public class BiomeHitter {
         context.register(SPAWN_CERVALCES_SWAMP, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_SWAMP),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.CERVALCES_LATIFRONS_ENTITY.get(),
-                        2,
+                        1,
                         1,
                         1
                 ))));
@@ -83,7 +83,7 @@ public class BiomeHitter {
         context.register(SPAWN_PARACERATHERIUM_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.PARACERATHERIUM_ENTITY.get(),
-                        2,
+                        1,
                         1,
                         1
                 ))));
@@ -91,7 +91,7 @@ public class BiomeHitter {
         context.register(SPAWN_DINOFELIS_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_HOT),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.DINOFELIS_ENTITY.get(),
-                        4,
+                        2,
                         1,
                         1
                 ))));
@@ -99,7 +99,7 @@ public class BiomeHitter {
         context.register(SPAWN_TITANIS_HOT, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_HOT),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.TITANIS_ENTITY.get(),
-                        5,
+                        3,
                         1,
                         3
                 ))));
@@ -107,7 +107,7 @@ public class BiomeHitter {
         context.register(SPAWN_AUROCHS_PLAINS, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
                 List.of(new MobSpawnSettings.SpawnerData(EntityTypes.AUROCHS_ENTITY.get(),
-                        4,
+                        2,
                         1,
                         3
                 ))));
