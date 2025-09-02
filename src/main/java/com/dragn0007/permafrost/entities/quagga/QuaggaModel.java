@@ -10,6 +10,9 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class QuaggaModel extends DefaultedEntityGeoModel<Quagga> {
 
     public QuaggaModel() {
@@ -41,9 +44,11 @@ public class QuaggaModel extends DefaultedEntityGeoModel<Quagga> {
         return MODEL;
     }
 
+    public static final Map<String, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
+
     @Override
     public ResourceLocation getTextureResource(Quagga object) {
-        return object.getTextureResource();
+        return TEXTURE_CACHE.computeIfAbsent(object.getTextureResource(), ResourceLocation::tryParse);
     }
 
     @Override

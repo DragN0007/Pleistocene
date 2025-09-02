@@ -252,6 +252,14 @@ public class Dinofelis extends TamableAnimal implements NeutralMob, GeoEntity {
       ItemStack itemstack = player.getItemInHand(hand);
       Item item = itemstack.getItem();
 
+      if (itemstack.is(LOItems.BREED_OSCILLATOR.get()) && player.getAbilities().instabuild) {
+         return InteractionResult.PASS;
+      }
+
+      if (itemstack.is(LOItems.MARKING_OSCILLATOR.get()) && player.getAbilities().instabuild) {
+         return InteractionResult.PASS;
+      }
+
       if (itemstack.is(LOItems.GENDER_TEST_STRIP.get()) && this.isFemale()) {
          player.playSound(SoundEvents.BEEHIVE_EXIT, 1.0F, 1.0F);
          ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, LOItems.FEMALE_GENDER_TEST_STRIP.get().getDefaultInstance());

@@ -1,6 +1,5 @@
 package com.dragn0007.permafrost.entities.cervalces_latifrons;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.permafrost.Permafrost;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -9,6 +8,9 @@ import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CervalcesModel extends DefaultedEntityGeoModel<Cervalces> {
 
@@ -53,9 +55,11 @@ public class CervalcesModel extends DefaultedEntityGeoModel<Cervalces> {
         return MODEL;
     }
 
+    public static final Map<String, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
+
     @Override
     public ResourceLocation getTextureResource(Cervalces object) {
-        return object.getTextureResource();
+        return TEXTURE_CACHE.computeIfAbsent(object.getTextureResource(), ResourceLocation::tryParse);
     }
 
     @Override

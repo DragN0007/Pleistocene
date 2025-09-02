@@ -1,9 +1,8 @@
 package com.dragn0007.permafrost.entities.aurochs;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
+import com.dragn0007.dragnlivestock.common.gui.OxMenu;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
-import com.dragn0007.dragnlivestock.gui.OxMenu;
 import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
@@ -260,6 +259,14 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 	public InteractionResult mobInteract(Player player, InteractionHand hand) {
 		ItemStack itemstack = player.getItemInHand(hand);
 
+		if (itemstack.is(LOItems.BREED_OSCILLATOR.get()) && player.getAbilities().instabuild) {
+			return InteractionResult.PASS;
+		}
+
+		if (itemstack.is(LOItems.MARKING_OSCILLATOR.get()) && player.getAbilities().instabuild) {
+			return InteractionResult.PASS;
+		}
+
 		if (itemstack.is(Items.SHEARS) && player.isShiftKeyDown()) {
 			if (this.hasChest()) {
 				this.dropEquipment();
@@ -414,7 +421,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 		return false;
 	}
 
-	public static final EntityDataAccessor<ResourceLocation> VARIANT_TEXTURE = SynchedEntityData.defineId(Aurochs.class, LivestockOverhaul.RESOURCE_LOCATION);
+	public static final EntityDataAccessor<String> VARIANT_TEXTURE = SynchedEntityData.defineId(Aurochs.class, EntityDataSerializers.STRING);
 	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Aurochs.class, EntityDataSerializers.INT);
 
 	public enum Gender {
@@ -440,7 +447,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 		this.entityData.set(GENDER, gender);
 	}
 
-	public ResourceLocation getTextureResource() {
+	public String getTextureResource() {
 		return this.entityData.get(VARIANT_TEXTURE);
 	}
 
@@ -449,16 +456,12 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 	}
 
 	public void setVariant(int variant) {
-		this.entityData.set(VARIANT_TEXTURE, AurochsModel.Variant.variantFromOrdinal(variant).resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, AurochsModel.Variant.variantFromOrdinal(variant).resourceLocation.toString());
 		this.entityData.set(VARIANT, variant);
 	}
 
 	public void setVariantTexture(String variant) {
-		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
-		if (resourceLocation == null) {
-			resourceLocation = AurochsModel.Variant.BROWN.resourceLocation;
-		}
-		this.entityData.set(VARIANT_TEXTURE, resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, variant);
 	}
 
 	@Override
@@ -509,7 +512,7 @@ public class Aurochs extends AbstractOMount implements GeoEntity {
 	public void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(VARIANT, 0);
-		this.entityData.define(VARIANT_TEXTURE, AurochsModel.Variant.BROWN.resourceLocation);
+		this.entityData.define(VARIANT_TEXTURE, AurochsModel.Variant.BROWN.resourceLocation.toString());
 		this.entityData.define(GENDER, 0);
 	}
 

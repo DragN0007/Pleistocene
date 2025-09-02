@@ -1,9 +1,9 @@
 package com.dragn0007.permafrost.entities.paraceratherium;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
 import com.dragn0007.dragnlivestock.entities.ai.GroundTieGoal;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
+import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
@@ -20,6 +20,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -30,6 +32,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -300,15 +303,43 @@ public class Paraceratherium extends AbstractOMount implements GeoEntity {
 		return null;
 	}
 
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+
+		if (itemstack.is(LOItems.BREED_OSCILLATOR.get()) && player.getAbilities().instabuild) {
+			return InteractionResult.PASS;
+		}
+
+		if (itemstack.is(LOItems.MARKING_OSCILLATOR.get()) && player.getAbilities().instabuild) {
+			return InteractionResult.PASS;
+		}
+
+		if (itemstack.is(LOItems.GENDER_TEST_STRIP.get()) && this.isFemale()) {
+			player.playSound(SoundEvents.BEEHIVE_EXIT, 1.0F, 1.0F);
+			ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, LOItems.FEMALE_GENDER_TEST_STRIP.get().getDefaultInstance());
+			player.setItemInHand(hand, itemstack1);
+			return InteractionResult.SUCCESS;
+		}
+
+		if (itemstack.is(LOItems.GENDER_TEST_STRIP.get()) && this.isMale()) {
+			player.playSound(SoundEvents.BEEHIVE_EXIT, 1.0F, 1.0F);
+			ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, LOItems.MALE_GENDER_TEST_STRIP.get().getDefaultInstance());
+			player.setItemInHand(hand, itemstack1);
+			return InteractionResult.SUCCESS;
+		} else {
+			return super.mobInteract(player, hand);
+		}
+	}
+
 	@Override
 	public boolean canWearArmor() {
 		return false;
 	}
 
-	public static final EntityDataAccessor<ResourceLocation> VARIANT_TEXTURE = SynchedEntityData.defineId(Paraceratherium.class, LivestockOverhaul.RESOURCE_LOCATION);
+	public static final EntityDataAccessor<String> VARIANT_TEXTURE = SynchedEntityData.defineId(Paraceratherium.class, EntityDataSerializers.STRING);
 	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Paraceratherium.class, EntityDataSerializers.INT);
 
-	public ResourceLocation getTextureResource() {
+	public String getTextureResource() {
 		return this.entityData.get(VARIANT_TEXTURE);
 	}
 
@@ -317,16 +348,12 @@ public class Paraceratherium extends AbstractOMount implements GeoEntity {
 	}
 
 	public void setVariant(int variant) {
-		this.entityData.set(VARIANT_TEXTURE, ParaceratheriumModel.Variant.variantFromOrdinal(variant).resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, ParaceratheriumModel.Variant.variantFromOrdinal(variant).resourceLocation.toString());
 		this.entityData.set(VARIANT, variant);
 	}
 
 	public void setVariantTexture(String variant) {
-		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
-		if (resourceLocation == null) {
-			resourceLocation = ParaceratheriumModel.Variant.GREY.resourceLocation;
-		}
-		this.entityData.set(VARIANT_TEXTURE, resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, variant);
 	}
 
 	@Override
@@ -371,7 +398,7 @@ public class Paraceratherium extends AbstractOMount implements GeoEntity {
 	public void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(VARIANT, 0);
-		this.entityData.define(VARIANT_TEXTURE, ParaceratheriumModel.Variant.GREY.resourceLocation);
+		this.entityData.define(VARIANT_TEXTURE, ParaceratheriumModel.Variant.GREY.resourceLocation.toString());
 		this.entityData.define(GENDER, 0);
 	}
 

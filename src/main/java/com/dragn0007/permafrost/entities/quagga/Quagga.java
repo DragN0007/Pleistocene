@@ -1,14 +1,14 @@
 package com.dragn0007.permafrost.entities.quagga;
 
 import com.dragn0007.dragnlivestock.LivestockOverhaul;
+import com.dragn0007.dragnlivestock.client.event.LivestockOverhaulClientEvent;
 import com.dragn0007.dragnlivestock.entities.ai.GroundTieGoal;
 import com.dragn0007.dragnlivestock.entities.horse.OHorse;
 import com.dragn0007.dragnlivestock.entities.horse.OHorseModel;
-import com.dragn0007.dragnlivestock.entities.marking_layer.EquineEyeColorOverlay;
-import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
 import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
-import com.dragn0007.dragnlivestock.event.LivestockOverhaulClientEvent;
+import com.dragn0007.dragnlivestock.entities.util.marking_layer.EquineEyeColorOverlay;
+import com.dragn0007.dragnlivestock.entities.util.marking_layer.EquineMarkingOverlay;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulClientConfig;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
@@ -209,11 +209,12 @@ public class Quagga extends OHorse implements GeoEntity {
 		controllers.add(new AnimationController<>(this, "emoteController", 5, this::emotePredicate));
 	}
 
-	private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+	protected <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
 		double x = this.getX() - this.xo;
 		double z = this.getZ() - this.zo;
 		double currentSpeed = this.getDeltaMovement().lengthSqr();
-		double speedThreshold = 0.015;
+		double speedThreshold = 0.025;
+		double speedRunThreshold = 0.02;
 
 		boolean isMoving = (x * x + z * z) > 0.0001;
 
@@ -230,16 +231,16 @@ public class Quagga extends OHorse implements GeoEntity {
 			controller.setAnimationSpeed(1.0);
 		} else {
 			if (isMoving) {
-				if (!LivestockOverhaulClientEvent.HORSE_WALK_BACKWARDS.isDown()) {
+				if (getForward().dot(getDeltaMovement()) > 0) {
 					if (this.isAggressive() || (this.isVehicle() && this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) || (!this.isVehicle() && currentSpeed > speedThreshold)) {
 						controller.setAnimation(RawAnimation.begin().then("sprint", Animation.LoopType.LOOP));
 						controller.setAnimationSpeed(Math.max(0.1, 0.82 * controller.getAnimationSpeed() + animationSpeed));
 
-					} else if (this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) {
+					} else if ((this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) || (!this.isVehicle() && currentSpeed > speedRunThreshold && currentSpeed < speedThreshold)) {
 						controller.setAnimation(RawAnimation.begin().then("run", Animation.LoopType.LOOP));
 						controller.setAnimationSpeed(Math.max(0.1, 0.78 * controller.getAnimationSpeed() + animationSpeed));
 
-					} else if (this.isOnSand() && this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) {
+					} else if ((this.isOnSand() && this.isVehicle() && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD) && !this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(SPRINT_SPEED_MOD)) || (!this.isVehicle() && currentSpeed > speedRunThreshold && currentSpeed < speedThreshold)) {
 						controller.setAnimation(RawAnimation.begin().then("run", Animation.LoopType.LOOP));
 						controller.setAnimationSpeed(Math.max(0.1, 0.78 * controller.getAnimationSpeed() + animationSpeed));
 
@@ -254,7 +255,7 @@ public class Quagga extends OHorse implements GeoEntity {
 						controller.setAnimation(RawAnimation.begin().then("walk", Animation.LoopType.LOOP));
 						controller.setAnimationSpeed(Math.max(0.1, 0.80 * controller.getAnimationSpeed() + animationSpeed));
 					}
-				} else if (this.isVehicle() && LivestockOverhaulClientEvent.HORSE_WALK_BACKWARDS.isDown()) {
+				} else if (getForward().dot(getDeltaMovement()) < 0) {
 					if (this.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(WALK_SPEED_MOD)) {
 						controller.setAnimation(RawAnimation.begin().then("walk_back", Animation.LoopType.LOOP));
 						controller.setAnimationSpeed(Math.max(0.1, 0.76 * controller.getAnimationSpeed() + animationSpeed));
@@ -266,10 +267,6 @@ public class Quagga extends OHorse implements GeoEntity {
 			} else {
 				if (this.isVehicle() || !LivestockOverhaulCommonConfig.GROUND_TIE.get()) {
 					controller.setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
-				} else if (this.isSleeping()) {
-					controller.setAnimation(RawAnimation.begin().then("idle_sleep", Animation.LoopType.LOOP));
-				} else if (this.isSleeping() && !this.isVehicle() && this.isFollower()) {
-					controller.setAnimation(RawAnimation.begin().then("sleep", Animation.LoopType.LOOP));
 				} else {
 					controller.setAnimation(RawAnimation.begin().then("ground_tie", Animation.LoopType.LOOP));
 				}
@@ -294,7 +291,7 @@ public class Quagga extends OHorse implements GeoEntity {
 		this.shouldEmote = true;
 	}
 
-	private <T extends GeoAnimatable> PlayState emotePredicate(AnimationState<T> tAnimationState) {
+	public  <T extends GeoAnimatable> PlayState emotePredicate(AnimationState<T> tAnimationState) {
 		AnimationController<T> controller = tAnimationState.getController();
 
 		if (tAnimationState.isMoving() || !this.shouldEmote) {
@@ -391,18 +388,14 @@ public class Quagga extends OHorse implements GeoEntity {
 	}
 	public void setVariant(int variant) {
 		this.entityData.set(VARIANT, variant);
-		this.entityData.set(VARIANT_TEXTURE, OHorseModel.Variant.variantFromOrdinal(variant).resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, OHorseModel.Variant.variantFromOrdinal(variant).resourceLocation.toString());
 	}
-	public static final EntityDataAccessor<ResourceLocation> VARIANT_TEXTURE = SynchedEntityData.defineId(Quagga.class, LivestockOverhaul.RESOURCE_LOCATION);
-	public ResourceLocation getTextureResource() {
+	public static final EntityDataAccessor<String> VARIANT_TEXTURE = SynchedEntityData.defineId(Quagga.class, EntityDataSerializers.STRING);
+	public String getTextureResource() {
 		return this.entityData.get(VARIANT_TEXTURE);
 	}
 	public void setVariantTexture(String variant) {
-		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
-		if (resourceLocation == null) {
-			resourceLocation = OHorseModel.Variant.CREAM.resourceLocation;
-		}
-		this.entityData.set(VARIANT_TEXTURE, resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, variant);
 	}
 
 	public static final EntityDataAccessor<Integer> OVERLAY = SynchedEntityData.defineId(Quagga.class, EntityDataSerializers.INT);
@@ -411,18 +404,14 @@ public class Quagga extends OHorse implements GeoEntity {
 	}
 	public void setOverlayVariant(int variant) {
 		this.entityData.set(OVERLAY, variant);
-		this.entityData.set(OVERLAY_TEXTURE, EquineMarkingOverlay.overlayFromOrdinal(variant).resourceLocation);
+		this.entityData.set(OVERLAY_TEXTURE, EquineMarkingOverlay.overlayFromOrdinal(variant).resourceLocation.toString());
 	}
-	public static final EntityDataAccessor<ResourceLocation> OVERLAY_TEXTURE = SynchedEntityData.defineId(Quagga.class, LivestockOverhaul.RESOURCE_LOCATION);
-	public ResourceLocation getOverlayLocation() {
+	public static final EntityDataAccessor<String> OVERLAY_TEXTURE = SynchedEntityData.defineId(Quagga.class, EntityDataSerializers.STRING);
+	public String getOverlayLocation() {
 		return this.entityData.get(OVERLAY_TEXTURE);
 	}
 	public void setOverlayVariantTexture(String variant) {
-		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
-		if (resourceLocation == null) {
-			resourceLocation = EquineMarkingOverlay.NONE.resourceLocation;
-		}
-		this.entityData.set(OVERLAY_TEXTURE, resourceLocation);
+		this.entityData.set(OVERLAY_TEXTURE, variant);
 	}
 
 	public static final EntityDataAccessor<Integer> STRIPES = SynchedEntityData.defineId(Quagga.class, EntityDataSerializers.INT);
@@ -579,8 +568,8 @@ public class Quagga extends OHorse implements GeoEntity {
 		this.entityData.define(OVERLAY, 0);
 		this.entityData.define(STRIPES, 0);
 		this.entityData.define(GENDER, 0);
-		this.entityData.define(VARIANT_TEXTURE, OHorseModel.Variant.CREAM.resourceLocation);
-		this.entityData.define(OVERLAY_TEXTURE, EquineMarkingOverlay.NONE.resourceLocation);
+		this.entityData.define(VARIANT_TEXTURE, OHorseModel.Variant.CREAM.resourceLocation.toString());
+		this.entityData.define(OVERLAY_TEXTURE, EquineMarkingOverlay.NONE.resourceLocation.toString());
 		this.entityData.define(MANE_TYPE, 0);
 		this.entityData.define(TAIL_TYPE, 0);
 		this.entityData.define(EYES, 0);

@@ -4,6 +4,9 @@ import com.dragn0007.permafrost.Permafrost;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MammothModel extends GeoModel<Mammoth> {
 
     public enum Variant {
@@ -31,9 +34,11 @@ public class MammothModel extends GeoModel<Mammoth> {
         return MODEL;
     }
 
+    public static final Map<String, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
+
     @Override
     public ResourceLocation getTextureResource(Mammoth object) {
-        return object.getTextureLocation();
+        return TEXTURE_CACHE.computeIfAbsent(object.getTextureResource(), ResourceLocation::tryParse);
     }
 
     @Override

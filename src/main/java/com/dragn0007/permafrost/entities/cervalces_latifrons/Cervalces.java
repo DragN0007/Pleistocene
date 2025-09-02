@@ -1,10 +1,10 @@
 package com.dragn0007.permafrost.entities.cervalces_latifrons;
 
-import com.dragn0007.dragnlivestock.LivestockOverhaul;
+import com.dragn0007.dragnlivestock.common.gui.OMountMenu;
 import com.dragn0007.dragnlivestock.entities.ai.GroundTieGoal;
 import com.dragn0007.dragnlivestock.entities.horse.OHorse;
 import com.dragn0007.dragnlivestock.entities.util.LOAnimations;
-import com.dragn0007.dragnlivestock.gui.OMountMenu;
+import com.dragn0007.dragnlivestock.items.LOItems;
 import com.dragn0007.dragnlivestock.util.LOTags;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.Permafrost;
@@ -21,6 +21,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -156,6 +158,20 @@ public class Cervalces extends OHorse implements GeoEntity {
 		return super.getInventorySize();
 	}
 
+	public InteractionResult mobInteract(Player player, InteractionHand hand) {
+		ItemStack itemstack = player.getItemInHand(hand);
+
+		if (itemstack.is(LOItems.BREED_OSCILLATOR.get()) && player.getAbilities().instabuild) {
+			return InteractionResult.PASS;
+		}
+
+		if (itemstack.is(LOItems.MARKING_OSCILLATOR.get()) && player.getAbilities().instabuild) {
+			return InteractionResult.PASS;
+		} else {
+			return super.mobInteract(player, hand);
+		}
+	}
+
 	@Override
 	public void positionRider(Entity entity, MoveFunction moveFunction) {
 		if (this.hasPassenger(entity)) {
@@ -207,7 +223,7 @@ public class Cervalces extends OHorse implements GeoEntity {
 		controllers.add(LOAnimations.genericAttackAnimation(this, LOAnimations.ATTACK));
 	}
 
-	private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+	public  <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
 		double x = this.getX() - this.xo;
 		double z = this.getZ() - this.zo;
 
@@ -397,10 +413,10 @@ public class Cervalces extends OHorse implements GeoEntity {
 		return false;
 	}
 
-	public static final EntityDataAccessor<ResourceLocation> VARIANT_TEXTURE = SynchedEntityData.defineId(Cervalces.class, LivestockOverhaul.RESOURCE_LOCATION);
+	public static final EntityDataAccessor<String> VARIANT_TEXTURE = SynchedEntityData.defineId(Cervalces.class, EntityDataSerializers.STRING);
 	public static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Cervalces.class, EntityDataSerializers.INT);
 
-	public ResourceLocation getTextureResource() {
+	public String getTextureResource() {
 		return this.entityData.get(VARIANT_TEXTURE);
 	}
 
@@ -410,16 +426,12 @@ public class Cervalces extends OHorse implements GeoEntity {
 	}
 
 	public void setVariant(int variant) {
-		this.entityData.set(VARIANT_TEXTURE, CervalcesModel.Variant.variantFromOrdinal(variant).resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, CervalcesModel.Variant.variantFromOrdinal(variant).resourceLocation.toString());
 		this.entityData.set(VARIANT, variant);
 	}
 
 	public void setVariantTexture(String variant) {
-		ResourceLocation resourceLocation = ResourceLocation.tryParse(variant);
-		if (resourceLocation == null) {
-			resourceLocation = CervalcesModel.Variant.BROWN.resourceLocation;
-		}
-		this.entityData.set(VARIANT_TEXTURE, resourceLocation);
+		this.entityData.set(VARIANT_TEXTURE, variant);
 	}
 
 	@Override
@@ -466,7 +478,7 @@ public class Cervalces extends OHorse implements GeoEntity {
 	public void defineSynchedData() {
 		super.defineSynchedData();
 		this.entityData.define(VARIANT, 0);
-		this.entityData.define(VARIANT_TEXTURE, CervalcesModel.Variant.BROWN.resourceLocation);
+		this.entityData.define(VARIANT_TEXTURE, CervalcesModel.Variant.BROWN.resourceLocation.toString());
 	}
 
 	@Override

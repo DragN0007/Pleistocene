@@ -1,9 +1,9 @@
 package com.dragn0007.permafrost.world;
 
 import com.dragn0007.dragnlivestock.entities.horse.OHorseModel;
-import com.dragn0007.dragnlivestock.entities.marking_layer.EquineEyeColorOverlay;
-import com.dragn0007.dragnlivestock.entities.marking_layer.EquineMarkingOverlay;
 import com.dragn0007.dragnlivestock.entities.util.AbstractOMount;
+import com.dragn0007.dragnlivestock.entities.util.marking_layer.EquineEyeColorOverlay;
+import com.dragn0007.dragnlivestock.entities.util.marking_layer.EquineMarkingOverlay;
 import com.dragn0007.dragnlivestock.util.LivestockOverhaulCommonConfig;
 import com.dragn0007.permafrost.Permafrost;
 import com.dragn0007.permafrost.entities.EntityTypes;
