@@ -34,11 +34,9 @@ public class MammothModel extends GeoModel<Mammoth> {
         return MODEL;
     }
 
-    public static final Map<String, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
-
     @Override
     public ResourceLocation getTextureResource(Mammoth object) {
-        return TEXTURE_CACHE.computeIfAbsent(object.getTextureResource(), ResourceLocation::tryParse);
+        return object.getTextureLocation();
     }
 
     @Override
